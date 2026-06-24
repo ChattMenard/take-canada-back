@@ -90,6 +90,27 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     }).then(handle),
+  batchCollect: (items) =>
+    fetch(`${BASE}/collect/batch`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items }),
+    }).then(handle),
+
+  crawlCollect: (payload) =>
+    fetch(`${BASE}/collect/crawl`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).then(handle),
+
+  updateTimelineEvent: (id, payload) =>
+    fetch(`${BASE}/timeline/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).then(handle),
+
   deleteTimelineEvent: (id) =>
     fetch(`${BASE}/timeline/${id}`, { method: "DELETE" }).then(handle),
 };

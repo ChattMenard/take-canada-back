@@ -4,11 +4,13 @@ from datetime import datetime
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
+from sqlalchemy import text as sa_text
 from sqlmodel import Session, select
 
 from .. import storage
 from ..config import settings
 from ..database import get_session
+from ..extractor import extract_text
 from ..fetcher import FetchError, fetch_url
 from ..models import (
     ChainOfCustodyEvent,
@@ -70,18 +72,20 @@ async def ingest_evidence(
         raise HTTPException(413, f"File exceeds {settings.max_upload_mb} MB limit.")
 
     sha256, _, size = storage.store_bytes(data)
+    ct = file.content_type or "application/octet-stream"
 
     evidence = Evidence(
         sha256=sha256,
         title=title or file.filename or sha256[:12],
         filename=file.filename or "unnamed",
-        content_type=file.content_type or "application/octet-stream",
+        content_type=ct,
         size_bytes=size,
         source_url=source_url,
         source_description=source_description,
         captured_at=_parse_dt(captured_at),
         collected_by=collected_by,
         notes=notes,
+        extracted_text=extract_text(data, ct) or None,
     )
     session.add(evidence)
     session.commit()
@@ -121,6 +125,7 @@ async def collect_from_url(payload: UrlCollect, session: Session = Depends(get_s
         captured_at=payload.captured_at,
         collected_by=payload.collected_by,
         notes=payload.notes,
+        extracted_text=extract_text(res.content, res.content_type) or None,
     )
     session.add(evidence)
     session.commit()
@@ -151,16 +156,36 @@ def list_evidence(
     offset: int = 0,
     session: Session = Depends(get_session),
 ):
-    stmt = select(Evidence).order_by(Evidence.created_at.desc())
+    capped = min(limit, 500)
     if q:
+        fts_ids = session.exec(
+            sa_text(
+                "SELECT rowid FROM evidence_fts WHERE evidence_fts MATCH :q ORDER BY rank LIMIT :lim"
+            ).bindparams(q=q, lim=capped + offset)
+        ).fetchall()
+        if fts_ids:
+            id_list = [row[0] for row in fts_ids][offset : offset + capped]
+            stmt = (
+                select(Evidence)
+                .where(Evidence.id.in_(id_list))
+                .order_by(Evidence.created_at.desc())
+            )
+            return session.exec(stmt).all()
         like = f"%{q}%"
-        stmt = stmt.where(
-            Evidence.title.ilike(like)
-            | Evidence.source_description.ilike(like)
-            | Evidence.notes.ilike(like)
-            | Evidence.source_url.ilike(like)
+        stmt = (
+            select(Evidence)
+            .where(
+                Evidence.title.ilike(like)
+                | Evidence.source_description.ilike(like)
+                | Evidence.notes.ilike(like)
+                | Evidence.source_url.ilike(like)
+            )
+            .order_by(Evidence.created_at.desc())
+            .offset(offset)
+            .limit(capped)
         )
-    stmt = stmt.offset(offset).limit(min(limit, 500))
+        return session.exec(stmt).all()
+    stmt = select(Evidence).order_by(Evidence.created_at.desc()).offset(offset).limit(capped)
     return session.exec(stmt).all()
 
 

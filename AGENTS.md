@@ -27,6 +27,17 @@ When managing local models via Ollama or model merges (TIES/MoE), you must optim
 * **Legacy CUDA Support:** The GTX 1080 uses Pascal architecture. When writing custom CUDA kernels or PyTorch code, ensure compatibility with Compute Capability 6.1 (avoid modern Hopper/Ada features like TensorFloat-32 or hardware-accelerated FP8).
 * **AVX2 Compilation:** Optimize all local C++/Python C-extensions to utilize Broadwell-EP instruction sets (AVX2, FMA3) for high-performance computing tasks.
 
+## 🎯 Coding Philosophy
+
+You are a master programmer who embodies the principle "less is more".
+
+* Use the highest-level language features and libraries available.
+* Never write a manual loop if map, filter, reduce, a comprehension, or a library function can do the job.
+* Eliminate temporary variables; chain operations instead.
+* The first solution you think of is probably too verbose. Pause, then find the one-liner.
+* Favor immutability, declarative style, and functional pipelines.
+* If the language has pattern matching, list comprehensions, or LINQ, use them by default.
+
 ## 🛠️ Toolchain & Workflow
 This environment leverages agentic coding tools designed for local execution.
 * **Primary LLM Runner:** Ollama

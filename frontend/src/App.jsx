@@ -8,12 +8,16 @@ import {
   HardDrive,
   Users,
   GitBranch,
+  Calendar,
   Loader2,
 } from "lucide-react";
 import { api } from "./api.js";
 import { formatBytes, formatDate, shortHash } from "./lib/format.js";
 import IngestForm from "./components/IngestForm.jsx";
 import EvidenceDetail from "./components/EvidenceDetail.jsx";
+import EntitiesView from "./components/EntitiesView.jsx";
+import RelationshipsView from "./components/RelationshipsView.jsx";
+import TimelineView from "./components/TimelineView.jsx";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -23,6 +27,7 @@ export default function App() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [online, setOnline] = useState(true);
+  const [activeView, setActiveView] = useState("vault");
 
   const refresh = useCallback(async (q = "") => {
     try {
@@ -63,89 +68,142 @@ export default function App() {
     api.stats().then(setStats).catch(() => {});
   }
 
+  const navTab = (id, label, Icon) => (
+    <button
+      key={id}
+      onClick={() => setActiveView(id)}
+      className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition ${
+        activeView === id
+          ? "bg-zinc-800 text-zinc-100"
+          : "text-zinc-500 hover:text-zinc-300"
+      }`}
+    >
+      <Icon size={14} />
+      {label}
+    </button>
+  );
+
   return (
-    <div className="flex h-screen bg-zinc-950 text-zinc-100">
-      {/* Sidebar */}
-      <aside className="flex w-80 shrink-0 flex-col border-r border-zinc-800">
-        <header className="flex items-center gap-2 border-b border-zinc-800 p-4">
-          <ShieldCheck className="text-emerald-400" size={22} />
-          <div>
-            <h1 className="text-sm font-semibold leading-tight">Veritas</h1>
-            <p className="text-xs text-zinc-500">Evidentiary Collection Engine</p>
-          </div>
+    <div className="flex h-screen flex-col bg-zinc-950 text-zinc-100">
+      {/* Top navigation bar */}
+      <header className="flex shrink-0 items-center gap-4 border-b border-zinc-800 px-4 py-2">
+        <div className="flex items-center gap-2">
+          <ShieldCheck className="text-emerald-400" size={20} />
+          <span className="text-sm font-semibold">Veritas</span>
           <span
-            className={`ml-auto h-2 w-2 rounded-full ${online ? "bg-emerald-500" : "bg-red-500"}`}
+            className={`h-2 w-2 rounded-full ${online ? "bg-emerald-500" : "bg-red-500"}`}
             title={online ? "Backend online" : "Backend offline"}
           />
-        </header>
-
-        <div className="p-3">
-          <button
-            onClick={() => setShowIngest(true)}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-500"
-          >
-            <Plus size={16} /> Preserve evidence
-          </button>
-          <div className="relative mt-3">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search evidence…"
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-2 pl-9 pr-3 text-sm outline-none focus:border-emerald-500"
-            />
-          </div>
         </div>
-
-        <nav className="flex-1 overflow-y-auto px-2 pb-2">
-          {loading ? (
-            <div className="flex justify-center py-10 text-zinc-600">
-              <Loader2 className="animate-spin" />
-            </div>
-          ) : items.length === 0 ? (
-            <p className="px-3 py-10 text-center text-sm text-zinc-600">
-              No evidence yet. Preserve your first document.
-            </p>
-          ) : (
-            items.map((it) => (
-              <button
-                key={it.id}
-                onClick={() => openItem(it.id)}
-                className={`mb-1 w-full rounded-lg px-3 py-2.5 text-left transition ${
-                  selected?.id === it.id ? "bg-zinc-800" : "hover:bg-zinc-900"
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <FileText size={15} className="shrink-0 text-zinc-500" />
-                  <span className="truncate text-sm font-medium">{it.title}</span>
-                </div>
-                <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
-                  <span className="font-mono">{shortHash(it.sha256)}</span>
-                  <span>{formatDate(it.created_at)}</span>
-                </div>
-              </button>
-            ))
-          )}
+        <nav className="flex items-center gap-1">
+          {navTab("vault", "Vault", Database)}
+          {navTab("entities", "Entities", Users)}
+          {navTab("relationships", "Relationships", GitBranch)}
+          {navTab("timeline", "Timeline", Calendar)}
         </nav>
-
         {stats && (
-          <footer className="grid grid-cols-2 gap-px border-t border-zinc-800 bg-zinc-800 text-xs">
-            <Stat icon={Database} label="Evidence" value={stats.evidence_count} />
-            <Stat icon={HardDrive} label="Stored" value={formatBytes(stats.storage_bytes)} />
-            <Stat icon={Users} label="Entities" value={stats.entity_count} />
-            <Stat icon={GitBranch} label="Links" value={stats.relationship_count} />
-          </footer>
+          <div className="ml-auto flex items-center gap-4 text-xs text-zinc-500">
+            <span>{stats.evidence_count} evidence</span>
+            <span>{stats.entity_count} entities</span>
+            <span>{formatBytes(stats.storage_bytes)}</span>
+          </div>
         )}
-      </aside>
+      </header>
 
-      {/* Main */}
-      <main className="flex-1 overflow-hidden">
-        {selected ? (
-          <EvidenceDetail evidence={selected} onUpdated={onUpdated} />
-        ) : (
-          <EmptyState online={online} onAdd={() => setShowIngest(true)} />
+      {/* View area */}
+      <div className="flex min-h-0 flex-1">
+        {activeView === "vault" && (
+          <>
+            {/* Sidebar */}
+            <aside className="flex w-80 shrink-0 flex-col border-r border-zinc-800">
+              <div className="p-3">
+                <button
+                  onClick={() => setShowIngest(true)}
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-500"
+                >
+                  <Plus size={16} /> Preserve evidence
+                </button>
+                <div className="relative mt-3">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search evidence…"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-2 pl-9 pr-3 text-sm outline-none focus:border-emerald-500"
+                  />
+                </div>
+              </div>
+
+              <nav className="flex-1 overflow-y-auto px-2 pb-2">
+                {loading ? (
+                  <div className="flex justify-center py-10 text-zinc-600">
+                    <Loader2 className="animate-spin" />
+                  </div>
+                ) : items.length === 0 ? (
+                  <p className="px-3 py-10 text-center text-sm text-zinc-600">
+                    No evidence yet. Preserve your first document.
+                  </p>
+                ) : (
+                  items.map((it) => (
+                    <button
+                      key={it.id}
+                      onClick={() => openItem(it.id)}
+                      className={`mb-1 w-full rounded-lg px-3 py-2.5 text-left transition ${
+                        selected?.id === it.id ? "bg-zinc-800" : "hover:bg-zinc-900"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <FileText size={15} className="shrink-0 text-zinc-500" />
+                        <span className="truncate text-sm font-medium">{it.title}</span>
+                      </div>
+                      <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
+                        <span className="font-mono">{shortHash(it.sha256)}</span>
+                        <span>{formatDate(it.created_at)}</span>
+                      </div>
+                    </button>
+                  ))
+                )}
+              </nav>
+
+              {stats && (
+                <footer className="grid grid-cols-2 gap-px border-t border-zinc-800 bg-zinc-800 text-xs">
+                  <Stat icon={Database} label="Evidence" value={stats.evidence_count} />
+                  <Stat icon={HardDrive} label="Stored" value={formatBytes(stats.storage_bytes)} />
+                  <Stat icon={Users} label="Entities" value={stats.entity_count} />
+                  <Stat icon={GitBranch} label="Links" value={stats.relationship_count} />
+                </footer>
+              )}
+            </aside>
+
+            {/* Main */}
+            <main className="flex-1 overflow-hidden">
+              {selected ? (
+                <EvidenceDetail evidence={selected} onUpdated={onUpdated} />
+              ) : (
+                <EmptyState online={online} onAdd={() => setShowIngest(true)} />
+              )}
+            </main>
+          </>
         )}
-      </main>
+
+        {activeView === "entities" && (
+          <div className="flex-1 overflow-hidden">
+            <EntitiesView />
+          </div>
+        )}
+
+        {activeView === "relationships" && (
+          <div className="flex-1 overflow-hidden">
+            <RelationshipsView />
+          </div>
+        )}
+
+        {activeView === "timeline" && (
+          <div className="flex-1 overflow-hidden">
+            <TimelineView />
+          </div>
+        )}
+      </div>
 
       {showIngest && (
         <IngestForm onClose={() => setShowIngest(false)} onIngested={onIngested} />

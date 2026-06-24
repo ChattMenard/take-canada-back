@@ -85,6 +85,7 @@ class Evidence(SQLModel, table=True):
     )
     collected_by: str | None = Field(default=None, description="Person/handle who collected it")
     notes: str | None = None
+    extracted_text: str | None = Field(default=None, sa_column_kwargs={"info": {"exclude_from_fts": False}})
 
     created_at: datetime = Field(default_factory=utcnow, index=True)
 

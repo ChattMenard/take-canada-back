@@ -116,6 +116,13 @@ class TimelineEventCreate(BaseModel):
     evidence_id: int | None = None
 
 
+class TimelineEventPatch(BaseModel):
+    title: str | None = None
+    description: str | None = None
+    occurred_at: datetime | None = None
+    evidence_id: int | None = None
+
+
 class TimelineEventRead(TimelineEventCreate):
     id: int
     created_at: datetime

@@ -8,41 +8,32 @@ import {
   Calendar,
   DollarSign,
   ArrowRightLeft,
-  ArrowRight,
-  ArrowLeft,
   ArrowUpRight,
   User,
   Building,
-  Globe,
   X,
 } from "lucide-react";
 import { api } from "../api.js";
 import { formatDate } from "../lib/format.js";
 
 const KIND_ICONS = {
-  OWNS: { icon: Building, color: "text-amber-400" },
-  OWNS_SHARES: { icon: DollarSign, color: "text-emerald-400" },
-  EMPLOYED_BY: { icon: User, color: "text-blue-400" },
-  RELATED_TO: { icon: LinkIcon, color: "text-zinc-400" },
-  DIRECTOR_OF: { icon: Building, color: "text-purple-400" },
-  ADVISOR_TO: { icon: User, color: "text-cyan-400" },
-  PARTNER_OF: { icon: ArrowRightLeft, color: "text-pink-400" },
-  PARENT_OF: { icon: ArrowRight, color: "text-orange-400" },
-  SUBSIDIARY_OF: { icon: ArrowLeft, color: "text-orange-400" },
-  CONNECTED_TO: { icon: ArrowUpRight, color: "text-zinc-400" },
+  DONATION: { icon: DollarSign, color: "text-emerald-400" },
+  CONTRACT: { icon: FileText, color: "text-blue-400" },
+  BOARD_SEAT: { icon: Building, color: "text-purple-400" },
+  OWNERSHIP: { icon: ArrowUpRight, color: "text-amber-400" },
+  LOBBYING: { icon: ArrowRightLeft, color: "text-pink-400" },
+  EMPLOYMENT: { icon: User, color: "text-cyan-400" },
+  OTHER: { icon: LinkIcon, color: "text-zinc-400" },
 };
 
 const KIND_LABELS = {
-  OWNS: "Owns",
-  OWNS_SHARES: "Owns Shares",
-  EMPLOYED_BY: "Employed By",
-  RELATED_TO: "Related To",
-  DIRECTOR_OF: "Director Of",
-  ADVISOR_TO: "Advisor To",
-  PARTNER_OF: "Partner Of",
-  PARENT_OF: "Parent Of",
-  SUBSIDIARY_OF: "Subsidiary Of",
-  CONNECTED_TO: "Connected To",
+  DONATION: "Donation",
+  CONTRACT: "Contract",
+  BOARD_SEAT: "Board Seat",
+  OWNERSHIP: "Ownership",
+  LOBBYING: "Lobbying",
+  EMPLOYMENT: "Employment",
+  OTHER: "Other",
 };
 
 export default function RelationshipsPanel({ evidenceId, onLinked }) {
@@ -53,7 +44,7 @@ export default function RelationshipsPanel({ evidenceId, onLinked }) {
   const [createForm, setCreateForm] = useState({
     source_entity_id: "",
     target_entity_id: "",
-    kind: "RELATED_TO",
+    kind: "OTHER",
     amount: "",
     occurred_at: "",
   });
@@ -98,7 +89,7 @@ export default function RelationshipsPanel({ evidenceId, onLinked }) {
       setCreateForm({
         source_entity_id: "",
         target_entity_id: "",
-        kind: "RELATED_TO",
+        kind: "OTHER",
         amount: "",
         occurred_at: "",
       });

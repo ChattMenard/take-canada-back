@@ -78,11 +78,7 @@ export default function TimelinePanel({ evidenceId, onLinked }) {
     if (!evidenceId) return;
     setLinkingEvidence(eventId);
     try {
-      const payload = {
-        ...events.find((e) => e.id === eventId),
-        evidence_id: evidenceId,
-      };
-      await api.createTimelineEvent(payload);
+      await api.updateTimelineEvent(eventId, { evidence_id: evidenceId });
       loadEvents();
       if (onLinked) onLinked();
     } catch (err) {
@@ -95,12 +91,7 @@ export default function TimelinePanel({ evidenceId, onLinked }) {
 
   async function unlinkEvidenceFromEvent(eventId) {
     try {
-      const event = events.find((e) => e.id === eventId);
-      const payload = {
-        ...event,
-        evidence_id: null,
-      };
-      await api.createTimelineEvent(payload);
+      await api.updateTimelineEvent(eventId, { evidence_id: null });
       loadEvents();
       if (onLinked) onLinked();
     } catch (err) {

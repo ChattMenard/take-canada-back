@@ -5,7 +5,7 @@ from sqlmodel import Session, select
 
 from ..database import get_session
 from ..models import TimelineEvent
-from ..schemas import TimelineEventCreate, TimelineEventRead
+from ..schemas import TimelineEventCreate, TimelineEventPatch, TimelineEventRead
 
 router = APIRouter(prefix="/api/timeline", tags=["timeline"])
 
@@ -23,6 +23,23 @@ def create_event(payload: TimelineEventCreate, session: Session = Depends(get_se
 def list_events(session: Session = Depends(get_session)):
     stmt = select(TimelineEvent).order_by(TimelineEvent.occurred_at)
     return session.exec(stmt).all()
+
+
+@router.patch("/{event_id}", response_model=TimelineEventRead)
+def update_event(
+    event_id: int,
+    patch: TimelineEventPatch,
+    session: Session = Depends(get_session),
+):
+    event = session.get(TimelineEvent, event_id)
+    if not event:
+        raise HTTPException(404, "Timeline event not found.")
+    for key, value in patch.model_dump(exclude_unset=True).items():
+        setattr(event, key, value)
+    session.add(event)
+    session.commit()
+    session.refresh(event)
+    return event
 
 
 @router.delete("/{event_id}", status_code=204)

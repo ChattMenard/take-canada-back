@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     # Allow fetching private/loopback addresses (SSRF guard off). Keep False
     # in any networked/public deployment.
     allow_private_collect: bool = False
+    # Batch/crawl collection limits
+    collect_batch_limit: int = 50
+    default_collector: str | None = None
 
 
 settings = Settings()
