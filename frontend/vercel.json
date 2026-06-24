@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/:splat" },
+    { "source": "/((?!api/).*)", "destination": "/" }
+  ]
 }
