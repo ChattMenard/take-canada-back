@@ -9,12 +9,14 @@ from sqlmodel import Session, select
 from .. import storage
 from ..config import settings
 from ..database import get_session
+from ..fetcher import FetchError, fetch_url
 from ..models import ChainOfCustodyEvent, CustodyAction, Evidence
 from ..schemas import (
     CustodyNote,
     EvidenceDetail,
     EvidenceMetadata,
     EvidenceRead,
+    UrlCollect,
     VerifyResult,
 )
 
@@ -84,6 +86,50 @@ async def ingest_evidence(
         CustodyAction.CREATED,
         actor=collected_by,
         detail=f"Ingested {evidence.filename} ({size} bytes)",
+        hash_at_event=sha256,
+    )
+    session.commit()
+    session.refresh(evidence)
+    return evidence
+
+
+@router.post("/collect-url", response_model=EvidenceDetail, status_code=201)
+async def collect_from_url(payload: UrlCollect, session: Session = Depends(get_session)):
+    """Fetch a public URL server-side, then hash, store, and file it as evidence."""
+    try:
+        res = await fetch_url(payload.url)
+    except FetchError as exc:
+        raise HTTPException(422, str(exc))
+
+    sha256, _, size = storage.store_bytes(res.content)
+
+    evidence = Evidence(
+        sha256=sha256,
+        title=payload.title or res.filename or sha256[:12],
+        filename=res.filename,
+        content_type=res.content_type,
+        size_bytes=size,
+        source_url=res.final_url,
+        source_description=payload.source_description,
+        captured_at=payload.captured_at,
+        collected_by=payload.collected_by,
+        notes=payload.notes,
+    )
+    session.add(evidence)
+    session.commit()
+    session.refresh(evidence)
+
+    _log(
+        session,
+        evidence.id,
+        CustodyAction.CREATED,
+        actor=payload.collected_by,
+        detail=(
+            f"Collected from URL {payload.url} "
+            f"(HTTP {res.status_code}, {res.content_type}, {size} bytes). "
+            f"Final URL after redirects: {res.final_url}. "
+            f"Retrieved {res.fetched_at.isoformat()}."
+        ),
         hash_at_event=sha256,
     )
     session.commit()

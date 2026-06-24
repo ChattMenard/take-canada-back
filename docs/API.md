@@ -67,6 +67,36 @@ curl -X POST http://127.0.0.1:8000/api/evidence \
 **201** returns the full `EvidenceDetail` (includes `custody_events`).
 Errors: **422** empty file / bad datetime, **413** over size limit.
 
+### `POST /api/evidence/collect-url` — one-click collect
+
+Fetches a public URL **server-side**, then hashes, stores, and files it as
+evidence (logs a `CREATED` custody event capturing HTTP status, content type,
+final URL after redirects, and retrieval time).
+
+JSON body:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `url` | yes | http(s) URL to collect. |
+| `title` | no | Defaults to derived filename/hash. |
+| `source_description` | no | Free-text origin. |
+| `captured_at` | no | ISO 8601. |
+| `collected_by` | no | Operator/handle. |
+| `notes` | no | Context. |
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/evidence/collect-url \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://www.pbo-dpb.ca/.../report.pdf","collected_by":"ChattMenard"}'
+```
+
+**Security (SSRF guard):** only `http`/`https` are allowed; hosts that resolve
+to private, loopback, link-local, reserved, or NAT64-embedded private addresses
+are refused, and **every redirect hop is re-validated**. Set
+`VERITAS_ALLOW_PRIVATE_COLLECT=true` only for trusted local testing.
+**422** is returned for blocked hosts, bad schemes, empty bodies, over-size
+resources, too many redirects, or upstream HTTP errors.
+
 ### `GET /api/evidence` — list / search
 
 Query params: `q` (matches title, description, notes, source_url),

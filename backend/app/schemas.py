@@ -57,6 +57,15 @@ class CustodyNote(BaseModel):
     detail: str
 
 
+class UrlCollect(BaseModel):
+    url: str
+    title: str | None = None
+    source_description: str | None = None
+    captured_at: datetime | None = None
+    collected_by: str | None = None
+    notes: str | None = None
+
+
 # --------------------------- Entities --------------------------- #
 class EntityCreate(BaseModel):
     name: str

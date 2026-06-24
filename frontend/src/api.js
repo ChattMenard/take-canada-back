@@ -26,6 +26,13 @@ export const api = {
   ingest: (formData) =>
     fetch(`${BASE}/evidence`, { method: "POST", body: formData }).then(handle),
 
+  collectUrl: (payload) =>
+    fetch(`${BASE}/evidence/collect-url`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).then(handle),
+
   verify: (id) => fetch(`${BASE}/evidence/${id}/verify`, { method: "POST" }).then(handle),
 
   addNote: (id, payload) =>

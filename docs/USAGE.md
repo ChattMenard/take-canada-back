@@ -25,23 +25,25 @@ Good provenance habits:
 - Put the *significance* of the document in **notes** while it's fresh.
 - Use a consistent **collected by** handle so the custody log is attributable.
 
-## 2. Collect evidence from a public URL (CLI, today)
+## 2. Collect evidence from a public URL (one click)
 
-Until the one-click URL collector ships, fetch + ingest in one step:
+In the **Preserve evidence** dialog, switch to the **From URL** tab, paste a
+public URL, add any metadata, and click **Collect & hash**. Veritas fetches the
+resource server-side, hashes it, derives the filename (from the
+`Content-Disposition` header when present), and records the source URL, HTTP
+status, and retrieval time in the chain of custody.
+
+Or via the API:
 
 ```bash
-URL="https://example.gov/report.pdf"
-curl -sL "$URL" -o /tmp/item
-curl -s -X POST http://127.0.0.1:8000/api/evidence \
-  -F "file=@/tmp/item;type=application/pdf;filename=report.pdf" \
-  -F "title=Descriptive title" \
-  -F "source_url=$URL" \
-  -F "captured_at=2024-08-28T00:00:00" \
-  -F "collected_by=YourHandle" \
-  -F "notes=Why this matters."
+curl -s -X POST http://127.0.0.1:8000/api/evidence/collect-url \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.gov/report.pdf","collected_by":"YourHandle","notes":"Why this matters."}'
 ```
 
-This is exactly how the PBO Fiscal Sustainability Report 2024 was collected.
+This is how the PBO Fiscal Sustainability Report 2024 is collected. A built-in
+SSRF guard refuses non-public hosts (see [INTEGRITY.md](./INTEGRITY.md) and
+[SECURITY.md](./SECURITY.md)).
 
 ## 3. Inspect evidence
 

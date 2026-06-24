@@ -19,6 +19,12 @@ class Settings(BaseSettings):
         "http://127.0.0.1:5173",
     ]
     max_upload_mb: int = 512
+    # URL collector
+    collect_timeout_seconds: float = 30.0
+    collect_max_redirects: int = 5
+    # Allow fetching private/loopback addresses (SSRF guard off). Keep False
+    # in any networked/public deployment.
+    allow_private_collect: bool = False
 
 
 settings = Settings()

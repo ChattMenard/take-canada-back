@@ -38,10 +38,12 @@ this file tracks what is implemented versus planned.
 
 ## Cross-cutting tracks
 
-### Track A — Effortless collection ⬜
+### Track A — Effortless collection 🟡
 
-- ⬜ One-click **URL collector** endpoint (fetch + hash + ingest + provenance)
-- ⬜ Capture HTTP response headers + rendered screenshot at collection time
+- ✅ One-click **URL collector** endpoint (fetch + hash + ingest + provenance) with SSRF guard
+- ✅ "From URL" tab in the collect UI
+- ✅ Capture HTTP status, content type, final URL, and retrieval time in custody
+- ⬜ Rendered screenshot / HTML snapshot at collection time
 - ⬜ Batch collection (e.g., pull many reports from a publication index)
 
 ### Track B — Case-building 🟡
