@@ -89,6 +89,13 @@ The project is deployed with a split stack:
 - **Frontend** → Vercel (static, auto-deploy from GitHub `main` branch)
 - **Backend** → Railway (containerized, persistent volume)
 
+**Live URLs:**
+- **Frontend:** https://proofstacked.com
+- **Backend API:** https://backend-production-cf1f.up.railway.app
+- **API Docs:** https://backend-production-cf1f.up.railway.app/docs
+
+**Status:** ✅ Fully operational (deployed 2026-06-24)
+
 ### Railway backend
 
 The FastAPI backend runs as a Dockerized service on Railway with a persistent
@@ -142,6 +149,42 @@ railway up --detach              # deploy
 railway logs                     # view deploy logs
 railway variables                # inspect env vars
 ```
+
+## Monitoring & Health Checks
+
+### Health endpoints
+
+- **Backend health:** `GET /api/health` → `{"status":"ok","version":"0.1.0"}`
+- **Backend stats:** `GET /api/stats` → evidence/entity counts and storage usage
+- **Frontend:** HTTP 200 response with `<title>Veritas — Evidentiary Collection Engine</title>`
+
+### Monitoring commands
+
+```bash
+# Backend health check
+curl -s https://backend-production-cf1f.up.railway.app/api/health
+
+# Backend statistics
+curl -s https://backend-production-cf1f.up.railway.app/api/stats
+
+# Frontend availability
+curl -s -I https://proofstacked.com | grep "HTTP"
+
+# Railway logs (last 100 lines)
+railway logs --limit 100
+
+# Vercel deployment status
+vercel list --prod
+```
+
+### Deployment verification checklist
+
+- [ ] Frontend loads at https://proofstacked.com
+- [ ] Backend responds at https://backend-production-cf1f.up.railway.app/api/health
+- [ ] API docs accessible at https://backend-production-cf1f.up.railway.app/docs
+- [ ] CORS allows frontend domain (check browser dev tools)
+- [ ] Git push to `main` triggers Vercel redeploy
+- [ ] Railway volume persists data across deployments
 
 ## Reproducible runs (planned)
 
