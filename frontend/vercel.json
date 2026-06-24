@@ -1,6 +1,15 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/:splat" },
+    { "source": "/api/health", "destination": "https://backend-production-cf1f.up.railway.app/api/health" },
+    { "source": "/api/stats", "destination": "https://backend-production-cf1f.up.railway.app/api/stats" },
+    { "source": "/api/evidence", "destination": "https://backend-production-cf1f.up.railway.app/api/evidence" },
+    { "source": "/api/evidence/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/evidence/$1" },
+    { "source": "/api/entities", "destination": "https://backend-production-cf1f.up.railway.app/api/entities" },
+    { "source": "/api/entities/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/entities/$1" },
+    { "source": "/api/relationships", "destination": "https://backend-production-cf1f.up.railway.app/api/relationships" },
+    { "source": "/api/relationships/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/relationships/$1" },
+    { "source": "/api/timeline", "destination": "https://backend-production-cf1f.up.railway.app/api/timeline" },
+    { "source": "/api/timeline/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/timeline/$1" },
     { "source": "/((?!api/).*)", "destination": "/" }
   ]
 }
