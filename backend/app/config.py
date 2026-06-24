@@ -13,7 +13,8 @@ class Settings(BaseSettings):
     database_url: str = f"sqlite:///{DATA_DIR / 'veritas.db'}"
     # Content-addressed object store: files saved under store/<sha256[:2]>/<sha256>
     storage_dir: Path = DATA_DIR / "store"
-    # Comma-friendly CORS origins for the dev frontend.
+    # Comma-friendly CORS origins. Add your Vercel frontend URL via
+    # VERITAS_CORS_ORIGINS env var (JSON array format).
     cors_origins: list[str] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",

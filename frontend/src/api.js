@@ -1,5 +1,6 @@
-// Thin API client for the Veritas backend. Dev requests are proxied to :8000.
-const BASE = "/api";
+// Thin API client for the Veritas backend.
+// In dev, Vite proxies /api to :8000. In production, set VITE_API_BASE_URL.
+const BASE = import.meta.env.VITE_API_BASE_URL || "/api";
 
 async function handle(res) {
   if (!res.ok) {

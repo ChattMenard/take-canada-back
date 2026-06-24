@@ -82,6 +82,67 @@ vault.
 - Restrict filesystem permissions on `backend/data/`.
 - See [SECURITY.md](./SECURITY.md) and [INTEGRITY.md](./INTEGRITY.md).
 
+## Cloud deployment
+
+The project is deployed with a split stack:
+
+- **Frontend** → Vercel (static, auto-deploy from GitHub `main` branch)
+- **Backend** → Railway (containerized, persistent volume)
+
+### Railway backend
+
+The FastAPI backend runs as a Dockerized service on Railway with a persistent
+volume mounted at `/app/data` for the SQLite database and object store.
+
+| Setting | Value |
+| --- | --- |
+| Railway project | `veritas` |
+| Service | `backend` |
+| Environment | `production` |
+| Region | `us-west2` |
+| Public URL | `https://backend-production-cf1f.up.railway.app` |
+| Volume mount | `/app/data` (5 GB) |
+| `VERITAS_DATABASE_URL` | `sqlite:////app/data/veritas.db` |
+| `VERITAS_STORAGE_DIR` | `/app/data/store` |
+| `VERITAS_CORS_ORIGINS` | `["https://frontend-rho-six-94.vercel.app","http://localhost:5173","http://127.0.0.1:5173"]` |
+
+Deploy the backend from the `backend/` directory:
+
+```bash
+railway up --detach
+```
+
+### Vercel frontend
+
+The Vite-built frontend is deployed to Vercel, auto-deploying from the
+`ChattMenard/take-canada-back` GitHub repo on push to `main`.
+
+| Setting | Value |
+| --- | --- |
+| Vercel project | `frontend` |
+| Production URL | `https://frontend-rho-six-94.vercel.app` |
+| `VITE_API_BASE_URL` | `https://backend-production-cf1f.up.railway.app/api` |
+
+Redeploy the frontend from the `frontend/` directory:
+
+```bash
+vercel --prod --yes
+```
+
+> **Note:** `VITE_API_BASE_URL` is a build-time variable. After changing it,
+> redeploy the frontend for the change to take effect.
+
+### Connecting Railway CLI
+
+```bash
+railway login                    # one-time auth
+cd backend
+railway link                     # select project "veritas", env "production", service "backend"
+railway up --detach              # deploy
+railway logs                     # view deploy logs
+railway variables                # inspect env vars
+```
+
 ## Reproducible runs (planned)
 
 A `Dockerfile` + `docker-compose.yml` for one-command startup is on the
