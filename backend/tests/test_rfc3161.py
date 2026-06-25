@@ -66,6 +66,15 @@ def test_rfc3161_create_and_verify_mocked(
     monkeypatch.setattr("app.routers.evidence.rfc3161.tsr_exists", fake_tsr_exists)
     monkeypatch.setattr("app.routers.evidence.rfc3161.tsr_path", fake_tsr_path)
 
+    async def fake_verify(sha256):
+        return {
+            "exists": True,
+            "verified": False,
+            "error": None,
+        }
+
+    monkeypatch.setattr("app.routers.evidence.rfc3161.verify", fake_verify)
+
     create = client.post(f"/api/evidence/{evidence_id}/timestamp/rfc3161")
     assert create.status_code == 201
     body = create.json()
@@ -78,14 +87,14 @@ def test_rfc3161_create_and_verify_mocked(
     assert file_resp.status_code == 200
     assert file_resp.content == tsr_bytes
 
-    async def fake_verify(sha256):
+    async def fake_verify_success(sha256):
         return {
             "exists": True,
             "verified": True,
             "error": None,
         }
 
-    monkeypatch.setattr("app.routers.evidence.rfc3161.verify", fake_verify)
+    monkeypatch.setattr("app.routers.evidence.rfc3161.verify", fake_verify_success)
     verify = client.get(f"/api/evidence/{evidence_id}/timestamp/rfc3161")
     assert verify.status_code == 200
     assert verify.json()["verified"] is True
