@@ -21,6 +21,8 @@ evidentiary collection engine for public-record accountability work.
 | Report a vulnerability | [SECURITY.md](./SECURITY.md) |
 | See what's built and what's next | [ROADMAP.md](./ROADMAP.md) |
 | Look up a term | [GLOSSARY.md](./GLOSSARY.md) |
+| Accountability campaign templates (ATIP requests) | [TRANSPARENCY_CAMPAIGN.md](./TRANSPARENCY_CAMPAIGN.md) |
+| Fact-checking framework for public claims | [EVIDENCE_VALIDATION.md](./EVIDENCE_VALIDATION.md) |
 
 ## The 60-second mental model
 
@@ -56,6 +58,19 @@ Veritas/
 │       └── components/     IngestForm, EvidenceDetail, EntitiesView, RelationshipsView, TimelineView
 └── docs/               You are here.
 ```
+
+## Accountability campaign resources
+
+This repo also includes practical templates for Canadian public-record
+accountability work:
+
+- [TRANSPARENCY_CAMPAIGN.md](./TRANSPARENCY_CAMPAIGN.md) — ATIP request templates
+  and guidance for requesting information from public institutions.
+- [EVIDENCE_VALIDATION.md](./EVIDENCE_VALIDATION.md) — a fact-checking framework
+  for evaluating public claims against primary sources.
+
+These live alongside the engine because they are meant to be used *with* Veritas:
+collect the source documents, preserve them, and cite them defensibly.
 
 ## License
 
