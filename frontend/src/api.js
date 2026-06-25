@@ -83,6 +83,16 @@ export const api = {
   unlinkRelationshipEvidence: (relationshipId, evidenceId) =>
     fetch(`${BASE}/relationships/${relationshipId}/link/${evidenceId}`, { method: "DELETE" }).then(handle),
 
+  // Timestamping (OpenTimestamps)
+  timestampStatus: (id) => fetch(`${BASE}/evidence/${id}/timestamp`).then(handle),
+  createTimestamp: (id) =>
+    fetch(`${BASE}/evidence/${id}/timestamp`, { method: "POST" }).then(handle),
+  upgradeTimestamp: (id) =>
+    fetch(`${BASE}/evidence/${id}/timestamp/upgrade`, { method: "POST" }).then(handle),
+  verifyTimestamp: (id) =>
+    fetch(`${BASE}/evidence/${id}/timestamp/verify`, { method: "POST" }).then(handle),
+  timestampFileUrl: (id) => `${BASE}/evidence/${id}/timestamp/file`,
+
   // Timeline
   listTimeline: () => fetch(`${BASE}/timeline`).then(handle),
   createTimelineEvent: (payload) =>

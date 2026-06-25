@@ -17,8 +17,8 @@ holds no authoritative state.
                         │  dev: Vite proxies /api → :8000
         ┌───────────────▼─────────────────────────────┐
         │              FastAPI app (backend/)          │
-        │  routers: evidence | entities |              │
-        │           relationships | timeline | meta    │
+        │  routers: evidence | collect | entities |     │
+        │           relationships | timeline | meta     │
         └───────┬───────────────────────┬──────────────┘
                 │                        │
         ┌───────▼────────┐      ┌────────▼─────────────┐
@@ -51,10 +51,11 @@ holds no authoritative state.
 | `app/storage.py` | The object store: `hash_bytes`, `hash_file`, `store_bytes`, `verify`, `get_path`, `disk_usage_bytes`. |
 | `app/models.py` | All ORM tables across the three phases + enums. |
 | `app/schemas.py` | Pydantic DTOs kept separate from ORM tables for clean request/response contracts. |
-| `app/routers/evidence.py` | The vault: ingest, list, get, patch metadata, note, verify, download. |
+| `app/routers/evidence.py` | The vault: ingest, URL collect, list, get, patch metadata, note, verify, download. |
 | `app/routers/entities.py` | Phase 2 foundation: entity CRUD + evidence linking. |
-| `app/routers/relationships.py` | Phase 2 foundation: relationship CRUD. |
+| `app/routers/relationships.py` | Phase 2 foundation: relationship CRUD + evidence linking. |
 | `app/routers/timeline.py` | Phase 3 foundation: timeline event CRUD. |
+| `app/routers/collect.py` | Batch and crawl URL collection. |
 
 ## Request lifecycle: ingesting evidence
 

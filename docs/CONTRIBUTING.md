@@ -47,20 +47,24 @@ cd frontend && npm install && npm run dev
 - Write clear, imperative commit messages (e.g., "Add URL collector endpoint").
 - Keep PRs focused; one concern per PR.
 
-## Tests (incoming)
+## Tests
 
-Automated tests are on the roadmap (Track C). When they land, contributions that
-touch hashing/storage/custody/verify **must** include coverage. Until then,
-include a short manual test plan in your PR description.
+The backend test suite lives in `backend/tests/` and runs with `pytest`. Contributions
+that touch hashing, storage, custody, verify, or model changes should include or
+update coverage. Run tests from the `backend/` directory:
+
+```bash
+pytest
+```
 
 ## What's most wanted
 
 See [ROADMAP.md](./ROADMAP.md). High-leverage areas right now:
 
-- One-click URL collector (Track A)
-- Phase 2 graph UI and Phase 3 timeline UI
-- Integrity hardening (hash-chained custody log, signed exports)
-- Tests and a Docker setup
+- Graph visualization for the entity/relationship network
+- Guided "attach evidence to a claim" UI flow
+- Integrity hardening (hash-chained custody log, signed exports, external anchoring)
+- Authentication and multi-user roles for shared deployments
 
 ## Reporting issues
 

@@ -35,22 +35,25 @@ evidentiary collection engine for public-record accountability work.
 ## Project layout
 
 ```text
-take-canada-back/
-├── backend/            FastAPI + SQLModel (SQLite). The engine.
-│   └── app/
-│       ├── main.py         App entrypoint, CORS, /health, /stats
-│       ├── config.py       Settings (paths, DB URL, limits)
-│       ├── database.py     Engine + session + table creation
-│       ├── storage.py      SHA-256 content-addressed object store
-│       ├── models.py       All DB tables (3 phases)
-│       ├── schemas.py      Request/response DTOs
-│       └── routers/        evidence, entities, relationships, timeline
+Veritas/
+├── backend/            FastAPI + SQLModel (SQLite or PostgreSQL). The engine.
+│   ├── app/
+│   │   ├── main.py         App entrypoint, CORS, /health, /stats
+│   │   ├── config.py       Settings (paths, DB URL, limits)
+│   │   ├── database.py     Engine + session + table creation
+│   │   ├── storage.py      SHA-256 content-addressed object store
+│   │   ├── models.py       All DB tables (3 phases)
+│   │   ├── schemas.py      Request/response DTOs
+│   │   ├── fetcher.py      Server-side URL fetcher with SSRF guard
+│   │   ├── extractor.py    PDF/HTML/text extraction for search
+│   │   └── routers/        evidence, collect, entities, relationships, timeline
+│   └── tests/          pytest suite for the API and storage
 ├── frontend/           React + Vite + Tailwind. The Vault UI.
 │   └── src/
 │       ├── App.jsx         Layout, sidebar, search, stats
 │       ├── api.js          API client
 │       ├── lib/format.js   Formatting helpers
-│       └── components/     IngestForm, EvidenceDetail
+│       └── components/     IngestForm, EvidenceDetail, EntitiesView, RelationshipsView, TimelineView
 └── docs/               You are here.
 ```
 

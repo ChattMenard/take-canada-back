@@ -45,16 +45,21 @@ _FTS_SETUP = [
 ]
 
 
+def _is_sqlite() -> bool:
+    return settings.database_url.startswith("sqlite")
+
+
 def init_db() -> None:
     # Import models so SQLModel registers every table before create_all.
     from . import models  # noqa: F401
 
     SQLModel.metadata.create_all(engine)
 
-    with engine.connect() as conn:
-        for stmt in _FTS_SETUP:
-            conn.execute(text(stmt))
-        conn.commit()
+    if _is_sqlite():
+        with engine.connect() as conn:
+            for stmt in _FTS_SETUP:
+                conn.execute(text(stmt))
+            conn.commit()
 
 
 def get_session() -> Generator[Session, None, None]:

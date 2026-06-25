@@ -79,7 +79,42 @@ trail.
 ## 7. Search
 
 Use the sidebar search box. It matches **title**, **source description**,
-**notes**, and **source URL**.
+**notes**, and **extracted text** from PDF/HTML/text files. The search uses
+SQLite FTS5 under the hood and falls back to metadata matching if there are no
+full-text hits.
+
+## 8. Build the entity graph (UI)
+
+Switch to the **Entities** tab to create people, banks, agencies, companies, and
+other organizations. Select an entity to see evidence linked to it.
+
+Switch to the **Relationships** tab to connect two entities (donation, contract,
+board seat, ownership, lobbying, employment, other). Each relationship can
+include an amount, date, and description, and can be linked to supporting
+evidence.
+
+## 9. Build a timeline (UI)
+
+Switch to the **Timeline** tab to add dated events. Each event can link to a piece
+of evidence so the chronology is sourced.
+
+## 10. Batch or crawl collection (API)
+
+For multiple URLs, use the batch collector:
+
+```bash
+curl -s -X POST http://127.0.0.1:8000/api/collect/batch \
+  -H "Content-Type: application/json" \
+  -d '{"items":[{"url":"https://example.gov/a.pdf"},{"url":"https://example.gov/b.pdf"}]}'
+```
+
+To crawl a page and collect matching first-level links:
+
+```bash
+curl -s -X POST http://127.0.0.1:8000/api/collect/crawl \
+  -H "Content-Type: application/json" \
+  -d '{"root_url":"https://example.gov/publications/","link_pattern":"\\.pdf$"}'
+```
 
 ## Tips for building a credible record
 

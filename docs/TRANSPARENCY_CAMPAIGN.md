@@ -37,6 +37,29 @@ Understanding who regulates the banks, and whether those regulators have conflic
 
 ---
 
+## Quantified Findings
+
+The numbers below are drawn from public data and are documented with sources, formulas, and assumptions in `docs/quantification.ipynb`.
+
+### Housing Affordability Shock
+
+- Monthly mortgage payment on a benchmark home (2019 base: $500,000, 20% down, 25-year amortization) rose from **$2,167 in 2019** to **$2,826 in 2025**, a **30.4% increase**.
+- For a single average wage earner, the mortgage payment consumed **50.1% of gross monthly income** in 2025.
+- **Source:** Statistics Canada New Housing Price Index (Table 18-10-0205-01) and conventional 5-year mortgage lending rate (Table 34-10-0145-01).
+
+### Federal Tax Bracket Creep
+
+- A taxpayer whose $50,000 income kept pace with inflation saw the real federal tax burden rise by **$730 from 2019 to 2025** (from $5,690 to $6,419).
+- Federal tax brackets are indexed, but this example shows the net effect of bracket changes, the basic personal amount, and the 2025 rate cut from 15% to 14.5%.
+- **Source:** Canada Revenue Agency (CRA), TaxTips.ca federal tax rate tables, and CRA indexation factors.
+
+### Provincial Debt Costs
+
+- Aggregate provincial/territorial public debt charges increased from **$32.1 billion in 2018-19** to **$38.8 billion in 2024-25**, an increase of **$6.7 billion**.
+- **Source:** Department of Finance Canada, Fiscal Reference Tables 2025, Table 31.
+
+---
+
 ## ATIP Request Templates
 
 ### Template 1: Board Member Backgrounds

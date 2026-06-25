@@ -44,6 +44,9 @@ Override any setting with a `VERITAS_`-prefixed environment variable
 | --- | --- | --- |
 | `VERITAS_DATABASE_URL` | `sqlite:///…/data/veritas.db` | DB location / engine. |
 | `VERITAS_STORAGE_DIR` | `…/data/store` | Object store path. |
+| `VERITAS_TIMESTAMP_DIR` | `…/data/timestamps` | OpenTimestamps `.ots` signatures. |
+| `VERITAS_TIMESTAMP_ENABLED` | `true` | Auto-create timestamps on ingest. |
+| `VERITAS_TIMESTAMP_CALENDARS` | 3 public calendars | JSON array of calendar URLs. |
 | `VERITAS_MAX_UPLOAD_MB` | `512` | Max upload size. |
 | `VERITAS_CORS_ORIGINS` | localhost:5173 | Allowed browser origins. |
 
@@ -63,8 +66,9 @@ backend behind the same proxy so `/api` reaches port 8000.
 ## Backups — read this
 
 **`backend/data/` is your evidence.** It contains the SQLite database (metadata
-and custody log) plus the object store (the raw files). It is intentionally
-git-ignored. Back it up regularly:
+and custody log), the object store (the raw files), and the OpenTimestamps
+signatures in `data/timestamps/`. It is intentionally git-ignored. Back it up
+regularly:
 
 ```bash
 # Simple, consistent snapshot
@@ -90,9 +94,10 @@ The project is deployed with a split stack:
 - **Backend** → Railway (containerized, persistent volume)
 
 **Live URLs:**
-- **Frontend:** https://proofstacked.com
-- **Backend API:** https://backend-production-cf1f.up.railway.app
-- **API Docs:** https://backend-production-cf1f.up.railway.app/docs
+
+- **Frontend:** `https://proofstacked.com`
+- **Backend API:** `https://backend-production-cf1f.up.railway.app`
+- **API Docs:** `https://backend-production-cf1f.up.railway.app/docs`
 
 **Status:** ✅ Fully operational (deployed 2026-06-24)
 
@@ -162,13 +167,13 @@ railway variables                # inspect env vars
 
 ```bash
 # Backend health check
-curl -s https://backend-production-cf1f.up.railway.app/api/health
+curl -s `https://backend-production-cf1f.up.railway.app/api/health`
 
 # Backend statistics
-curl -s https://backend-production-cf1f.up.railway.app/api/stats
+curl -s `https://backend-production-cf1f.up.railway.app/api/stats`
 
 # Frontend availability
-curl -s -I https://proofstacked.com | grep "HTTP"
+curl -s -I `https://proofstacked.com` | grep "HTTP"
 
 # Railway logs (last 100 lines)
 railway logs --limit 100
@@ -179,14 +184,41 @@ vercel list --prod
 
 ### Deployment verification checklist
 
-- [ ] Frontend loads at https://proofstacked.com
-- [ ] Backend responds at https://backend-production-cf1f.up.railway.app/api/health
-- [ ] API docs accessible at https://backend-production-cf1f.up.railway.app/docs
+- [ ] Frontend loads at `https://proofstacked.com`
+- [ ] Backend responds at `https://backend-production-cf1f.up.railway.app/api/health`
+- [ ] API docs accessible at `https://backend-production-cf1f.up.railway.app/docs`
 - [ ] CORS allows frontend domain (check browser dev tools)
 - [ ] Git push to `main` triggers Vercel redeploy
 - [ ] Railway volume persists data across deployments
 
-## Reproducible runs (planned)
+## Docker Compose
 
-A `Dockerfile` + `docker-compose.yml` for one-command startup is on the
-[roadmap](./ROADMAP.md) (Track C).
+A one-command setup is included. From the project root:
+
+```bash
+docker-compose up --build
+```
+
+- PostgreSQL: port 5432 (user `veritas`, password `veritas`, db `veritas`)
+- Backend: `http://localhost:8000`
+- Frontend: `http://localhost`
+- The backend container persists `backend/data/` in a mounted volume.
+
+## PostgreSQL
+
+The backend can run against PostgreSQL instead of SQLite. Set:
+
+```bash
+VERITAS_DATABASE_URL=postgresql://veritas:veritas@localhost:5432/veritas
+```
+
+Tables and indexes are created automatically on startup. Full-text search falls
+back to `ILIKE` over title, description, notes, source URL, and extracted text
+when PostgreSQL is used (SQLite keeps the FTS5 index).
+
+## Reproducible runs
+
+- `Dockerfile` and `docker-compose.yml` are present at the project root and in
+  `backend/` / `frontend/`.
+- See [ROADMAP.md](./ROADMAP.md) for remaining hardening work (hash-chained
+  custody log, signed exports, authentication/roles).

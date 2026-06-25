@@ -1,13 +1,16 @@
 """Evidence Vault API — ingest, preserve, verify, and audit source material."""
 
+import logging
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, HTTPException, UploadFile
+
+logger = logging.getLogger(__name__)
 from fastapi.responses import FileResponse
 from sqlalchemy import text as sa_text
 from sqlmodel import Session, select
 
-from .. import storage
+from .. import rfc3161, storage, timestamp
 from ..config import settings
 from ..database import get_session
 from ..extractor import extract_text
@@ -25,6 +28,9 @@ from ..schemas import (
     EvidenceMetadata,
     EvidenceRead,
     LinkedEntityRead,
+    RFC3161Status,
+    TimestampStatus,
+    TimestampVerifyResult,
     UrlCollect,
     VerifyResult,
 )
@@ -54,6 +60,16 @@ def _parse_dt(value: str | None) -> datetime | None:
         raise HTTPException(422, f"Invalid datetime: {value!r} (use ISO 8601)")
 
 
+async def _auto_timestamp(sha256: str) -> None:
+    """Best-effort OpenTimestamps signature creation after ingest."""
+    if not settings.timestamp_enabled:
+        return
+    try:
+        await timestamp.store(sha256)
+    except Exception as exc:
+        logger.warning("Auto-timestamp failed for %s: %s", sha256, exc)
+
+
 @router.post("", response_model=EvidenceDetail, status_code=201)
 async def ingest_evidence(
     file: UploadFile = File(...),
@@ -64,6 +80,7 @@ async def ingest_evidence(
     collected_by: str | None = Form(None),
     notes: str | None = Form(None),
     session: Session = Depends(get_session),
+    background_tasks: BackgroundTasks = None,
 ):
     data = await file.read()
     if not data:
@@ -101,11 +118,17 @@ async def ingest_evidence(
     )
     session.commit()
     session.refresh(evidence)
+    if background_tasks is not None:
+        background_tasks.add_task(_auto_timestamp, evidence.sha256)
     return evidence
 
 
 @router.post("/collect-url", response_model=EvidenceDetail, status_code=201)
-async def collect_from_url(payload: UrlCollect, session: Session = Depends(get_session)):
+async def collect_from_url(
+    payload: UrlCollect,
+    session: Session = Depends(get_session),
+    background_tasks: BackgroundTasks = None,
+):
     """Fetch a public URL server-side, then hash, store, and file it as evidence."""
     try:
         res = await fetch_url(payload.url)
@@ -146,6 +169,8 @@ async def collect_from_url(payload: UrlCollect, session: Session = Depends(get_s
     )
     session.commit()
     session.refresh(evidence)
+    if background_tasks is not None:
+        background_tasks.add_task(_auto_timestamp, evidence.sha256)
     return evidence
 
 
@@ -158,19 +183,20 @@ def list_evidence(
 ):
     capped = min(limit, 500)
     if q:
-        fts_ids = session.exec(
-            sa_text(
-                "SELECT rowid FROM evidence_fts WHERE evidence_fts MATCH :q ORDER BY rank LIMIT :lim"
-            ).bindparams(q=q, lim=capped + offset)
-        ).fetchall()
-        if fts_ids:
-            id_list = [row[0] for row in fts_ids][offset : offset + capped]
-            stmt = (
-                select(Evidence)
-                .where(Evidence.id.in_(id_list))
-                .order_by(Evidence.created_at.desc())
-            )
-            return session.exec(stmt).all()
+        if settings.database_url.startswith("sqlite"):
+            fts_ids = session.exec(
+                sa_text(
+                    "SELECT rowid FROM evidence_fts WHERE evidence_fts MATCH :q ORDER BY rank LIMIT :lim"
+                ).bindparams(q=q, lim=capped + offset)
+            ).fetchall()
+            if fts_ids:
+                id_list = [row[0] for row in fts_ids][offset : offset + capped]
+                stmt = (
+                    select(Evidence)
+                    .where(Evidence.id.in_(id_list))
+                    .order_by(Evidence.created_at.desc())
+                )
+                return session.exec(stmt).all()
         like = f"%{q}%"
         stmt = (
             select(Evidence)
@@ -179,6 +205,7 @@ def list_evidence(
                 | Evidence.source_description.ilike(like)
                 | Evidence.notes.ilike(like)
                 | Evidence.source_url.ilike(like)
+                | Evidence.extracted_text.ilike(like)
             )
             .order_by(Evidence.created_at.desc())
             .offset(offset)
@@ -304,4 +331,202 @@ def download_evidence(evidence_id: int, session: Session = Depends(get_session))
     session.commit()
     return FileResponse(
         path, media_type=evidence.content_type, filename=evidence.filename
+    )
+
+
+# --------------------------- Timestamping --------------------------- #
+
+@router.get("/{evidence_id}/timestamp", response_model=TimestampStatus)
+def get_timestamp_status(evidence_id: int, session: Session = Depends(get_session)):
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    return TimestampStatus(
+        evidence_id=evidence.id,
+        sha256=evidence.sha256,
+        timestamped=timestamp.exists(evidence.sha256),
+    )
+
+
+@router.get("/{evidence_id}/timestamp/file")
+def download_timestamp(evidence_id: int, session: Session = Depends(get_session)):
+    """Download the detached .ots timestamp file."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    path = timestamp.timestamp_path(evidence.sha256)
+    if not path.exists():
+        raise HTTPException(404, "Timestamp not found.")
+    return FileResponse(
+        path,
+        media_type="application/octet-stream",
+        filename=f"{evidence.sha256}.ots",
+    )
+
+
+@router.post("/{evidence_id}/timestamp", response_model=TimestampStatus, status_code=201)
+async def create_timestamp(
+    evidence_id: int, session: Session = Depends(get_session)
+):
+    """Create an OpenTimestamps signature for this evidence hash."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    if not settings.timestamp_enabled:
+        raise HTTPException(503, "Timestamping is disabled.")
+
+    try:
+        await timestamp.store(evidence.sha256)
+    except timestamp.TimestampError as exc:
+        raise HTTPException(503, str(exc)) from exc
+
+    _log(
+        session,
+        evidence.id,
+        CustodyAction.ANNOTATED,
+        actor=None,
+        detail="OpenTimestamps signature created.",
+        hash_at_event=evidence.sha256,
+    )
+    session.commit()
+    session.refresh(evidence)
+    return TimestampStatus(
+        evidence_id=evidence.id,
+        sha256=evidence.sha256,
+        timestamped=True,
+    )
+
+
+@router.post("/{evidence_id}/timestamp/upgrade", response_model=TimestampStatus)
+async def upgrade_timestamp(
+    evidence_id: int, session: Session = Depends(get_session)
+):
+    """Upgrade a pending timestamp by re-submitting it to calendars."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    if not settings.timestamp_enabled:
+        raise HTTPException(503, "Timestamping is disabled.")
+
+    upgraded = await timestamp.upgrade(evidence.sha256)
+    if upgraded:
+        _log(
+            session,
+            evidence.id,
+            CustodyAction.ANNOTATED,
+            actor=None,
+            detail="OpenTimestamps signature upgraded.",
+            hash_at_event=evidence.sha256,
+        )
+        session.commit()
+        session.refresh(evidence)
+    return TimestampStatus(
+        evidence_id=evidence.id,
+        sha256=evidence.sha256,
+        timestamped=timestamp.exists(evidence.sha256),
+    )
+
+
+@router.post("/{evidence_id}/timestamp/verify", response_model=TimestampVerifyResult)
+async def verify_timestamp(
+    evidence_id: int, session: Session = Depends(get_session)
+):
+    """Verify the evidence timestamp against the Bitcoin blockchain."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    if not settings.timestamp_enabled:
+        raise HTTPException(503, "Timestamping is disabled.")
+
+    result = await timestamp.verify(evidence.sha256)
+    _log(
+        session,
+        evidence.id,
+        CustodyAction.VERIFIED if result["verified"] else CustodyAction.VERIFY_FAILED,
+        actor=None,
+        detail=(
+            f"OpenTimestamps verification: verified={result['verified']} "
+            f"pending={result['pending']}"
+        ),
+        hash_at_event=evidence.sha256,
+    )
+    session.commit()
+    return TimestampVerifyResult(evidence_id=evidence.id, sha256=evidence.sha256, **result)
+
+
+@router.get("/{evidence_id}/timestamp/rfc3161", response_model=RFC3161Status)
+async def get_rfc3161_status(
+    evidence_id: int, session: Session = Depends(get_session)
+):
+    """Check whether an RFC 3161 timestamp exists for this evidence."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+
+    exists = rfc3161.tsr_exists(evidence.sha256)
+    result = {"verified": False, "error": None}
+    if exists:
+        result = await rfc3161.verify(evidence.sha256)
+
+    return RFC3161Status(
+        evidence_id=evidence.id,
+        sha256=evidence.sha256,
+        timestamped=exists,
+        **result,
+    )
+
+
+@router.get("/{evidence_id}/timestamp/rfc3161/file")
+async def download_rfc3161_tsr(
+    evidence_id: int, session: Session = Depends(get_session)
+):
+    """Download the detached RFC 3161 `.tsr` timestamp file."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    path = rfc3161.tsr_path(evidence.sha256)
+    if not path.exists():
+        raise HTTPException(404, "RFC 3161 timestamp not found.")
+    return FileResponse(
+        path,
+        media_type="application/timestamp-reply",
+        filename=f"{evidence.sha256}.tsr",
+    )
+
+
+@router.post(
+    "/{evidence_id}/timestamp/rfc3161", response_model=RFC3161Status, status_code=201
+)
+async def create_rfc3161_timestamp(
+    evidence_id: int, session: Session = Depends(get_session)
+):
+    """Create an RFC 3161 timestamp for this evidence hash via FreeTSA."""
+    evidence = session.get(Evidence, evidence_id)
+    if not evidence:
+        raise HTTPException(404, "Evidence not found.")
+    if not settings.rfc3161_enabled:
+        raise HTTPException(503, "RFC 3161 timestamping is disabled.")
+
+    try:
+        await rfc3161.store_tsr(evidence.sha256)
+    except rfc3161.RFC3161Error as exc:
+        raise HTTPException(503, str(exc)) from exc
+
+    _log(
+        session,
+        evidence.id,
+        CustodyAction.ANNOTATED,
+        actor=None,
+        detail="RFC 3161 timestamp obtained from FreeTSA.",
+        hash_at_event=evidence.sha256,
+    )
+    session.commit()
+    session.refresh(evidence)
+
+    result = await rfc3161.verify(evidence.sha256)
+    return RFC3161Status(
+        evidence_id=evidence.id,
+        sha256=evidence.sha256,
+        timestamped=True,
+        **result,
     )

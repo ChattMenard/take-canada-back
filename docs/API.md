@@ -112,6 +112,16 @@ Returns an array of `EvidenceRead`.
 
 Returns `EvidenceDetail` including the full custody log. **404** if not found.
 
+### `GET /api/evidence/{id}/entities` — linked entities
+
+Returns the entities linked to this evidence, with optional `role`.
+
+```json
+[
+  { "id": 1, "name": "Bank of Canada", "type": "AGENCY", "role": "subject" }
+]
+```
+
 ### `PATCH /api/evidence/{id}` — update metadata
 
 JSON body (any subset): `title`, `source_url`, `source_description`,
@@ -147,6 +157,68 @@ Logs `VERIFIED` or `VERIFY_FAILED`.
 Returns the original file (`FileResponse`) and logs an `EXPORTED` event.
 **410** if the stored object is missing.
 
+### `GET /api/evidence/{id}/timestamp`
+
+Returns timestamp status:
+
+```json
+{ "evidence_id": 1, "sha256": "abcd...", "timestamped": true }
+```
+
+### `POST /api/evidence/{id}/timestamp`
+
+Create an OpenTimestamps signature for the evidence hash. Stores a detached
+`.ots` file in `backend/data/timestamps/`. Returns **503** if timestamping is
+disabled or no calendar responds.
+
+### `GET /api/evidence/{id}/timestamp/file`
+
+Download the detached `.ots` file.
+
+### `POST /api/evidence/{id}/timestamp/upgrade`
+
+Re-submit the hash to OpenTimestamps calendars to pick up Bitcoin confirmations.
+
+### `POST /api/evidence/{id}/timestamp/verify`
+
+Verify the timestamp against the Bitcoin blockchain via the Blockstream.info API.
+
+```json
+{
+  "evidence_id": 1,
+  "sha256": "abcd...",
+  "verified": true,
+  "pending": false,
+  "attestations": [{ "type": "bitcoin", "height": 800000 }],
+  "block_height": 800000,
+  "block_hash": "0000000000000000000abc..."
+}
+```
+
+### `GET /api/evidence/{id}/timestamp/rfc3161`
+
+Returns RFC 3161 timestamp status from the configured TSA (FreeTSA by default):
+
+```json
+{
+  "evidence_id": 1,
+  "sha256": "abcd...",
+  "timestamped": true,
+  "verified": false,
+  "error": null
+}
+```
+
+### `POST /api/evidence/{id}/timestamp/rfc3161`
+
+Create an RFC 3161 timestamp for the evidence hash via the configured TSA. Stores
+a detached `.tsr` file in `backend/data/timestamps/`. Returns **503** if RFC 3161
+is disabled or the TSA does not respond. Logs an `ANNOTATED` custody event.
+
+### `GET /api/evidence/{id}/timestamp/rfc3161/file`
+
+Download the detached `.tsr` file.
+
 ---
 
 ## Entities (`/api/entities`) — Phase 2
@@ -169,10 +241,24 @@ Fetch or delete a single entity. **404** if not found; delete returns **204**.
 
 ### `POST /api/entities/{entity_id}/link/{evidence_id}`
 
-Optional `role` query param. Links an entity to a piece of evidence.
+Optional `role` query param. Links an entity to a piece of evidence and records a `LINKED` custody event.
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/api/entities/1/link/1?role=named%20party"
+```
+
+### `DELETE /api/entities/{entity_id}/link/{evidence_id}`
+
+Removes the evidence link. Returns **204**.
+
+### `GET /api/entities/{entity_id}/evidence`
+
+Returns evidence linked to this entity.
+
+```json
+[
+  { "id": 1, "title": "PBO Report 2024", "sha256": "abcd...", "role": "named party" }
+]
 ```
 
 ---
@@ -203,6 +289,14 @@ Optional `entity_id` to filter links touching that entity.
 
 Returns **204**; **404** if not found.
 
+### `POST /api/relationships/{relationship_id}/link/{evidence_id}`
+
+Links evidence to a relationship. Returns **201**.
+
+### `DELETE /api/relationships/{relationship_id}/link/{evidence_id}`
+
+Unlinks evidence from a relationship. Returns **204**.
+
 ---
 
 ## Timeline (`/api/timeline`) — Phase 3
@@ -222,9 +316,54 @@ Returns **204**; **404** if not found.
 
 Returns events ordered by `occurred_at`.
 
+### `PATCH /api/timeline/{id}`
+
+Update any subset of `title`, `description`, `occurred_at`, `evidence_id`. Returns updated `TimelineEventRead`.
+
 ### `DELETE /api/timeline/{id}`
 
 Returns **204**; **404** if not found.
+
+---
+
+## Collect (`/api/collect`) — Track A
+
+### `POST /api/collect/batch`
+
+Collect multiple public URLs concurrently. Returns per-URL success/failure.
+
+```json
+{
+  "items": [
+    { "url": "https://example.gov/report1.pdf", "collected_by": "operator" },
+    { "url": "https://example.gov/report2.pdf", "title": "Report 2", "notes": "..." }
+  ]
+}
+```
+
+Response:
+
+```json
+[
+  { "url": "https://example.gov/report1.pdf", "success": true, "evidence_id": 1, "sha256": "abcd..." },
+  { "url": "https://example.gov/report2.pdf", "success": false, "error": "..." }
+]
+```
+
+The batch is capped at `VERITAS_COLLECT_BATCH_LIMIT` (default 50).
+
+### `POST /api/collect/crawl`
+
+Fetch a root URL, discover first-level links matching a regex pattern, and collect each one.
+
+```json
+{
+  "root_url": "https://example.gov/publications/",
+  "link_pattern": "\\.pdf$",
+  "title_prefix": "Publication:",
+  "collected_by": "operator"
+}
+```
 
 ---
 

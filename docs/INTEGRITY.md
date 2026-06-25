@@ -4,14 +4,17 @@ This document explains the guarantees Veritas makes, how they work, and — just
 as importantly — what they do **not** prove. Being precise here is what makes
 the tool trustworthy.
 
-## What Veritas guarantees
+## What Veritas currently guarantees
 
-1. **Tamper-evidence.** If a stored file is altered after ingest, verification
-   will detect it. The recorded SHA-256 will no longer match the bytes.
+1. **Tamper-detection for ordinary handling.** If a stored file is altered after
+   ingest, verification will detect it. The recorded SHA-256 will no longer match
+   the bytes.
 2. **Deduplication by content.** Identical bytes are stored once. Two uploads of
    the same file resolve to the same object.
-3. **An append-only custody log.** Every create, access, verify, annotation, and
-   export is recorded with a timestamp and the hash observed at that moment.
+3. **API-only custody log.** The API does not expose edit or delete for custody
+   events. Every create, access, verify, annotation, link, and export is recorded
+   with a timestamp and the hash observed at that moment. A party with direct
+   database/filesystem access can bypass this restriction.
 
 ## How it works
 
@@ -47,13 +50,19 @@ time, not just a single point-in-time claim.
 ### Chain of custody
 
 Every meaningful action writes a `ChainOfCustodyEvent`. The API exposes **no
-way to edit or delete** these events — the log only grows. Each event captures:
+way to edit or delete** these events through normal use, so the log only grows
+as long as the application boundary is respected. Each event captures:
 
-- the **action** (`CREATED`, `VERIFIED`, `EXPORTED`, `ANNOTATED`, …),
+- the **action** (`CREATED`, `VERIFIED`, `EXPORTED`, `ANNOTATED`, `LINKED`, …),
 - an optional **actor**,
 - a human-readable **detail**,
 - the **hash observed** at that time,
 - a **timestamp**.
+
+This is **not** a cryptographically enforced append-only log. A database
+administrator with shell access can alter or delete rows. Hash-chaining and
+external anchoring are the next steps to make tampering detectable outside the
+server boundary.
 
 ## Threat model — what this defends against
 
@@ -62,7 +71,7 @@ way to edit or delete** these events — the log only grows. Each event captures
 | Silent edit of a stored file | ✅ | Hash mismatch on verify |
 | File corruption / bit rot | ✅ | Hash mismatch on verify |
 | Accidental duplicate uploads | ✅ | Content addressing dedupes |
-| Undocumented handling of an item | ✅ | Append-only custody log |
+| Undocumented handling of an item | ✅ (ordinary use) | API-only custody log |
 
 ## What this does **NOT** prove (be honest about limits)
 
@@ -70,19 +79,37 @@ way to edit or delete** these events — the log only grows. Each event captures
   *since you collected them*. Authenticity of the source is a separate question.
 - **It does not prove *when the source was created*.** `captured_at` is operator-
   supplied metadata, not cryptographic proof of original publication time.
+- **It does not prove *when the hash was recorded*.** The custody log timestamps
+  are server-generated and can be changed by someone with database access.
+  External timestamp anchoring is required for that. OpenTimestamps and RFC 3161
+  (FreeTSA) are both implemented today.
 - **It is not (yet) tamper-*proof* against a privileged attacker.** Someone with
   write access to the database *and* the object store could, in principle,
-  recompute a hash and rewrite both. The current design is tamper-**evident**
+  recompute a hash and rewrite both. The current design is tamper-**detectable**
   for ordinary handling, not Byzantine-resistant.
 
 ## Hardening roadmap
 
-Planned in [ROADMAP.md](./ROADMAP.md):
+Implemented and planned in [ROADMAP.md](./ROADMAP.md):
 
+- **OpenTimestamps anchoring** *(implemented)* — each evidence hash is submitted
+  as a best-effort background task on ingest, producing a detached `.ots` file.
+  Once confirmed in a Bitcoin block, the timestamp proves the hash existed no
+  later than that block time, independent of the Veritas server. Until a block
+  confirms, the timestamp is `pending` and does not yet prove existence time. See
+  the `POST /api/evidence/{id}/timestamp` API.
+- **RFC 3161 anchoring** *(implemented)* — each evidence hash can be submitted to
+  an RFC 3161 trusted timestamp authority (FreeTSA by default), producing a
+  detached `.tsr` file. The returned TimeStampToken is signed by the TSA and
+  proves the hash existed at the signed time, without waiting for a blockchain
+  confirmation. See the `POST /api/evidence/{id}/timestamp/rfc3161` API.
 - **Append-only hash chain** — each custody event references the previous
   event's hash, so the log cannot be edited without breaking the chain.
-- **External anchoring** — periodically publish a digest of the log (e.g., to a
-  public, timestamped location) so even a privileged rewrite is detectable.
+- **External log anchoring** — periodically publish a digest of the custody log
+  itself (e.g., to a public timestamped location) so even a privileged rewrite
+  is detectable.
+- **PostgreSQL backend** — replace SQLite so concurrent writers and audit
+  triggers are supported.
 - **Signed exports** — bundle evidence + custody + a signature for sharing.
 - **Source capture** — store HTTP response headers and a rendered screenshot at
   collection time to strengthen provenance.

@@ -135,3 +135,29 @@ class Stats(BaseModel):
     relationship_count: int
     timeline_count: int
     storage_bytes: int
+
+
+# ------------------------ Timestamping -------------------------- #
+class TimestampStatus(BaseModel):
+    evidence_id: int
+    sha256: str
+    timestamped: bool
+
+
+class TimestampVerifyResult(BaseModel):
+    evidence_id: int
+    sha256: str
+    verified: bool
+    pending: bool
+    attestations: list[dict] = []
+    block_height: int | None = None
+    block_hash: str | None = None
+    error: str | None = None
+
+
+class RFC3161Status(BaseModel):
+    evidence_id: int
+    sha256: str
+    timestamped: bool
+    verified: bool = False
+    error: str | None = None

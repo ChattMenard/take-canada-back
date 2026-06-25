@@ -13,10 +13,13 @@ surfaces matter most:
 
 - **No authentication** is implemented yet. The backend is intended for local or
   trusted-network use only. **Do not expose it directly to the public internet.**
-- **Tamper-evident, not tamper-proof.** Ordinary handling that alters a file is
+- **Tamper-detection, not tamper-proof.** Ordinary handling that alters a file is
   detectable via verification, but a privileged attacker with write access to
   both the database and the object store could rewrite both. Hash-chaining and
   external anchoring are on the [roadmap](./ROADMAP.md).
+- **SQLite is single-writer.** Concurrent uploads will serialize on the write
+  lock. For multi-user or production use, move to PostgreSQL (also on the
+  roadmap).
 - **Data at rest is not encrypted** by the application. Use full-disk or
   filesystem encryption on the host if confidentiality is required.
 
@@ -31,7 +34,7 @@ surfaces matter most:
 
 Please **do not** open a public issue for security/integrity vulnerabilities.
 Instead, report privately to the repository owner via GitHub (e.g., a private
-security advisory on `ChattMenard/take-canada-back`, or direct contact).
+security advisory on `ChattMenard/Veritas`, or direct contact).
 
 Include:
 

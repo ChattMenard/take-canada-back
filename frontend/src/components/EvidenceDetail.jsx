@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ShieldCheck,
   ShieldAlert,
@@ -12,6 +12,9 @@ import {
   Eye,
   Pencil,
   FileDown,
+  Stamp,
+  RefreshCw,
+  ExternalLink,
 } from "lucide-react";
 import { api } from "../api.js";
 import { formatBytes, formatDate, shortHash } from "../lib/format.js";
@@ -36,6 +39,18 @@ export default function EvidenceDetail({ evidence, onUpdated }) {
   const [actor, setActor] = useState("");
   const [activeTab, setActiveTab] = useState("entities");
 
+  const [tsStatus, setTsStatus] = useState(null);
+  const [tsWorking, setTsWorking] = useState(false);
+  const [tsVerifyResult, setTsVerifyResult] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    api.timestampStatus(evidence.id)
+      .then((s) => { if (!cancelled) setTsStatus(s); })
+      .catch(() => { if (!cancelled) setTsStatus(null); });
+    return () => { cancelled = true; };
+  }, [evidence.id]);
+
   async function verify() {
     setVerifying(true);
     setVerifyResult(null);
@@ -46,6 +61,53 @@ export default function EvidenceDetail({ evidence, onUpdated }) {
       onUpdated(fresh);
     } finally {
       setVerifying(false);
+    }
+  }
+
+  async function createTimestamp() {
+    setTsWorking(true);
+    setTsVerifyResult(null);
+    try {
+      await api.createTimestamp(evidence.id);
+      const s = await api.timestampStatus(evidence.id);
+      setTsStatus(s);
+      const fresh = await api.getEvidence(evidence.id);
+      onUpdated(fresh);
+    } catch (e) {
+      alert(e.message);
+    } finally {
+      setTsWorking(false);
+    }
+  }
+
+  async function upgradeTimestamp() {
+    setTsWorking(true);
+    setTsVerifyResult(null);
+    try {
+      await api.upgradeTimestamp(evidence.id);
+      const s = await api.timestampStatus(evidence.id);
+      setTsStatus(s);
+      const fresh = await api.getEvidence(evidence.id);
+      onUpdated(fresh);
+    } catch (e) {
+      alert(e.message);
+    } finally {
+      setTsWorking(false);
+    }
+  }
+
+  async function verifyTimestamp() {
+    setTsWorking(true);
+    setTsVerifyResult(null);
+    try {
+      const res = await api.verifyTimestamp(evidence.id);
+      setTsVerifyResult(res);
+      const fresh = await api.getEvidence(evidence.id);
+      onUpdated(fresh);
+    } catch (e) {
+      alert(e.message);
+    } finally {
+      setTsWorking(false);
     }
   }
 
@@ -83,6 +145,45 @@ export default function EvidenceDetail({ evidence, onUpdated }) {
               Download
             </a>
           </div>
+
+          <div className="flex shrink-0 gap-2">
+            {tsStatus?.timestamped ? (
+              <>
+                <a
+                  href={api.timestampFileUrl(evidence.id)}
+                  className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800"
+                >
+                  <ExternalLink size={16} />
+                  .ots
+                </a>
+                <button
+                  onClick={upgradeTimestamp}
+                  disabled={tsWorking}
+                  className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800 disabled:opacity-50"
+                >
+                  {tsWorking ? <Loader2 size={16} className="animate-spin" /> : <RefreshCw size={16} />}
+                  Upgrade
+                </button>
+                <button
+                  onClick={verifyTimestamp}
+                  disabled={tsWorking}
+                  className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800 disabled:opacity-50"
+                >
+                  {tsWorking ? <Loader2 size={16} className="animate-spin" /> : <Stamp size={16} />}
+                  Verify timestamp
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={createTimestamp}
+                disabled={tsWorking}
+                className="flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800 disabled:opacity-50"
+              >
+                {tsWorking ? <Loader2 size={16} className="animate-spin" /> : <Stamp size={16} />}
+                Create timestamp
+              </button>
+            )}
+          </div>
         </div>
 
         {verifyResult && (
@@ -95,6 +196,31 @@ export default function EvidenceDetail({ evidence, onUpdated }) {
           >
             {verifyResult.intact ? <ShieldCheck size={16} /> : <ShieldAlert size={16} />}
             {verifyResult.message}
+          </div>
+        )}
+
+        {tsVerifyResult && (
+          <div
+            className={`mt-4 flex items-center gap-2 rounded-lg border px-3 py-2 text-sm ${
+              tsVerifyResult.verified
+                ? "border-emerald-700 bg-emerald-500/10 text-emerald-300"
+                : tsVerifyResult.pending
+                ? "border-amber-700 bg-amber-500/10 text-amber-300"
+                : "border-red-700 bg-red-500/10 text-red-300"
+            }`}
+          >
+            {tsVerifyResult.verified ? (
+              <CheckCircle2 size={16} />
+            ) : tsVerifyResult.pending ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <AlertTriangle size={16} />
+            )}
+            {tsVerifyResult.verified
+              ? `OpenTimestamps verified at block ${tsVerifyResult.block_height}.`
+              : tsVerifyResult.pending
+              ? `OpenTimestamps pending${tsVerifyResult.error ? `: ${tsVerifyResult.error}` : ""}.`
+              : `OpenTimestamps verification failed${tsVerifyResult.error ? `: ${tsVerifyResult.error}` : ""}.`}
           </div>
         )}
       </div>
@@ -128,6 +254,19 @@ export default function EvidenceDetail({ evidence, onUpdated }) {
             <Row label="Captured">{formatDate(evidence.captured_at)}</Row>
             <Row label="Collected by">{evidence.collected_by || "—"}</Row>
             <Row label="Ingested">{formatDate(evidence.created_at)}</Row>
+            <Row label="Timestamp">
+              {tsStatus ? (
+                tsStatus.timestamped ? (
+                  <span className="inline-flex items-center gap-1 text-emerald-400">
+                    <CheckCircle2 size={13} /> OpenTimestamps signature present
+                  </span>
+                ) : (
+                  <span className="text-zinc-500">Not timestamped</span>
+                )
+              ) : (
+                <span className="text-zinc-500">—</span>
+              )}
+            </Row>
             <Row label="Notes">{evidence.notes || "—"}</Row>
           </dl>
         </section>

@@ -37,7 +37,12 @@ The canonical record for one preserved item.
 | `captured_at` | datetime? | When the source material was originally captured/published. |
 | `collected_by` | str? | Operator/handle who collected it. |
 | `notes` | str? | Context, significance. |
+| `extracted_text` | str? | Plain text extracted from PDF/HTML/text for full-text search. |
 | `created_at` | datetime (indexed) | When ingested into Veritas. |
+
+### Full-text search (`evidence_fts`)
+
+SQLite FTS5 virtual table synced to the `evidence` table via triggers. Indexes `title`, `source_description`, `notes`, and `extracted_text`. The `GET /api/evidence?q=...` endpoint uses FTS5 first and falls back to `ILIKE` if there are no matches.
 
 ### `ChainOfCustodyEvent`
 

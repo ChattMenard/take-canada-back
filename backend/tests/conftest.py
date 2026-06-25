@@ -20,6 +20,15 @@ def client(tmp_data_dir):
     os.environ["VERITAS_DATABASE_URL"] = f"sqlite:///{db_path}"
     os.environ["VERITAS_STORAGE_DIR"] = str(store_path)
     os.environ["VERITAS_ALLOW_PRIVATE_COLLECT"] = "true"
+    os.environ["VERITAS_TIMESTAMP_DIR"] = str(tmp_data_dir / "timestamps")
+    os.environ["VERITAS_TIMESTAMP_ENABLED"] = "false"
+
+    from app.config import settings
+
+    settings.database_url = f"sqlite:///{db_path}"
+    settings.storage_dir = store_path
+    settings.timestamp_dir = tmp_data_dir / "timestamps"
+    settings.timestamp_enabled = False
 
     from app.main import app
     from app.database import init_db
