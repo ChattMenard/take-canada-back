@@ -11,6 +11,7 @@ from ..models import (
     Evidence,
     EvidenceEntityLink,
 )
+from ..routers.seal import ensure_unsealed
 from ..schemas import EntityCreate, EntityRead, LinkedEvidenceRead
 
 router = APIRouter(prefix="/api/entities", tags=["entities"])
@@ -18,6 +19,7 @@ router = APIRouter(prefix="/api/entities", tags=["entities"])
 
 @router.post("", response_model=EntityRead, status_code=201)
 def create_entity(payload: EntityCreate, session: Session = Depends(get_session)):
+    ensure_unsealed()
     entity = Entity(**payload.model_dump())
     session.add(entity)
     session.commit()
@@ -43,6 +45,7 @@ def get_entity(entity_id: int, session: Session = Depends(get_session)):
 
 @router.delete("/{entity_id}", status_code=204)
 def delete_entity(entity_id: int, session: Session = Depends(get_session)):
+    ensure_unsealed()
     entity = session.get(Entity, entity_id)
     if not entity:
         raise HTTPException(404, "Entity not found.")
@@ -57,6 +60,7 @@ def link_evidence(
     role: str | None = None,
     session: Session = Depends(get_session),
 ):
+    ensure_unsealed()
     entity = session.get(Entity, entity_id)
     if not entity:
         raise HTTPException(404, "Entity not found.")
@@ -86,6 +90,7 @@ def link_evidence(
 def unlink_evidence(
     entity_id: int, evidence_id: int, session: Session = Depends(get_session)
 ):
+    ensure_unsealed()
     link = session.get(EvidenceEntityLink, (evidence_id, entity_id))
     if link:
         session.delete(link)

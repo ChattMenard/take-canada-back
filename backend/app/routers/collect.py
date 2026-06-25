@@ -16,6 +16,7 @@ from ..database import get_session
 from ..extractor import extract_text
 from ..fetcher import FetchError, fetch_url
 from ..models import ChainOfCustodyEvent, CustodyAction, Evidence
+from ..routers.seal import ensure_unsealed
 
 router = APIRouter(prefix="/api/collect", tags=["collect"])
 
@@ -97,6 +98,7 @@ async def batch_collect(
     request: BatchRequest, session: Session = Depends(get_session)
 ):
     """Collect multiple URLs concurrently. Returns per-URL success/fail."""
+    ensure_unsealed()
     limit = min(len(request.items), settings.collect_batch_limit)
     tasks = [_ingest_one(item, session) for item in request.items[:limit]]
     return await asyncio.gather(*tasks)
@@ -107,6 +109,7 @@ async def crawl_collect(
     request: CrawlRequest, session: Session = Depends(get_session)
 ):
     """Fetch root_url, discover first-level hrefs matching link_pattern, ingest each."""
+    ensure_unsealed()
     try:
         root = await fetch_url(request.root_url)
     except FetchError as exc:

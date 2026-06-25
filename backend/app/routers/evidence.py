@@ -22,6 +22,7 @@ from ..models import (
     Evidence,
     EvidenceEntityLink,
 )
+from ..routers.seal import ensure_unsealed
 from ..schemas import (
     CustodyNote,
     EvidenceDetail,
@@ -82,6 +83,7 @@ async def ingest_evidence(
     session: Session = Depends(get_session),
     background_tasks: BackgroundTasks = None,
 ):
+    ensure_unsealed()
     data = await file.read()
     if not data:
         raise HTTPException(422, "Empty file.")
@@ -130,6 +132,7 @@ async def collect_from_url(
     background_tasks: BackgroundTasks = None,
 ):
     """Fetch a public URL server-side, then hash, store, and file it as evidence."""
+    ensure_unsealed()
     try:
         res = await fetch_url(payload.url)
     except FetchError as exc:
@@ -246,6 +249,7 @@ def update_metadata(
     patch: EvidenceMetadata,
     session: Session = Depends(get_session),
 ):
+    ensure_unsealed()
     evidence = session.get(Evidence, evidence_id)
     if not evidence:
         raise HTTPException(404, "Evidence not found.")
@@ -268,6 +272,7 @@ def update_metadata(
 
 @router.post("/{evidence_id}/note", response_model=EvidenceDetail)
 def add_note(evidence_id: int, note: CustodyNote, session: Session = Depends(get_session)):
+    ensure_unsealed()
     evidence = session.get(Evidence, evidence_id)
     if not evidence:
         raise HTTPException(404, "Evidence not found.")
