@@ -35,7 +35,7 @@ class Settings(BaseSettings):
     rfc3161_tsa_url: str = "https://freetsa.org/tsr"
     rfc3161_tsa_cert_url: str = "https://freetsa.org/files/tsa.crt"
     # URL collector
-    collect_timeout_seconds: float = 30.0
+    collect_timeout_seconds: float = 60.0
     collect_max_redirects: int = 5
     # Allow fetching private/loopback addresses (SSRF guard off). Keep False
     # in any networked/public deployment.
