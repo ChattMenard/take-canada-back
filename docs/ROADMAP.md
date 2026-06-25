@@ -68,7 +68,7 @@ this file tracks what is implemented versus planned.
 - ⬜ Vault backup/export to a single signed archive
 - ⬜ Authentication + multi-user roles (for shared deployments)
 - ✅ Automated tests for hashing, storage, custody, verify, entities, relationships, timeline, extractor
-- ✅ `Dockerfile` + `docker-compose.yml` for one-command run
+- ✅ `docker-compose.yml` + backend/frontend `Dockerfile`s for one-command run
 
 ## Guiding priorities
 

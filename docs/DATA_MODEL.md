@@ -2,7 +2,7 @@
 
 All tables are defined in `backend/app/models.py`. The schema spans three
 phases. Phase 1 (evidence + custody) is fully used today; phases 2 and 3 are
-defined and exposed via API, with UIs still to come.
+implemented with both API and UI.
 
 ## Entity-relationship overview
 
