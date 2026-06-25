@@ -4,9 +4,13 @@ Fetches a public web resource, captures retrieval metadata (final URL after
 redirects, HTTP status, content type), and returns the raw bytes for hashing
 and storage. Includes an SSRF guard so the collector cannot be tricked into
 reaching internal/private network addresses.
+
+Uses httpx for simple pages, falls back to Playwright (headless Chromium) for
+sites behind CDN/Akamai bot protection (e.g. canada.ca).
 """
 
 import ipaddress
+import logging
 import socket
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -15,6 +19,8 @@ from urllib.parse import unquote, urlparse
 import httpx
 
 from .config import settings
+
+logger = logging.getLogger(__name__)
 
 
 class FetchError(Exception):
@@ -113,20 +119,34 @@ def _filename_from(url: str, content_type: str, headers: httpx.Headers) -> str:
     return f"collected{ext}"
 
 
-async def fetch_url(url: str) -> FetchedResource:
-    """Fetch a URL with manual, validated redirect handling and a size cap."""
+async def _fetch_with_httpx(url: str) -> FetchedResource:
+    """Fetch a URL with httpx — manual, validated redirect handling and a size cap."""
     max_bytes = settings.max_upload_mb * 1024 * 1024
     current = url
     _validate_url(current)
 
+    cookies = httpx.Cookies()
+
     async with httpx.AsyncClient(
         follow_redirects=False,
-        timeout=settings.collect_timeout_seconds,
-        headers={"User-Agent": "Veritas-Collector/0.1 (+evidence-preservation)"},
+        timeout=httpx.Timeout(
+            settings.collect_timeout_seconds,
+            connect=15.0,
+            read=45.0,
+        ),
+        http2=False,
+        headers={
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8,*/*;q=0.7",
+            "Accept-Language": "en-CA,en;q=0.9,fr-CA;q=0.8,fr;q=0.7",
+        },
+        cookies=cookies,
     ) as client:
         for _ in range(settings.collect_max_redirects + 1):
             resp = await client.get(current)
-            if resp.is_redirect:
+
+            # Catch all redirect status codes explicitly (301-308)
+            if resp.status_code in (301, 302, 303, 307, 308):
                 location = resp.headers.get("location")
                 if not location:
                     raise FetchError("Redirect without a Location header.")
@@ -155,3 +175,62 @@ async def fetch_url(url: str) -> FetchedResource:
             )
 
     raise FetchError("Too many redirects.")
+
+
+async def _fetch_with_playwright(url: str) -> FetchedResource:
+    """Fallback: render page in headless Chromium for CDN-protected sites."""
+    from playwright.async_api import async_playwright
+
+    max_bytes = settings.max_upload_mb * 1024 * 1024
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+            locale="en-CA",
+        )
+        page = await context.new_page()
+
+        try:
+            resp = await page.goto(url, wait_until="domcontentloaded", timeout=45000)
+
+            if resp is None:
+                raise FetchError("Playwright returned no response.")
+
+            if resp.status >= 400:
+                raise FetchError(f"Source returned HTTP {resp.status}.")
+
+            content = await resp.body()
+
+            if len(content) == 0:
+                raise FetchError("Source returned an empty body.")
+            if len(content) > max_bytes:
+                raise FetchError(
+                    f"Resource exceeds {settings.max_upload_mb} MB limit."
+                )
+
+            content_type = resp.headers.get("content-type", "text/html; charset=utf-8")
+            final_url = page.url
+            filename = _filename_from(final_url, content_type, resp.headers)
+
+            return FetchedResource(
+                content=content,
+                content_type=content_type,
+                final_url=final_url,
+                status_code=resp.status,
+                filename=filename,
+            )
+        finally:
+            await browser.close()
+
+
+async def fetch_url(url: str) -> FetchedResource:
+    """Fetch a URL. Tries httpx first, falls back to Playwright for CDN sites."""
+    try:
+        return await _fetch_with_httpx(url)
+    except FetchError as exc:
+        logger.info("httpx fetch failed (%s), trying Playwright fallback...", exc)
+        return await _fetch_with_playwright(url)
+    except Exception as exc:
+        logger.info("httpx fetch error (%s), trying Playwright fallback...", exc)
+        return await _fetch_with_playwright(url)
