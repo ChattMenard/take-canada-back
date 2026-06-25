@@ -23,7 +23,6 @@ def test_ingest_file(client):
     assert len(body["sha256"]) == 64
     assert body["size_bytes"] == len(data)
     assert body["custody_events"][0]["action"] == "CREATED"
-    return body
 
 
 def test_ingest_empty_file_rejected(client):

@@ -127,7 +127,7 @@ railway up --detach
 ### Vercel frontend
 
 The Vite-built frontend is deployed to Vercel, auto-deploying from the
-`ChattMenard/take-canada-back` GitHub repo on push to `main`.
+`ChattMenard/Veritas` GitHub repo on push to `main`.
 
 | Setting | Value |
 | --- | --- |
@@ -199,7 +199,9 @@ A one-command setup is included. From the project root:
 docker-compose up --build
 ```
 
-- PostgreSQL: port 5432 (user `veritas`, password `veritas`, db `veritas`)
+- PostgreSQL: internal to the compose network only (not exposed to the host).
+  Set `POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB` via a `.env`
+  file or environment variables. Defaults are provided for local development only.
 - Backend: `http://localhost:8000`
 - Frontend: `http://localhost`
 - The backend container persists `backend/data/` in a mounted volume.
@@ -209,7 +211,7 @@ docker-compose up --build
 The backend can run against PostgreSQL instead of SQLite. Set:
 
 ```bash
-VERITAS_DATABASE_URL=postgresql://veritas:veritas@localhost:5432/veritas
+VERITAS_DATABASE_URL=postgresql://user:password@localhost:5432/veritas
 ```
 
 Tables and indexes are created automatically on startup. Full-text search falls
@@ -218,7 +220,7 @@ when PostgreSQL is used (SQLite keeps the FTS5 index).
 
 ## Reproducible runs
 
-- `Dockerfile` and `docker-compose.yml` are present at the project root and in
-  `backend/` / `frontend/`.
+- `docker-compose.yml` is present at the project root; `Dockerfile` images are in
+  `backend/` and `frontend/`.
 - See [ROADMAP.md](./ROADMAP.md) for remaining hardening work (hash-chained
   custody log, signed exports, authentication/roles).

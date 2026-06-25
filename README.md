@@ -3,8 +3,9 @@
 > ⚠️ **Prototype status.** This is a working proof of concept, not a
 > production-ready legal-evidence system. It detects accidental or unprivileged
 > tampering via SHA-256 re-verification, but it is **not tamper-proof against
-> a privileged attacker** and it does not yet provide cryptographic proof of
-> time. See [INTEGRITY.md](./docs/INTEGRITY.md) for the honest limits.
+> a privileged attacker**. It provides cryptographic proof of time via
+> OpenTimestamps and RFC 3161 external timestamping. See
+> [INTEGRITY.md](./docs/INTEGRITY.md) for the honest limits.
 
 A self-hostable engine for **collecting, preserving, and auditing public-record
 evidence**. Every document is hashed with SHA-256 on arrival, stored in a

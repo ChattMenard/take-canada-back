@@ -5,16 +5,15 @@ services:
     image: postgres:15-alpine
     container_name: veritas-db
     environment:
-      POSTGRES_USER: veritas
-      POSTGRES_PASSWORD: veritas
-      POSTGRES_DB: veritas
+      POSTGRES_USER: ${POSTGRES_USER:-veritas}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_in_production}
+      POSTGRES_DB: ${POSTGRES_DB:-veritas}
     volumes:
       - ./backend/data/postgres:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # Not exposed to the host; only the backend service connects internally.
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U veritas -d veritas"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -30,7 +29,7 @@ services:
       - ./backend/data:/app/data
     environment:
       - PYTHONUNBUFFERED=1
-      - VERITAS_DATABASE_URL=postgresql://veritas:veritas@db:5432/veritas
+      - VERITAS_DATABASE_URL=postgresql://${POSTGRES_USER:-veritas}:${POSTGRES_PASSWORD:-change_me_in_production}@db:5432/${POSTGRES_DB:-veritas}
       - VERITAS_STORAGE_DIR=/app/data/store
       - VERITAS_TIMESTAMP_DIR=/app/data/timestamps
     depends_on:
