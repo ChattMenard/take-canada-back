@@ -178,56 +178,67 @@ async def _fetch_with_httpx(url: str) -> FetchedResource:
 
 
 async def _fetch_with_playwright(url: str) -> FetchedResource:
-    """Fallback: render page in headless Chromium for CDN-protected sites."""
+    """Fallback: stealth headless Chromium — bypasses Cloudflare/CDN bot detection."""
     from playwright.async_api import async_playwright
+    from playwright_stealth import Stealth
 
     max_bytes = settings.max_upload_mb * 1024 * 1024
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
+        browser = await p.chromium.launch(
+            headless=True,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+            ],
+        )
         context = await browser.new_context(
-            user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            ),
             locale="en-CA",
+            viewport={"width": 1920, "height": 1080},
+            java_script_enabled=True,
         )
         page = await context.new_page()
+        await Stealth().apply_stealth_async(page)
 
         try:
-            resp = await page.goto(url, wait_until="domcontentloaded", timeout=45000)
+            resp = await page.goto(url, wait_until="domcontentloaded", timeout=60000)
 
-            # Handle Cloudflare JS challenges — wait for challenge to resolve
-            if resp and resp.status == 403:
+            # Wait for Cloudflare JS challenge to complete
+            if resp and resp.status in (403, 429, 503):
+                logger.info("CF/bot challenge detected (HTTP %s), waiting...", resp.status)
                 try:
-                    await page.wait_for_load_state("networkidle", timeout=20000)
+                    await page.wait_for_load_state("networkidle", timeout=25000)
                 except Exception:
                     pass
-                await page.wait_for_timeout(5000)
-                # Reload after CF challenge cookie is set
-                resp = await page.goto(page.url, wait_until="networkidle", timeout=30000)
+                await page.wait_for_timeout(4000)
 
-            if resp is None:
-                raise FetchError("Playwright returned no response.")
-
-            if resp.status >= 400:
-                raise FetchError(f"Source returned HTTP {resp.status}.")
-
-            content = await resp.body()
-
-            if len(content) == 0:
-                raise FetchError("Source returned an empty body.")
-            if len(content) > max_bytes:
-                raise FetchError(
-                    f"Resource exceeds {settings.max_upload_mb} MB limit."
-                )
-
-            content_type = resp.headers.get("content-type", "text/html; charset=utf-8")
+            # Read post-JS-render content from DOM (not raw response bytes)
             final_url = page.url
-            filename = _filename_from(final_url, content_type, resp.headers)
+            html = await page.content()
+            content = html.encode("utf-8")
+
+            if len(content) < 500 or "Please enable JS" in html or "Verification Required" in html:
+                raise FetchError("Cloudflare bot challenge not resolved.")
+
+            if len(content) > max_bytes:
+                raise FetchError(f"Resource exceeds {settings.max_upload_mb} MB limit.")
+
+            content_type = (resp.headers.get("content-type") if resp else None) or "text/html; charset=utf-8"
+            filename = _filename_from(final_url, content_type, resp.headers if resp else {})
+            status_code = resp.status if resp else 200
 
             return FetchedResource(
                 content=content,
                 content_type=content_type,
                 final_url=final_url,
-                status_code=resp.status,
+                status_code=status_code,
                 filename=filename,
             )
         finally:

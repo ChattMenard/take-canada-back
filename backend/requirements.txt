@@ -14,3 +14,4 @@ opentimestamps==0.4.5
 psycopg2-binary==2.9.10
 pyasn1==0.6.3
 playwright==1.60.0
+playwright-stealth==2.0.3
