@@ -184,7 +184,7 @@ async def _fetch_with_playwright(url: str) -> FetchedResource:
     max_bytes = settings.max_upload_mb * 1024 * 1024
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
             locale="en-CA",
@@ -193,6 +193,16 @@ async def _fetch_with_playwright(url: str) -> FetchedResource:
 
         try:
             resp = await page.goto(url, wait_until="domcontentloaded", timeout=45000)
+
+            # Handle Cloudflare JS challenges — wait for challenge to resolve
+            if resp and resp.status == 403:
+                try:
+                    await page.wait_for_load_state("networkidle", timeout=20000)
+                except Exception:
+                    pass
+                await page.wait_for_timeout(5000)
+                # Reload after CF challenge cookie is set
+                resp = await page.goto(page.url, wait_until="networkidle", timeout=30000)
 
             if resp is None:
                 raise FetchError("Playwright returned no response.")
