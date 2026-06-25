@@ -22,6 +22,7 @@ evidentiary collection engine for public-record accountability work.
 | See what's built and what's next | [ROADMAP.md](./ROADMAP.md) |
 | Look up a term | [GLOSSARY.md](./GLOSSARY.md) |
 | Accountability campaign templates (ATIP requests) | [TRANSPARENCY_CAMPAIGN.md](./TRANSPARENCY_CAMPAIGN.md) |
+| Evidence collection checklist (all targets by category) | [EVIDENCE_COLLECTION.md](./EVIDENCE_COLLECTION.md) |
 | Fact-checking framework for public claims | [EVIDENCE_VALIDATION.md](./EVIDENCE_VALIDATION.md) |
 
 ## The 60-second mental model
