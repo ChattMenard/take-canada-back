@@ -6,6 +6,7 @@ time by re-reading the file and recomputing its digest.
 """
 
 import hashlib
+import os
 import shutil
 from pathlib import Path
 
@@ -40,6 +41,8 @@ def store_bytes(data: bytes) -> tuple[str, Path, int]:
         tmp = dest.with_suffix(".tmp")
         tmp.write_bytes(data)
         tmp.replace(dest)
+        # Lock the evidence object read-only immediately (immutable object).
+        os.chmod(dest, 0o444)
     return sha256, dest, len(data)
 
 

@@ -5,6 +5,7 @@ from sqlmodel import Session, select
 
 from ..database import get_session
 from ..models import Entity, Relationship_, Evidence, EvidenceRelationshipLink, ChainOfCustodyEvent, CustodyAction
+from ..routers.seal import ensure_unsealed
 from ..schemas import RelationshipCreate, RelationshipRead, LinkedEvidenceRead
 
 router = APIRouter(prefix="/api/relationships", tags=["relationships"])
@@ -12,6 +13,7 @@ router = APIRouter(prefix="/api/relationships", tags=["relationships"])
 
 @router.post("", response_model=RelationshipRead, status_code=201)
 def create_relationship(payload: RelationshipCreate, session: Session = Depends(get_session)):
+    ensure_unsealed()
     for eid in (payload.source_entity_id, payload.target_entity_id):
         if not session.get(Entity, eid):
             raise HTTPException(422, f"Entity {eid} does not exist.")
@@ -35,6 +37,7 @@ def list_relationships(entity_id: int | None = None, session: Session = Depends(
 
 @router.delete("/{relationship_id}", status_code=204)
 def delete_relationship(relationship_id: int, session: Session = Depends(get_session)):
+    ensure_unsealed()
     rel = session.get(Relationship_, relationship_id)
     if not rel:
         raise HTTPException(404, "Relationship not found.")
@@ -48,6 +51,7 @@ def link_evidence(
     evidence_id: int,
     session: Session = Depends(get_session),
 ):
+    ensure_unsealed()
     rel = session.get(Relationship_, relationship_id)
     if not rel:
         raise HTTPException(404, "Relationship not found.")
@@ -66,6 +70,7 @@ def unlink_evidence(
     evidence_id: int,
     session: Session = Depends(get_session),
 ):
+    ensure_unsealed()
     rel = session.get(Relationship_, relationship_id)
     if not rel:
         raise HTTPException(404, "Relationship not found.")

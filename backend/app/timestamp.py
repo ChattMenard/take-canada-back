@@ -14,6 +14,7 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
+import os
 from pathlib import Path
 
 import httpx
@@ -231,4 +232,6 @@ async def store(sha256: str) -> bytes:
     data = await create(sha256)
     path = timestamp_path(sha256)
     path.write_bytes(data)
+    # Lock the timestamp file read-only (immutable proof).
+    os.chmod(path, 0o444)
     return data
