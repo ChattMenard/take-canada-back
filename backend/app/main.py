@@ -8,7 +8,7 @@ from . import __version__, storage
 from .config import settings
 from .database import get_session, init_db
 from .models import Entity, Evidence, Relationship_, TimelineEvent
-from .routers import auth, collect, entities, evidence, export, economic, relationships, seal, timeline
+from .routers import auth, collect, entities, evidence, export, economic, relationships, seal, timeline, wealth_gap, historical_parallels, transparency
 from .schemas import Stats
 
 
@@ -41,6 +41,9 @@ app.include_router(collect.router)
 app.include_router(seal.router)
 app.include_router(export.router)
 app.include_router(economic.router)
+app.include_router(wealth_gap.router)
+app.include_router(historical_parallels.router)
+app.include_router(transparency.router)
 app.include_router(auth.router)
 
 

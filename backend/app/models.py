@@ -14,10 +14,14 @@ from enum import Enum
 
 from sqlmodel import Field, Relationship, SQLModel, Text
 
-# Import economic models
+# Import economic and transparency models
 from .models.economic import (
     EconomicIndicator, BusinessMetrics, PolicyAction,
     HypocrisyTracker, WealthTransfer
+)
+from .models.transparency import (
+    EmergencyPower, SurveillanceInfrastructure, FinancialTransparency,
+    CivilLibertiesLitigation, CharterViolation
 )
 
 
