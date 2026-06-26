@@ -43,7 +43,11 @@ export default function IngestForm({ onClose, onIngested }) {
       setBatchResults(null);
       try {
         const results = await api.batchCollect(
-          lines.map((url) => ({ url, collected_by: meta.collected_by || undefined }))
+          lines.map((url) => ({
+            url,
+            collected_by: meta.collected_by || undefined,
+            notes: meta.notes || undefined,
+          }))
         );
         setBatchResults(results);
         const ok = results.filter((r) => r.success);
@@ -210,14 +214,26 @@ export default function IngestForm({ onClose, onIngested }) {
                 ))}
               </div>
             )}
-            <div className="mt-3">
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Collected by</label>
-              <input
-                value={meta.collected_by}
-                onChange={set("collected_by")}
-                placeholder="Your name / handle"
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 outline-none focus:border-emerald-500"
-              />
+            <div className="mt-3 grid grid-cols-1 gap-3">
+              <div>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Collected by</label>
+                <input
+                  value={meta.collected_by}
+                  onChange={set("collected_by")}
+                  placeholder="Your name / handle"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 outline-none focus:border-emerald-500"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Notes (applied to all items)</label>
+                <textarea
+                  value={meta.notes}
+                  onChange={set("notes")}
+                  rows={2}
+                  placeholder="Context, significance, related records…"
+                  className="w-full resize-y rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 outline-none focus:border-emerald-500"
+                />
+              </div>
             </div>
           </div>
         )}
