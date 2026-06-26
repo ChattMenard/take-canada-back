@@ -124,11 +124,14 @@ Before export, run verification on all evidence:
   - `data/store/` (all evidence objects)
   - `data/timestamps/` (all timestamp files)
 - The manifest references these by hash, so the tar can be extracted anywhere
+- Generate `veritas-data-<vault_id>.warc.gz` for archival interoperability:
+  - one WARC `resource` record per evidence object
+  - one paired WARC `metadata` record with Veritas provenance fields
 
 ### Step 5: Publish
 
 - Commit manifest to the data repository
-- Attach tarball to a GitHub Release (tagged by date/vault_id)
+- Attach tarball and WARC archive to a GitHub Release (tagged by date/vault_id)
 - Generate static HTML index from manifest
 - Deploy static index to a public host (GitHub Pages, Cloudflare Pages, etc.)
 

@@ -326,6 +326,44 @@ Returns **204**; **404** if not found.
 
 ---
 
+## Export (`/api/export`)
+
+### `POST /api/export/manifest`
+
+Generate the public-release manifest containing evidence metadata, graph data,
+timeline events, aggregate stats, and seal status.
+
+```bash
+curl -X POST "http://127.0.0.1:8000/api/export/manifest?vault_id=release-2026-06"
+```
+
+### `POST /api/export/package`
+
+Write the manifest and, by default, a `.tar.gz` containing the content-addressed
+object store and timestamp files. Set `include_warc=true` to also generate a
+compressed WARC 1.1 archive.
+
+```bash
+curl -X POST "http://127.0.0.1:8000/api/export/package?vault_id=release-2026-06&include_warc=true"
+```
+
+### `POST /api/export/warc`
+
+Generate only the WARC archive.
+
+```bash
+curl -X POST "http://127.0.0.1:8000/api/export/warc?vault_id=release-2026-06"
+```
+
+The WARC contains one `resource` record per evidence object and a paired
+`metadata` record with Veritas provenance fields.
+
+### `POST /api/export/verify-all`
+
+Re-hash every stored object and return an integrity summary.
+
+---
+
 ## Collect (`/api/collect`) — Track A
 
 ### `POST /api/collect/batch`

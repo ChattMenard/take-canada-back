@@ -42,6 +42,7 @@ Override any setting with a `VERITAS_`-prefixed environment variable
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
+| `VERITAS_DATA_DIR` | `backend/data` | Directory for generated manifests, packages, and WARC files. |
 | `VERITAS_DATABASE_URL` | `sqlite:///…/data/veritas.db` | DB location / engine. |
 | `VERITAS_STORAGE_DIR` | `…/data/store` | Object store path. |
 | `VERITAS_TIMESTAMP_DIR` | `…/data/timestamps` | OpenTimestamps `.ots` signatures. |

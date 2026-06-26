@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="VERITAS_", env_file=".env", extra="ignore")
 
     app_name: str = "Veritas Evidentiary Collection Engine"
+    data_dir: Path = DATA_DIR
     database_url: str = f"sqlite:///{DATA_DIR / 'veritas.db'}"
     # Content-addressed object store: files saved under store/<sha256[:2]>/<sha256>
     storage_dir: Path = DATA_DIR / "store"
@@ -62,6 +63,6 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
-DATA_DIR.mkdir(parents=True, exist_ok=True)
+settings.data_dir.mkdir(parents=True, exist_ok=True)
 settings.storage_dir.mkdir(parents=True, exist_ok=True)
 settings.timestamp_dir.mkdir(parents=True, exist_ok=True)
