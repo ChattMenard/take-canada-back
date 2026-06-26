@@ -5,16 +5,16 @@ import tarfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
+from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from ..config import settings
 from ..database import get_session
 from ..models import Entity, Evidence, Relationship_, TimelineEvent
 from ..routers import seal
-from ..routers.seal import ensure_unsealed
-from ..schemas import ExportResult, Stats, VaultManifest
-from ..storage import disk_usage_bytes, verify, verify_all
+from ..schemas import ExportResult, Stats, VaultManifest, WarcExportResult
+from ..storage import disk_usage_bytes, verify_all
+from ..warc import write_warc
 
 router = APIRouter(prefix="/api/export", tags=["export"])
 
@@ -89,7 +89,7 @@ def verify_all_evidence(session: Session = Depends(get_session)):
 def package_vault(
     vault_id: str = "manual-export",
     include_store: bool = True,
-    background_tasks: BackgroundTasks = None,
+    include_warc: bool = False,
     session: Session = Depends(get_session),
 ):
     """Generate a manifest and optionally package the object store.
@@ -98,8 +98,6 @@ def package_vault(
     of the entire object store is created. The manifest is always
     generated and written to the data directory.
     """
-    ensure_unsealed()
-
     # Generate manifest
     manifest = generate_manifest(vault_id, session)
 
@@ -109,6 +107,7 @@ def package_vault(
         json.dump(manifest.model_dump(mode="json"), f, indent=2, default=str)
 
     package_path = None
+    warc_path = None
 
     if include_store:
         # Create tarball of object store
@@ -122,9 +121,39 @@ def package_vault(
             if timestamp_path.exists():
                 tar.add(timestamp_path, arcname="timestamps")
 
+    if include_warc:
+        evidence = session.exec(select(Evidence).order_by(Evidence.id)).all()
+        warc_path = settings.data_dir / f"veritas-data-{vault_id}.warc.gz"
+        _write_warc_or_410(warc_path, evidence, vault_id)
+
     return ExportResult(
         manifest_path=str(manifest_path),
         package_path=str(package_path) if package_path else None,
+        warc_path=str(warc_path) if warc_path else None,
         evidence_count=manifest.stats.evidence_count,
         storage_bytes=manifest.stats.storage_bytes,
     )
+
+
+@router.post("/warc", response_model=WarcExportResult)
+def export_warc(
+    vault_id: str = "manual-export",
+    session: Session = Depends(get_session),
+):
+    """Export stored evidence objects as a compressed WARC 1.1 archive."""
+    evidence = session.exec(select(Evidence).order_by(Evidence.id)).all()
+    warc_path = settings.data_dir / f"veritas-data-{vault_id}.warc.gz"
+    _write_warc_or_410(warc_path, evidence, vault_id)
+    return WarcExportResult(
+        warc_path=str(warc_path),
+        evidence_count=len(evidence),
+        storage_bytes=disk_usage_bytes(),
+        warc_bytes=warc_path.stat().st_size,
+    )
+
+
+def _write_warc_or_410(path: Path, evidence: list[Evidence], vault_id: str) -> None:
+    try:
+        write_warc(path, evidence, vault_id=vault_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(410, str(exc)) from exc

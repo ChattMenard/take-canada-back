@@ -60,6 +60,16 @@ def init_db() -> None:
             for stmt in _FTS_SETUP:
                 conn.execute(text(stmt))
             conn.commit()
+    else:
+        # PostgreSQL: apply Row-Level Security policies for tamper-evidence
+        try:
+            from .postgres_rls import apply_rls_policies
+            with Session(engine) as session:
+                apply_rls_policies(session)
+                print("PostgreSQL RLS policies applied")
+        except Exception as exc:
+            print(f"Warning: Failed to apply PostgreSQL RLS policies: {exc}")
+            print("Run 'python scripts/migrate_postgres_rls.py' manually to apply them")
 
 
 def get_session() -> Generator[Session, None, None]:

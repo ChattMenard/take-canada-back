@@ -21,9 +21,9 @@ this file tracks what is implemented versus planned.
 - ✅ Full Vault UI
 - ✅ OpenTimestamps timestamp anchoring
 - ✅ RFC 3161 timestamp anchoring (TSA)
-- ⬜ Hash-chained custody log
-- 🟡 PostgreSQL backend (env-switchable; not hardened for concurrent writers)
-- ⬜ Signed exports
+- ✅ Hash-chained custody log
+- ✅ PostgreSQL backend with Row-Level Security (env-switchable; RLS policies auto-applied)
+- ✅ Signed exports
 
 ## Phase 2 — Entity & Relationship Graph 🟡
 
@@ -63,9 +63,9 @@ this file tracks what is implemented versus planned.
 
 - ✅ OpenTimestamps timestamp anchoring
 - ✅ RFC 3161 timestamp anchoring (TSA)
-- ⬜ Append-only **hash chain** linking custody events
-- 🟡 PostgreSQL backend (env-switchable; not hardened for concurrent writers)
-- ⬜ Vault backup/export to a single signed archive
+- ✅ Append-only **hash chain** linking custody events
+- ✅ PostgreSQL backend with Row-Level Security (env-switchable; RLS policies auto-applied)
+- ✅ Vault backup/export to a single signed archive (Ed25519)
 - ⬜ Authentication + multi-user roles (for shared deployments)
 - ✅ Automated tests for hashing, storage, custody, verify, entities, relationships, timeline, extractor
 - ✅ `docker-compose.yml` + backend/frontend `Dockerfile`s for one-command run

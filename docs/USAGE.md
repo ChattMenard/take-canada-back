@@ -76,6 +76,17 @@ Click **Download** (or `GET /api/evidence/{id}/download`). The original file is
 returned and an `EXPORTED` event is logged, so exports are part of the audit
 trail.
 
+For public release or archival handoff, use the vault export endpoints:
+
+```bash
+curl -X POST "http://127.0.0.1:8000/api/export/warc?vault_id=release-2026-06"
+curl -X POST "http://127.0.0.1:8000/api/export/package?vault_id=release-2026-06&include_warc=true"
+```
+
+The WARC export is written as `backend/data/veritas-data-<vault_id>.warc.gz` by
+default and preserves each evidence object as an interoperable WARC `resource`
+record with paired Veritas metadata.
+
 ## 7. Search
 
 Use the sidebar search box. It matches **title**, **source description**,

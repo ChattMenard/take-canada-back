@@ -17,6 +17,7 @@ def client(tmp_data_dir):
     store_path = tmp_data_dir / "store"
     store_path.mkdir(exist_ok=True)
 
+    os.environ["VERITAS_DATA_DIR"] = str(tmp_data_dir)
     os.environ["VERITAS_DATABASE_URL"] = f"sqlite:///{db_path}"
     os.environ["VERITAS_STORAGE_DIR"] = str(store_path)
     os.environ["VERITAS_ALLOW_PRIVATE_COLLECT"] = "true"
@@ -25,6 +26,7 @@ def client(tmp_data_dir):
 
     from app.config import settings
 
+    settings.data_dir = tmp_data_dir
     settings.database_url = f"sqlite:///{db_path}"
     settings.storage_dir = store_path
     settings.timestamp_dir = tmp_data_dir / "timestamps"
@@ -32,8 +34,10 @@ def client(tmp_data_dir):
 
     from app.main import app
     from app.database import init_db
+    from app.routers.auth import get_current_admin
 
     init_db()
+    app.dependency_overrides[get_current_admin] = lambda: "test-admin"
 
     with TestClient(app) as c:
         yield c

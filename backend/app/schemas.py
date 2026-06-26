@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from .models import CustodyAction, EntityType, RelationshipKind
 
@@ -18,6 +18,8 @@ class EvidenceMetadata(BaseModel):
 
 
 class CustodyEventRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     action: CustodyAction
     actor: str | None
@@ -27,6 +29,8 @@ class CustodyEventRead(BaseModel):
 
 
 class EvidenceRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     sha256: str
     title: str
@@ -74,11 +78,15 @@ class EntityCreate(BaseModel):
 
 
 class EntityRead(EntityCreate):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     created_at: datetime
 
 
 class LinkedEvidenceRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     title: str
     sha256: str
@@ -86,6 +94,8 @@ class LinkedEvidenceRead(BaseModel):
 
 
 class LinkedEntityRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     name: str
     type: EntityType
@@ -103,6 +113,8 @@ class RelationshipCreate(BaseModel):
 
 
 class RelationshipRead(RelationshipCreate):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     created_at: datetime
     linked_evidence: list[LinkedEvidenceRead] = []
@@ -124,6 +136,8 @@ class TimelineEventPatch(BaseModel):
 
 
 class TimelineEventRead(TimelineEventCreate):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     created_at: datetime
 
@@ -179,5 +193,13 @@ class VaultManifest(BaseModel):
 class ExportResult(BaseModel):
     manifest_path: str
     package_path: str | None = None
+    warc_path: str | None = None
     evidence_count: int
     storage_bytes: int
+
+
+class WarcExportResult(BaseModel):
+    warc_path: str
+    evidence_count: int
+    storage_bytes: int
+    warc_bytes: int

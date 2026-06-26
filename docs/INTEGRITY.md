@@ -108,8 +108,9 @@ Implemented and planned in [ROADMAP.md](./ROADMAP.md):
 - **External log anchoring** — periodically publish a digest of the custody log
   itself (e.g., to a public timestamped location) so even a privileged rewrite
   is detectable.
-- **PostgreSQL backend** — replace SQLite so concurrent writers and audit
-  triggers are supported.
+- **PostgreSQL backend** *(implemented)* — switch to PostgreSQL via
+  `VERITAS_DATABASE_URL`; Row-Level Security policies are auto-applied to
+  make the custody log append-only at the database layer.
 - **Signed exports** — bundle evidence + custody + a signature for sharing.
 - **Source capture** — store HTTP response headers and a rendered screenshot at
   collection time to strengthen provenance.
