@@ -1,6 +1,7 @@
 from collections.abc import Generator
 
 from sqlmodel import Session, SQLModel, create_engine, text
+from sqlalchemy.orm import sessionmaker
 
 from .config import settings
 
@@ -52,8 +53,10 @@ def _is_sqlite() -> bool:
 def init_db() -> None:
     # Import models so SQLModel registers every table before create_all.
     from . import models  # noqa: F401
+    from .models import GovWealthBase  # noqa: F401
 
     SQLModel.metadata.create_all(engine)
+    GovWealthBase.metadata.create_all(engine)
 
     if _is_sqlite():
         with engine.connect() as conn:
@@ -75,3 +78,13 @@ def init_db() -> None:
 def get_session() -> Generator[Session, None, None]:
     with Session(engine) as session:
         yield session
+
+# Add compatibility for government wealth tracking
+def get_db():
+    """Compatibility function for government wealth tracking."""
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

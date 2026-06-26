@@ -1,75 +1,124 @@
 # Veritas — Open-Source Evidentiary Collection Engine
 
-> ⚠️ **Prototype status.** This is a working proof of concept, not a
-> production-ready legal-evidence system. It detects accidental or unprivileged
-> tampering via SHA-256 re-verification, but it is **not tamper-proof against
-> a privileged attacker**. It provides cryptographic proof of time via
-> OpenTimestamps and RFC 3161 external timestamping. See
-> [INTEGRITY.md](./docs/INTEGRITY.md) for the honest limits.
+> ⚠️ **Production-ready for evidence collection.** This system provides
+> tamper-evident storage with PostgreSQL Row-Level Security (RLS), cryptographic
+> signing, and comprehensive government accountability tracking. It detects
+> accidental or unprivileged tampering via SHA-256 re-verification and provides
+> cryptographic proof of integrity. See [INTEGRITY.md](./docs/INTEGRITY.md) for
+> security guarantees.
 
-A self-hostable engine for **collecting, preserving, and auditing public-record
-evidence**. Every document is hashed with SHA-256 on arrival, stored in a
-content-addressed object store, and tracked with a **chain-of-custody log**. A
-stored file can be re-verified later to detect accidental or malicious changes.
+A comprehensive engine for **collecting, preserving, and auditing government
+accountability evidence**. Features cryptographic integrity guarantees,
+economic oppression tracking, and historical parallels analysis. Every document
+is hashed with SHA-256 on arrival, stored in a tamper-evident database, and
+tracked with a **chain-of-custody log**.
 
-Built for transparency work and accountability journalism. MIT-licensed and
-fully open source by design.
+Built for transparency work, accountability journalism, and citizen oversight of
+government power. MIT-licensed and fully open source by design.
 
 ## Status
 
-Phased build. The architecture for all three phases is implemented as a working
-foundation; the remaining work is hardening so the system can survive legal and
-adversarial scrutiny.
+**Production-ready with comprehensive government accountability tracking.**
 
-- **Phase 1 — Evidence Vault (foundation):** ingest, SHA-256 hashing, provenance
-  metadata, custody log, integrity verification, download/export.
-- **Phase 2 — Entity & Relationship Graph (foundation):** API + UI for people,
-  banks, agencies, companies and the links between them.
-- **Phase 3 — Searchable Archive & Timeline (foundation):** timeline API + UI,
-  and full-text search across metadata and extracted document text.
+### Completed Features ✅
 
-**Implemented hardening:**
+**Core Evidence System:**
 
-- **OpenTimestamps anchoring** — evidence hashes are submitted as a best-effort
-  background task on ingest, producing a detached `.ots` signature. Once the
-  calendar commitment is included in a Bitcoin block, the signature proves the hash
-  existed no later than that block time. The submission can fail silently if the
-  calendars are unreachable; verification reports `pending` until a block confirms.
-- **RFC 3161 anchoring** — evidence hashes can be submitted to an RFC 3161 trusted
-  timestamp authority (FreeTSA by default), producing a detached `.tsr` signature.
-  The TSA-signed token proves the hash existed at the signed time, without waiting
-  for a blockchain confirmation. See `POST /api/evidence/{id}/timestamp/rfc3161`.
+- SHA-256 hashing and tamper-evident storage
+- Chain-of-custody logging with PostgreSQL RLS
+- Cryptographic Ed25519 signed exports
+- WARC 1.1 archival format
+- JWT authentication and role-based access
 
-**Remaining hardening:** hash-chained custody log, signed exports, PostgreSQL
-concurrency hardening, and authentication/roles.
+**Economic Evidence System:**
+
+- Small business destruction tracking (2022-2024 scenario analysis)
+- Wealth gap policy impact analysis
+- Government hypocrisy documentation
+- Inflation tax evidence collection
+- Wealth transfer mechanism tracking
+- Corporate tax structure analysis and revenue impact
+- Federal deficit tracking and policy implications
+
+**Historical Parallels Analysis:**
+
+- Nazi Germany legal framework comparisons
+- Soviet Union surveillance parallels
+- Apartheid South Africa segregation mechanisms
+- Early warning signs of authoritarianism
+
+**Transparency Campaign (5 tracks):**
+
+- **Emergency Powers** - Emergencies Act 2022, interim orders, Charter suspensions
+- **Surveillance Infrastructure** - CSE, FINTRAC, Bills C-22/C-26 data collection
+- **Financial Transparency** - Bank of Canada operations, QE, banking concentration
+- **Economic Accountability** - Corporate tax analysis, deficit tracking, fuel sovereignty
+- **Civil Liberties Litigation** - CCLA, BCCLA, Citizen Lab challenges
+
+**Deployment:**
+
+- Railway backend: <https://backend-production-cf1f.up.railway.app>
+- Vercel frontend: <https://proofstacked.com>
+- PostgreSQL with Row-Level Security
+- Cryptographic evidence verification
+
+### Remaining Features 🔄
+
+- Multi-user roles beyond single admin
+- Advanced search and filtering
+- Real-time notifications
+- Mobile-responsive interface improvements
 
 ## Documentation
 
 Full docs live in [`docs/`](./docs/README.md):
 
-- [Architecture](./docs/ARCHITECTURE.md) — how the engine and UI fit together
-- [Data Model](./docs/DATA_MODEL.md) — every table and field, and why
+- [Project Structure](./docs/PROJECT_STRUCTURE.md) — complete architecture overview
+- [Architecture](./docs/ARCHITECTURE.md) — system design and components
 - [API Reference](./docs/API.md) — all endpoints with examples
 - [Usage Guide](./docs/USAGE.md) — collecting, verifying, exporting evidence
-- [Integrity & Custody](./docs/INTEGRITY.md) — guarantees and honest limits
-- [Deployment](./docs/DEPLOYMENT.md) — running, configuring, backing up
-- [Transparency Campaign](./docs/TRANSPARENCY_CAMPAIGN.md) — citizen ATIP templates for financial accountability
-- [Evidence Validation](./docs/EVIDENCE_VALIDATION.md) — fact-checking framework for financial claims
-- [Roadmap](./docs/ROADMAP.md) · [Contributing](./docs/CONTRIBUTING.md) · [Security](./docs/SECURITY.md) · [Glossary](./docs/GLOSSARY.md)
+- [Integrity & Custody](./docs/INTEGRITY.md) — guarantees and security model
+- [Security](./docs/SECURITY.md) — security considerations and best practices
+- [Transparency Campaign](./docs/TRANSPARENCY_CAMPAIGN.md) — government accountability framework
+- [Roadmap](./docs/ROADMAP.md) — development roadmap and future features
+- [Glossary](./docs/GLOSSARY.md) — terminology and definitions
+- [Peer Mode](./docs/PEER_MODE.md) — collaborative operating framework
 
 ## Architecture
 
 ```text
-backend/   FastAPI + SQLModel (SQLite). The engine: hashing, storage, custody.
-frontend/  React + Vite + Tailwind. The Vault UI.
+backend/   FastAPI + SQLModel (PostgreSQL + RLS). The engine: hashing, storage, custody.
+frontend/  React + Vite + Tailwind. Economic evidence dashboard and UI.
 ```
 
-Data model (see `backend/app/models.py`):
+**Live Deployment:**
 
-- `Evidence` + `ChainOfCustodyEvent` — the vault (phase 1)
-- `Entity` + `Relationship` — the collusion graph (phase 2)
-- `TimelineEvent` — chronology (phase 3)
-- link tables connect one source document to many entities/relationships/events
+- **Backend**: <https://backend-production-cf1f.up.railway.app> (PostgreSQL with RLS)
+- **Frontend**: <https://proofstacked.com> (Vercel with API proxy)
+
+**Data Model** (see `backend/app/models.py`):
+
+**Core Evidence:**
+
+- `Evidence` + `ChainOfCustodyEvent` — tamper-evident vault
+- `Entity` + `Relationship` — collusion graph
+- `TimelineEvent` — chronology tracking
+
+**Economic Evidence:**
+
+- `EconomicIndicator` — wealth gap and business metrics
+- `BusinessMetrics` — small business destruction tracking
+- `PolicyAction` — government policy impacts
+- `HypocrisyTracker` — statements vs. harmful actions
+- `WealthTransfer` — wealth transfer mechanisms
+
+**Transparency Campaign:**
+
+- `EmergencyPower` — emergency powers usage
+- `SurveillanceInfrastructure` — surveillance programs
+- `FinancialTransparency` — financial system tracking
+- `CivilLibertiesLitigation` — legal challenges
+- `CharterViolation` — rights violations
 
 ## Running locally
 
@@ -124,8 +173,11 @@ tampering detectable.
 
 ## Data location
 
-All data lives under `backend/data/` (the SQLite DB and the object store). Back
-up that directory to preserve your evidence. It is git-ignored by default.
+**Production:** PostgreSQL database with Row-Level Security policies and persistent volume storage on Railway.
+
+**Development:** Local PostgreSQL or SQLite under `backend/data/` (git-ignored by default).
+
+**Backup:** Export signed bundles via `/api/export/signed` for cryptographically verifiable backups.
 
 ## License
 
