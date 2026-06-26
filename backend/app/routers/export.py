@@ -5,15 +5,18 @@ import tarfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
+from fastapi import APIRouter, Depends, File, HTTPException, BackgroundTasks, UploadFile
+from fastapi.responses import FileResponse
 from sqlmodel import Session, select
 
 from ..config import settings
 from ..database import get_session
-from ..models import Entity, Evidence, Relationship_, TimelineEvent
+from ..models import ChainOfCustodyEvent, Entity, Evidence, Relationship_, TimelineEvent
 from ..routers import seal
 from ..routers.seal import ensure_unsealed
-from ..schemas import ExportResult, Stats, VaultManifest
+from ..routers.auth import get_current_admin
+from ..schemas import BundleVerifyResult, ExportResult, ExportSignedResult, Stats, VaultManifest
+from ..signed_export import build_signed_bundle, get_public_key_hex, verify_bundle
 from ..storage import disk_usage_bytes, verify, verify_all
 
 router = APIRouter(prefix="/api/export", tags=["export"])
@@ -128,3 +131,85 @@ def package_vault(
         evidence_count=manifest.stats.evidence_count,
         storage_bytes=manifest.stats.storage_bytes,
     )
+
+
+@router.get("/pubkey")
+def get_signing_pubkey():
+    """Return the vault's Ed25519 public key (hex) used to sign export bundles."""
+    return {"public_key_hex": get_public_key_hex(), "algorithm": "Ed25519"}
+
+
+@router.post("/signed-package", response_model=ExportSignedResult)
+def signed_package(
+    vault_id: str = "export",
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
+    """Build a signed export bundle.
+
+    The bundle is a tar.gz archive containing the full vault manifest,
+    custody log, all evidence objects, and all timestamp receipts (.ots/.tsr).
+    A detached Ed25519 signature over SHA-256(unsigned_bundle) is included as
+    the SIGNATURE file. The PUBKEY file contains the hex public key for
+    offline verification without Veritas.
+    """
+    evidence = session.exec(select(Evidence)).all()
+    custody_events = session.exec(select(ChainOfCustodyEvent)).all()
+
+    manifest_obj = generate_manifest(vault_id, session)
+    manifest_dict = manifest_obj.model_dump(mode="json")
+
+    custody_list = [
+        {
+            "id": e.id,
+            "evidence_id": e.evidence_id,
+            "action": e.action.value if hasattr(e.action, "value") else e.action,
+            "actor": e.actor,
+            "detail": e.detail,
+            "hash_at_event": e.hash_at_event,
+            "prev_hash": e.prev_hash,
+            "timestamp": e.timestamp.isoformat() if e.timestamp else None,
+        }
+        for e in custody_events
+    ]
+
+    bundle_bytes, pub_hex = build_signed_bundle(manifest_dict, custody_list, vault_id)
+
+    bundle_path = settings.data_dir / f"veritas-signed-{vault_id}.tar.gz"
+    bundle_path.write_bytes(bundle_bytes)
+
+    return ExportSignedResult(
+        bundle_path=str(bundle_path),
+        public_key_hex=pub_hex,
+        evidence_count=len(evidence),
+        custody_event_count=len(custody_events),
+        storage_bytes=disk_usage_bytes(),
+        vault_id=vault_id,
+    )
+
+
+@router.get("/signed-package/download")
+def download_signed_package(
+    vault_id: str = "export",
+    admin: str = Depends(get_current_admin),
+):
+    """Download the most recently generated signed bundle for vault_id."""
+    bundle_path = settings.data_dir / f"veritas-signed-{vault_id}.tar.gz"
+    if not bundle_path.exists():
+        raise HTTPException(404, "No signed bundle found. Run POST /api/export/signed-package first.")
+    return FileResponse(
+        bundle_path,
+        media_type="application/gzip",
+        filename=bundle_path.name,
+    )
+
+
+@router.post("/verify-bundle", response_model=BundleVerifyResult)
+async def verify_signed_bundle(file: UploadFile = File(...)):
+    """Verify a signed bundle produced by POST /api/export/signed-package.
+
+    Upload the .tar.gz bundle. Returns whether the Ed25519 signature is valid.
+    """
+    data = await file.read()
+    result = verify_bundle(data)
+    return BundleVerifyResult(**result)

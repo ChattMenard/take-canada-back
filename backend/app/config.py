@@ -52,6 +52,9 @@ class Settings(BaseSettings):
     # Batch/crawl collection limits
     collect_batch_limit: int = 50
     default_collector: str | None = None
+    # Signed export bundle — Ed25519 key paths
+    # Key is generated automatically on first use if not provided
+    signing_key_path: Path | None = None  # Override default data/signing.key location
     # C2PA content provenance (Coalition for Content Provenance and Authenticity)
     # Enables interoperable digital provenance verification across the global C2PA ecosystem
     c2pa_enabled: bool = True

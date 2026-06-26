@@ -181,3 +181,21 @@ class ExportResult(BaseModel):
     package_path: str | None = None
     evidence_count: int
     storage_bytes: int
+
+
+class ExportSignedResult(BaseModel):
+    bundle_path: str
+    public_key_hex: str
+    evidence_count: int
+    custody_event_count: int
+    storage_bytes: int
+    vault_id: str
+
+
+class BundleVerifyResult(BaseModel):
+    valid: bool
+    error: str | None = None
+    public_key_hex: str | None = None
+    signed_at: str | None = None
+    vault_id: str | None = None
+    sha256_of_bundle: str | None = None

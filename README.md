@@ -50,9 +50,15 @@ adversarial scrutiny.
   screenshots as `<sha256>.screenshot.png` alongside the object.
 - **C2PA manifest generation** — produces C2PA content-provenance manifests at ingest
   (unsigned by default; optional certificate signing via `VERITAS_C2PA_CERT_PATH`).
+- **Signed export bundle** — `POST /api/export/signed-package` builds a tar.gz
+  containing the full manifest, custody log (with `prev_hash` chain), all evidence
+  objects, and all timestamp receipts. An Ed25519 signature over the bundle's
+  SHA-256 is included as a `SIGNATURE` file; the `PUBKEY` file allows offline
+  verification without Veritas. The signing key is auto-generated on first use at
+  `backend/data/signing.key`.
 
-**Remaining hardening:** signed exports, PostgreSQL concurrency hardening with
-append-only audit rules, and multi-user roles.
+**Remaining hardening:** PostgreSQL concurrency hardening with append-only audit
+rules, and multi-user roles.
 
 ## Documentation
 

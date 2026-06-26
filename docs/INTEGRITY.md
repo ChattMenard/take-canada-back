@@ -135,7 +135,10 @@ Implemented and planned in [ROADMAP.md](./ROADMAP.md):
   is detectable.
 - **PostgreSQL backend** — replace SQLite so concurrent writers and audit
   triggers are supported.
-- **Signed exports** — bundle evidence + custody + a signature for sharing.
+- **Signed exports** *(implemented)* — `POST /api/export/signed-package` builds a
+  tar.gz bundle containing the manifest, custody log, all evidence objects, and
+  all timestamp receipts, signed with an Ed25519 key. The public key is embedded
+  as `PUBKEY` so the bundle can be verified offline without Veritas.
 
 ## Practical guidance
 

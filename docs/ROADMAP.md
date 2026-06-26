@@ -28,7 +28,7 @@ this file tracks what is implemented versus planned.
 - ✅ HTTP response header capture at collection time
 - ✅ C2PA manifest generation (unsigned by default; certificate signing optional)
 - 🟡 PostgreSQL backend (env-switchable; RLS policies defined, not applied by default)
-- ⬜ Signed exports
+- ✅ Signed exports (Ed25519-signed bundle: manifest + custody log + objects + timestamp receipts)
 
 ## Phase 2 — Entity & Relationship Graph 🟡
 
@@ -73,8 +73,8 @@ this file tracks what is implemented versus planned.
 - ✅ Append-only **hash chain** linking custody events
 - ✅ Authentication + JWT admin tokens
 - ✅ C2PA manifest generation (unsigned by default; optional certificate signing)
+- ✅ Vault export as a signed archive (Ed25519; verifiable offline)
 - 🟡 PostgreSQL backend (env-switchable; RLS policies defined, not applied by default)
-- ⬜ Vault backup/export to a single signed archive
 - ✅ Automated tests for hashing, storage, custody, verify, entities, relationships, timeline, extractor
 - ✅ `docker-compose.yml` + backend/frontend `Dockerfile`s for one-command run
 
