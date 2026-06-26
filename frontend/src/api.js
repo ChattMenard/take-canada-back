@@ -124,4 +124,15 @@ export const api = {
 
   deleteTimelineEvent: (id) =>
     fetch(`${BASE}/timeline/${id}`, { method: "DELETE" }).then(handle),
+
+  // Admin / Seal
+  sealStatus: () => fetch(`${BASE}/admin/seal`).then(handle),
+  sealVault: () => fetch(`${BASE}/admin/seal`, { method: "POST" }).then(handle),
+
+  // Export
+  exportManifest: (vaultId) =>
+    fetch(`${BASE}/export/manifest?vault_id=${encodeURIComponent(vaultId)}`, { method: "POST" }).then(handle),
+  verifyAll: () => fetch(`${BASE}/export/verify-all`, { method: "POST" }).then(handle),
+  exportPackage: (vaultId, includeStore) =>
+    fetch(`${BASE}/export/package?vault_id=${encodeURIComponent(vaultId)}&include_store=${includeStore}`, { method: "POST" }).then(handle),
 };

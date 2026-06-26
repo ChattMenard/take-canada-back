@@ -8,6 +8,7 @@ operations.
 from __future__ import annotations
 
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
@@ -17,14 +18,22 @@ from ..config import DATA_DIR, settings
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
+SEAL_FILE = DATA_DIR / ".sealed"
 
-# In-memory state; survives for the lifetime of the process.
-# To enforce across restarts, the DB is also chmod 444 by the seal.
-_vault_sealed = False
+
+# Load seal state from file on startup
+def _load_seal_state() -> bool:
+    if SEAL_FILE.exists():
+        return True
+    return False
+
+
+_vault_sealed = _load_seal_state()
 
 
 class SealStatus(BaseModel):
     sealed: bool
+    sealed_at: str | None = None
     evidence_objects: int
     timestamp_files: int
     db_path: str
@@ -32,6 +41,7 @@ class SealStatus(BaseModel):
 
 class SealResult(BaseModel):
     sealed: bool
+    sealed_at: str
     evidence_objects_locked: int
     timestamp_files_locked: int
     db_path: str
@@ -58,8 +68,12 @@ def get_seal_status():
     timestamp_count = 0
     if settings.timestamp_dir.exists():
         timestamp_count = sum(1 for p in settings.timestamp_dir.rglob("*") if p.is_file())
+    sealed_at = None
+    if _vault_sealed and SEAL_FILE.exists():
+        sealed_at = SEAL_FILE.read_text().strip()
     return SealStatus(
         sealed=_vault_sealed,
+        sealed_at=sealed_at,
         evidence_objects=evidence_count,
         timestamp_files=timestamp_count,
         db_path=str(DATA_DIR / "veritas.db"),
@@ -79,6 +93,8 @@ def seal_vault():
     if _vault_sealed:
         raise HTTPException(status_code=400, detail="Vault is already sealed.")
 
+    sealed_at = datetime.now(timezone.utc).isoformat()
+
     db_path = DATA_DIR / "veritas.db"
     evidence_locked = _set_readonly(settings.storage_dir)
     timestamp_locked = _set_readonly(settings.timestamp_dir)
@@ -88,9 +104,13 @@ def seal_vault():
         os.chmod(db_path, 0o444)
         db_readonly = True
 
+    # Write seal timestamp to file for persistence across restarts
+    SEAL_FILE.write_text(sealed_at)
+
     _vault_sealed = True
     return SealResult(
         sealed=True,
+        sealed_at=sealed_at,
         evidence_objects_locked=evidence_locked,
         timestamp_files_locked=timestamp_locked,
         db_path=str(db_path),
