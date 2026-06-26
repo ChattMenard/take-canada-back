@@ -13,6 +13,7 @@ from ..database import get_session
 from ..models import Entity, Evidence, Relationship_, TimelineEvent
 from ..routers import seal
 from ..schemas import ExportResult, Stats, VaultManifest, WarcExportResult
+from ..signed_export import get_public_key, sign_bundle, verify_bundle, create_signed_bundle_from_files
 from ..storage import disk_usage_bytes, verify_all
 from ..warc import write_warc
 
@@ -157,3 +158,88 @@ def _write_warc_or_410(path: Path, evidence: list[Evidence], vault_id: str) -> N
         write_warc(path, evidence, vault_id=vault_id)
     except FileNotFoundError as exc:
         raise HTTPException(410, str(exc)) from exc
+
+
+@router.get("/pubkey")
+def get_public_key_endpoint():
+    """Get the Ed25519 public key for verifying signed exports."""
+    return {
+        "public_key": get_public_key(),
+        "algorithm": "Ed25519",
+        "format": "PEM"
+    }
+
+
+@router.post("/signed")
+def create_signed_export(
+    vault_id: str = "manual-export",
+    include_store: bool = True,
+    include_warc: bool = False,
+    session: Session = Depends(get_session),
+):
+    """Create a cryptographically signed export bundle.
+    
+    Returns a signed bundle containing the manifest and optionally the
+    object store and/or WARC archive. The bundle can be verified offline
+    using the public key from /api/export/pubkey.
+    """
+    # Generate manifest
+    manifest = generate_manifest(vault_id, session)
+    
+    # Write manifest to data directory
+    manifest_path = settings.data_dir / f"veritas-manifest-{vault_id}.json"
+    with open(manifest_path, "w") as f:
+        json.dump(manifest.model_dump(mode="json"), f, indent=2, default=str)
+    
+    # Create bundle data
+    bundle_files = [manifest_path]
+    bundle_path = None
+    
+    if include_store:
+        # Create tarball of object store
+        bundle_path = settings.data_dir / f"veritas-data-{vault_id}.tar.gz"
+        store_path = settings.storage_dir
+        timestamp_path = settings.timestamp_dir
+        
+        with tarfile.open(bundle_path, "w:gz") as tar:
+            if store_path.exists():
+                tar.add(store_path, arcname="store")
+            if timestamp_path.exists():
+                tar.add(timestamp_path, arcname="timestamps")
+        bundle_files.append(bundle_path)
+    
+    if include_warc:
+        evidence = session.exec(select(Evidence).order_by(Evidence.id)).all()
+        warc_path = settings.data_dir / f"veritas-data-{vault_id}.warc.gz"
+        _write_warc_or_410(warc_path, evidence, vault_id)
+        bundle_files.append(warc_path)
+    
+    # Create final bundle if we have multiple files
+    if len(bundle_files) > 1:
+        final_bundle_path = settings.data_dir / f"veritas-bundle-{vault_id}.tar.gz"
+        with tarfile.open(final_bundle_path, "w:gz") as tar:
+            for file_path in bundle_files:
+                tar.add(file_path, arcname=file_path.name)
+        bundle_data_path = final_bundle_path
+    else:
+        bundle_data_path = bundle_files[0]
+    
+    # Read bundle data and sign it
+    with open(bundle_data_path, "rb") as f:
+        bundle_data = f.read()
+    
+    signed_bundle = sign_bundle(manifest.model_dump(mode="json"), bundle_data)
+    
+    # Write signed bundle
+    signed_bundle_path = settings.data_dir / f"veritas-signed-{vault_id}.json"
+    with open(signed_bundle_path, "w") as f:
+        json.dump(signed_bundle, f, indent=2)
+    
+    return {
+        "signed_bundle_path": str(signed_bundle_path),
+        "bundle_path": str(bundle_data_path) if bundle_data_path else None,
+        "manifest_path": str(manifest_path),
+        "vault_id": vault_id,
+        "evidence_count": manifest.stats.evidence_count,
+        "storage_bytes": manifest.stats.storage_bytes
+    }
