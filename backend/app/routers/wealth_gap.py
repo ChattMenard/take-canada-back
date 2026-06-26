@@ -7,8 +7,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select, func
 
 from ..database import get_session
-from ..models.economic import EconomicIndicator, PolicyAction, WealthTransfer, BusinessMetrics
-from ..schemas.economic import EconomicIndicatorRead, PolicyActionRead, WealthTransferRead
+from ..models import EconomicIndicator, PolicyAction, WealthTransfer, BusinessMetrics
+from ..schemas import EconomicIndicatorRead, PolicyActionRead, WealthTransferRead
 
 router = APIRouter(prefix="/api/wealth-gap", tags=["wealth-gap"])
 

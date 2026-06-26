@@ -14,12 +14,15 @@ Every Canadian has the right to understand how public institutions operate, espe
 
 ## Campaign scope
 
-This campaign covers four accountability tracks:
+This campaign covers seven accountability tracks:
 
 1. **Emergency powers** — Emergencies Act 2022 invocation, Food and Drugs Act s.30.1 interim orders, COVID mandates, Charter override mechanisms
 2. **Surveillance infrastructure** — CSE bulk collection, FINTRAC financial surveillance, Bill C-22 lawful access, Bill C-26 critical infrastructure
 3. **Financial transparency** — Bank of Canada operations, QE program, Big Five bank concentration, housing affordability
-4. **Civil liberties litigation** — CCLA, BCCLA, and Citizen Lab challenges to state overreach
+4. **Economic accountability** — Corporate tax structure analysis, deficit impact assessment, tax policy transparency, fuel sovereignty research
+5. **Government wealth tracking** — Asset declarations, procurement contracts, policy timing vs. investment patterns, official enrichment
+6. **Corporate housing influence** — Developer lobbying, land banking, housing policy capture, affordability sabotage
+7. **Civil liberties litigation** — CCLA, BCCLA, and Citizen Lab challenges to state overreach
 
 See [EVIDENCE_COLLECTION.md](./EVIDENCE_COLLECTION.md) for the full collection checklist.
 
@@ -46,6 +49,27 @@ See [EVIDENCE_COLLECTION.md](./EVIDENCE_COLLECTION.md) for the full collection c
 - When the Bank of Canada makes decisions affecting every Canadian's mortgage, savings, and cost of living, citizens have a right to understand the decision-making process.
 - Understanding who regulates the banks, and whether those regulators have conflicts of interest, is a matter of democratic accountability.
 
+### Economic accountability
+
+- Canada's deficit doubled from $36.3B (2024-25) to $72.0B (2025-26 projection) - citizens deserve transparency about fiscal decisions.
+- Corporate tax structure affects public revenue and deficit reduction - understanding who pays what and why is fundamental accountability.
+- Proposed corporate tax changes could generate $10.5-43.5B annually while affecting only 0.3% of corporations - policy impact analysis is public interest.
+- Fuel sovereignty research shows Canada could achieve energy independence with minimal investment - understanding policy barriers is democratic oversight.
+
+### Government wealth tracking
+
+- Government officials' asset declarations should reflect policy decisions they influence - timing patterns matter for public trust.
+- Procurement contracts awarded to connected entities deserve scrutiny - public funds should serve public interest.
+- Policy announcements that benefit personal investments raise legitimate accountability questions.
+- Family business interests and spousal activities create potential conflicts - transparency prevents abuse of power.
+
+### Corporate housing influence
+
+- Corporate developer profits correlate with housing affordability declines - citizens deserve to understand this relationship.
+- Land banking by corporations creates artificial scarcity and drives up prices - policy responses should address market manipulation.
+- Housing policy captured by developer interests undermines affordable housing solutions - public interest must come first.
+- Financialization of housing treats basic shelter as investment vehicle - policy should prioritize human need over profit.
+
 ### Civil liberties litigation
 
 - The CCLA is challenging the Emergencies Act invocation in court.
@@ -61,6 +85,10 @@ See [EVIDENCE_COLLECTION.md](./EVIDENCE_COLLECTION.md) for the full collection c
 - 2020 QE program: Balance sheet grew from ~$120B to ~$550B
 - Primary Dealers: Exclusive system for government bond auctions
 - Big Five banks: Dominate mortgages, deposits, and lending
+- 2025-26 deficit: $55.3B (doubled from $36.3B in 2024-25)
+- Corporate tax rates: 15% federal + 12% provincial average (27% total)
+- Small business deduction: $700,000 limit (increased from $500,000 in 2025)
+- Canada's refining capacity: 1.9M bpd (covers 90% of domestic demand)
 
 ---
 
@@ -84,6 +112,34 @@ The numbers below are drawn from public data and are documented with sources, fo
 
 - Aggregate provincial/territorial public debt charges increased from **$32.1 billion in 2018-19** to **$38.8 billion in 2024-25**, an increase of **$6.7 billion**.
 - **Source:** Department of Finance Canada, Fiscal Reference Tables 2025, Table 31.
+
+### Federal Deficit Crisis (2025-26)
+
+- **Deficit doubled:** From $36.3B (2024-25) to $55.3B (2025-26 actual March Fiscal Monitor), PBO projects $72.0B
+- **Debt-to-GDP:** Rising from 41.3% to projected 42.5% by 2030-31
+- **Net new spending:** $68.4B planned for 2025-2031 period
+- **Latest data:** Finance Canada Fiscal Monitor March 2026 (most recent available)
+- **Sources:** Parliamentary Budget Officer June 2026 report, Finance Canada Fiscal Monitor March 2026
+
+### Corporate Tax Impact Analysis
+
+- **Current structure:** 15% federal + 12% provincial average = 27% general rate
+- **Small business deduction:** $700,000 limit (increased from $500,000 April 1, 2025)
+- **Proposed progressive rates:** 30-37.5% for >$20M Canadian profits
+- **Revenue potential:** $10.5B (multinationals only) to $43.5B (all companies) annually
+- **Companies affected:** Only 7,250 corporations (0.3% of total) with >$20M profits
+- **Deficit reduction:** Could eliminate 19-79% of 2025-26 deficit
+- **Sources:** CRA corporate tax rates 2026, EY tax calculator 2026, KPMG tax tables 2026
+
+### Fuel Sovereignty Assessment
+
+- **Current capacity:** 1.9M bpd refining capacity (90% of domestic demand)
+- **Shortfall:** Only 0.18M bpd additional capacity needed for full sovereignty
+- **Investment required:** ~$8.5B for 1-2 new refineries
+- **Current gas prices:** Quebec $1.59-$1.90/L (June 26, 2026), Toronto $1.58/L average
+- **Gas price impact:** Potential 13% reduction with domestic refining
+- **Timeline:** 8-12 years for full implementation
+- **Sources:** CER refining data 2025, CAA-Quebec Gas Watch June 26, 2026, CityNews Toronto gas prices
 
 ---
 
@@ -358,5 +414,79 @@ Every Canadian has the right to ask questions. Use the templates, file the reque
 
 ---
 
+## Economic Accountability ATIP Templates
+
+### Template 9: Finance Canada — Deficit Analysis Framework
+
+**Subject:** Access to Information Request — 2025-26 Deficit Projections and Policy Decisions
+
+To: ATIP Coordinator, Department of Finance Canada
+
+Dear Sir/Madam,
+
+Pursuant to Section 4(1) of the Access to Information Act, I request:
+
+1. All internal analyses, briefing notes, and models used to project the 2025-26 federal deficit increase from $36.3B to $55.3B.
+
+2. Any assessments of the revenue impact of proposed corporate tax changes, including scenario analyses for different tax rates on corporations with >$20M profits.
+
+3. Communications with the Parliamentary Budget Office regarding deficit projections, including any disagreements or methodological differences.
+
+4. The detailed breakdown of the $68.4B net new spending planned for 2025-2031, including program-by-program allocations.
+
+This request relates to a matter of significant public interest — understanding the fiscal decisions that affect every Canadian taxpayer.
+
+[Your name, address, signature]
+
+---
+
+### Template 10: Canada Revenue Agency — Corporate Tax Structure Analysis
+
+**Subject:** Access to Information Request — Corporate Tax Distribution and Revenue Impact
+
+To: ATIP Coordinator, Canada Revenue Agency
+
+Dear Sir/Madam,
+
+Pursuant to Section 4(1) of the Access to Information Act, I request:
+
+1. Data on the number of corporations by profit bracket, specifically the count of corporations with >$20M annual profits from Canadian operations.
+
+2. Revenue analysis showing the actual tax revenue collected from each profit bracket over the past 5 years.
+
+3. Any internal assessments of the revenue impact of progressive corporate tax rates, including modeling of different scenarios.
+
+4. Communications with the Department of Finance regarding corporate tax policy development and revenue projections.
+
+Understanding how corporate taxes contribute to federal revenue and deficit reduction is a matter of significant public interest.
+
+[Your name, address, signature]
+
+---
+
+### Template 11: Natural Resources Canada — Fuel Sovereignty Assessment
+
+**Subject:** Access to Information Request — Canadian Refining Capacity and Energy Independence
+
+To: ATIP Coordinator, Natural Resources Canada
+
+Dear Sir/Madam,
+
+Pursuant to Section 4(1) of the Access to Information Act, I request:
+
+1. All assessments of Canada's refining capacity versus domestic fuel demand, including detailed gap analysis.
+
+2. Any studies or reports on the feasibility of achieving fuel sovereignty through domestic refining expansion.
+
+3. Communications with the Department of Finance regarding economic impacts of fuel import dependence.
+
+4. Policy analyses of barriers to new refinery construction, including environmental, regulatory, and economic factors.
+
+Given the impact of fuel prices on Canadian households and the economy, understanding energy independence options is a matter of significant public interest.
+
+[Your name, address, signature]
+
+---
+
 *Document prepared for citizen engagement. Use at your own discretion.*
-*Updated: 2026-06-25*
+*Updated: 2026-06-26*

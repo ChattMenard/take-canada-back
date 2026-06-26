@@ -7,11 +7,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..models.transparency import (
+from ..models import (
     EmergencyPower, SurveillanceInfrastructure, FinancialTransparency,
     CivilLibertiesLitigation, CharterViolation
 )
-from ..schemas.transparency import (
+from ..schemas import (
     EmergencyPowerCreate, EmergencyPowerRead, SurveillanceInfrastructureCreate,
     SurveillanceInfrastructureRead, FinancialTransparencyCreate,
     FinancialTransparencyRead, CivilLibertiesLitigationCreate,

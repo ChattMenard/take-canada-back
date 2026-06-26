@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..models.economic import PolicyAction, WealthTransfer, HypocrisyTracker
+from ..models import PolicyAction, WealthTransfer, HypocrisyTracker
 
 router = APIRouter(prefix="/api/historical-parallels", tags=["historical-parallels"])
 

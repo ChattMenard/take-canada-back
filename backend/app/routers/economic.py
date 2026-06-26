@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..models.economic import (
+from ..models import (
     BusinessMetrics, EconomicIndicator, HypocrisyTracker, 
     PolicyAction, WealthTransfer
 )
