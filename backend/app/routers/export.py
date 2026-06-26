@@ -13,7 +13,7 @@ from ..database import get_session
 from ..models import Entity, Evidence, Relationship_, TimelineEvent
 from ..routers import seal
 from ..schemas import ExportResult, Stats, VaultManifest, WarcExportResult
-from ..signed_export import get_public_key, create_signed_bundle, verify_bundle
+from ..signed_export import get_public_key, sign_bundle, verify_bundle, create_signed_bundle_from_files
 from ..storage import disk_usage_bytes, verify_all
 from ..warc import write_warc
 
@@ -228,7 +228,7 @@ def create_signed_export(
     with open(bundle_data_path, "rb") as f:
         bundle_data = f.read()
     
-    signed_bundle = create_signed_bundle(manifest.model_dump(mode="json"), bundle_data)
+    signed_bundle = sign_bundle(manifest.model_dump(mode="json"), bundle_data)
     
     # Write signed bundle
     signed_bundle_path = settings.data_dir / f"veritas-signed-{vault_id}.json"

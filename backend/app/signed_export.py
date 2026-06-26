@@ -104,7 +104,7 @@ def verify_bundle(signed_bundle: dict, bundle_data: bytes) -> bool:
         return False
 
 
-def create_signed_bundle(manifest_path: Path, bundle_path: Path) -> dict:
+def create_signed_bundle_from_files(manifest_path: Path, bundle_path: Path) -> dict:
     """Create a signed bundle from manifest and package files.
     
     Args:
