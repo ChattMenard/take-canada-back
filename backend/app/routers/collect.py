@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlmodel import Session
 
-from .. import storage
+from .. import custody, storage
 from ..config import settings
 from ..database import get_session
 from ..extractor import extract_text
@@ -73,18 +73,17 @@ async def _ingest_one(item: BatchUrlItem, session: Session) -> BatchResultItem:
     session.commit()
     session.refresh(evidence)
 
-    session.add(
-        ChainOfCustodyEvent(
-            evidence_id=evidence.id,
-            action=CustodyAction.CREATED,
-            actor=evidence.collected_by,
-            detail=(
-                f"Batch-collected from {item.url} "
-                f"(HTTP {res.status_code}, {res.content_type}, {size} bytes). "
-                f"Final URL: {res.final_url}."
-            ),
-            hash_at_event=sha256,
-        )
+    custody.create_custody_event(
+        session,
+        evidence_id=evidence.id,
+        action=CustodyAction.CREATED,
+        actor=evidence.collected_by,
+        detail=(
+            f"Batch-collected from {item.url} "
+            f"(HTTP {res.status_code}, {res.content_type}, {size} bytes). "
+            f"Final URL: {res.final_url}."
+        ),
+        hash_at_event=sha256,
     )
     session.commit()
 

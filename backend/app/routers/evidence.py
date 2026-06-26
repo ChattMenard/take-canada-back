@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from sqlalchemy import text as sa_text
 from sqlmodel import Session, select
 
-from .. import rfc3161, storage, timestamp
+from .. import custody, rfc3161, storage, timestamp
 from ..config import settings
 from ..database import get_session
 from ..extractor import extract_text
@@ -41,14 +41,13 @@ router = APIRouter(prefix="/api/evidence", tags=["evidence"])
 
 def _log(session: Session, evidence_id: int, action: CustodyAction, *, actor: str | None,
          detail: str | None, hash_at_event: str | None) -> None:
-    session.add(
-        ChainOfCustodyEvent(
-            evidence_id=evidence_id,
-            action=action,
-            actor=actor,
-            detail=detail,
-            hash_at_event=hash_at_event,
-        )
+    custody.create_custody_event(
+        session,
+        evidence_id=evidence_id,
+        action=action,
+        actor=actor,
+        detail=detail,
+        hash_at_event=hash_at_event,
     )
 
 

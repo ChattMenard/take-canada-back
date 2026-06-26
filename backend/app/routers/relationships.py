@@ -3,6 +3,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
+from .. import custody
 from ..database import get_session
 from ..models import Entity, Relationship_, Evidence, EvidenceRelationshipLink, ChainOfCustodyEvent, CustodyAction
 from ..routers.seal import ensure_unsealed
@@ -60,6 +61,14 @@ def link_evidence(
         raise HTTPException(404, "Evidence not found.")
     link = EvidenceRelationshipLink(relationship_id=relationship_id, evidence_id=evidence_id)
     session.merge(link)
+    # Linking is custody-relevant: record it on the evidence's chain of custody
+    custody.create_custody_event(
+        session,
+        evidence_id=evidence_id,
+        action=CustodyAction.LINKED,
+        detail=f"Linked to relationship {relationship_id}",
+        hash_at_event=evidence.sha256,
+    )
     session.commit()
     return {"relationship_id": relationship_id, "evidence_id": evidence_id}
 

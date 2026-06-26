@@ -108,6 +108,7 @@ class ChainOfCustodyEvent(SQLModel, table=True):
     actor: str | None = Field(default=None, description="Who performed the action")
     detail: str | None = None
     hash_at_event: str | None = Field(default=None, description="Digest observed at event time")
+    prev_hash: str | None = Field(default=None, description="Hash of previous custody event in chain (for tamper-evidence)")
     timestamp: datetime = Field(default_factory=utcnow, index=True)
 
     evidence: Evidence | None = Relationship(back_populates="custody_events")
