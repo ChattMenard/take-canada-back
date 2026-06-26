@@ -107,8 +107,20 @@ def _filename_from(url: str, content_type: str, headers: httpx.Headers) -> str:
     path = urlparse(url).path
     if path and "/" in path:
         candidate = unquote(path.rsplit("/", 1)[-1])
-        if candidate:
+        if candidate and "." in candidate:
             return candidate
+        # If path has no extension, use the last non-empty segment as base
+        if candidate:
+            ext = {
+                "application/pdf": ".pdf",
+                "text/html": ".html",
+                "application/json": ".json",
+                "image/png": ".png",
+                "image/jpeg": ".jpg",
+            }.get(content_type.split(";")[0].strip(), "")
+            return f"{candidate}{ext}" if ext else candidate
+    # Fallback: use domain name as base
+    domain = urlparse(url).netloc.replace("www.", "")
     ext = {
         "application/pdf": ".pdf",
         "text/html": ".html",
@@ -116,7 +128,7 @@ def _filename_from(url: str, content_type: str, headers: httpx.Headers) -> str:
         "image/png": ".png",
         "image/jpeg": ".jpg",
     }.get(content_type.split(";")[0].strip(), "")
-    return f"collected{ext}"
+    return f"{domain}{ext}"
 
 
 async def _fetch_with_httpx(url: str) -> FetchedResource:
