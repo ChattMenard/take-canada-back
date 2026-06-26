@@ -74,3 +74,16 @@ def disk_usage_bytes() -> int:
         if p.is_file():
             total += p.stat().st_size
     return total
+
+
+def verify_all(evidence_list) -> list[dict]:
+    """Verify all evidence items and return results."""
+    results = []
+    for ev in evidence_list:
+        intact = verify(ev.sha256)
+        results.append({
+            "evidence_id": ev.id,
+            "sha256": ev.sha256,
+            "intact": intact,
+        })
+    return results

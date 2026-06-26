@@ -161,3 +161,23 @@ class RFC3161Status(BaseModel):
     timestamped: bool
     verified: bool = False
     error: str | None = None
+
+
+# --------------------------- Export ------------------------------ #
+class VaultManifest(BaseModel):
+    version: str = "1.0"
+    generated_at: datetime
+    vault_id: str
+    seal: dict | None = None
+    stats: Stats
+    evidence: list[EvidenceRead]
+    entities: list[EntityRead]
+    relationships: list[RelationshipRead]
+    timeline: list[TimelineEventRead]
+
+
+class ExportResult(BaseModel):
+    manifest_path: str
+    package_path: str | None = None
+    evidence_count: int
+    storage_bytes: int

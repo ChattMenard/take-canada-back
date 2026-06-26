@@ -11,6 +11,7 @@ import {
   Calendar,
   BarChart3,
   Loader2,
+  Settings,
 } from "lucide-react";
 import { api } from "./api.js";
 import { formatBytes, formatDate, shortHash } from "./lib/format.js";
@@ -20,6 +21,7 @@ import EntitiesView from "./components/EntitiesView.jsx";
 import RelationshipsView from "./components/RelationshipsView.jsx";
 import TimelineView from "./components/TimelineView.jsx";
 import AnalysisView from "./components/AnalysisView.jsx";
+import AdminView from "./components/AdminView.jsx";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -103,6 +105,7 @@ export default function App() {
           {navTab("entities", "Entities", Users)}
           {navTab("relationships", "Relationships", GitBranch)}
           {navTab("timeline", "Timeline", Calendar)}
+          {navTab("admin", "Admin", Settings)}
         </nav>
         {stats && (
           <div className="ml-auto flex items-center gap-4 text-xs text-zinc-500">
@@ -210,6 +213,12 @@ export default function App() {
         {activeView === "timeline" && (
           <div className="flex-1 overflow-hidden">
             <TimelineView />
+          </div>
+        )}
+
+        {activeView === "admin" && (
+          <div className="flex-1 overflow-hidden">
+            <AdminView />
           </div>
         )}
       </div>

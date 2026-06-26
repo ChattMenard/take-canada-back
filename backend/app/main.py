@@ -8,7 +8,7 @@ from . import __version__, storage
 from .config import settings
 from .database import get_session, init_db
 from .models import Entity, Evidence, Relationship_, TimelineEvent
-from .routers import collect, entities, evidence, relationships, seal, timeline
+from .routers import collect, entities, evidence, export, relationships, seal, timeline
 from .schemas import Stats
 
 
@@ -39,6 +39,7 @@ app.include_router(relationships.router)
 app.include_router(timeline.router)
 app.include_router(collect.router)
 app.include_router(seal.router)
+app.include_router(export.router)
 
 
 @app.get("/api/health", tags=["meta"])
