@@ -11,10 +11,11 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from ..config import DATA_DIR, settings
+from ..routers.auth import get_current_admin
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
@@ -81,7 +82,7 @@ def get_seal_status():
 
 
 @router.post("/seal", response_model=SealResult)
-def seal_vault():
+def seal_vault(admin: str = Depends(get_current_admin)):
     """Permanently seal the vault.
 
     Locks every evidence object and timestamp file to 444. Also locks the

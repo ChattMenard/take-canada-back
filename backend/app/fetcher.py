@@ -35,6 +35,7 @@ class FetchedResource:
     status_code: int
     filename: str
     fetched_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    screenshot: bytes | None = None  # PNG screenshot bytes for visual evidence
 
 
 _NAT64_PREFIX = ipaddress.IPv6Network("64:ff9b::/96")
@@ -190,7 +191,10 @@ async def _fetch_with_httpx(url: str) -> FetchedResource:
 
 
 async def _fetch_with_playwright(url: str) -> FetchedResource:
-    """Fallback: stealth headless Chromium — bypasses Cloudflare/CDN bot detection."""
+    """Fallback: stealth headless Chromium — bypasses Cloudflare/CDN bot detection.
+    
+    Captures both the rendered DOM (HTML) and a screenshot for comprehensive evidence.
+    """
     from playwright.async_api import async_playwright
     from playwright_stealth import Stealth
 
@@ -236,6 +240,9 @@ async def _fetch_with_playwright(url: str) -> FetchedResource:
             html = await page.content()
             content = html.encode("utf-8")
 
+            # Capture screenshot for visual evidence
+            screenshot = await page.screenshot(full_page=True, type="png")
+
             if len(content) < 500 or "Please enable JS" in html or "Verification Required" in html:
                 raise FetchError("Cloudflare bot challenge not resolved.")
 
@@ -252,6 +259,7 @@ async def _fetch_with_playwright(url: str) -> FetchedResource:
                 final_url=final_url,
                 status_code=status_code,
                 filename=filename,
+                screenshot=screenshot,
             )
         finally:
             await browser.close()

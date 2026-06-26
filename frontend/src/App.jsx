@@ -12,8 +12,10 @@ import {
   BarChart3,
   Loader2,
   Settings,
+  LogOut,
+  Lock,
 } from "lucide-react";
-import { api } from "./api.js";
+import { api, isAuthenticated, setToken } from "./api.js";
 import { formatBytes, formatDate, shortHash } from "./lib/format.js";
 import IngestForm from "./components/IngestForm.jsx";
 import EvidenceDetail from "./components/EvidenceDetail.jsx";
@@ -22,6 +24,7 @@ import RelationshipsView from "./components/RelationshipsView.jsx";
 import TimelineView from "./components/TimelineView.jsx";
 import AnalysisView from "./components/AnalysisView.jsx";
 import AdminView from "./components/AdminView.jsx";
+import LoginModal from "./components/LoginModal.jsx";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -32,6 +35,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [online, setOnline] = useState(true);
   const [activeView, setActiveView] = useState("vault");
+  const [showLogin, setShowLogin] = useState(false);
 
   const refresh = useCallback(async (q = "") => {
     try {
@@ -64,6 +68,15 @@ export default function App() {
     setShowIngest(false);
     refresh(query);
     setSelected(created);
+  }
+
+  function handleLoginRequired() {
+    setShowLogin(true);
+  }
+
+  function handleLogout() {
+    setToken(null);
+    setShowLogin(false);
   }
 
   function onUpdated(fresh) {
@@ -107,13 +120,33 @@ export default function App() {
           {navTab("timeline", "Timeline", Calendar)}
           {navTab("admin", "Admin", Settings)}
         </nav>
-        {stats && (
-          <div className="ml-auto flex items-center gap-4 text-xs text-zinc-500">
-            <span>{stats.evidence_count} evidence</span>
-            <span>{stats.entity_count} entities</span>
-            <span>{formatBytes(stats.storage_bytes)}</span>
-          </div>
-        )}
+        <div className="ml-auto flex items-center gap-3">
+          {isAuthenticated() ? (
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition"
+              title="Logout"
+            >
+              <LogOut size={14} />
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition"
+            >
+              <Lock size={14} />
+              Login
+            </button>
+          )}
+          {stats && (
+            <div className="flex items-center gap-4 text-xs text-zinc-500">
+              <span>{stats.evidence_count} evidence</span>
+              <span>{stats.entity_count} entities</span>
+              <span>{formatBytes(stats.storage_bytes)}</span>
+            </div>
+          )}
+        </div>
       </header>
 
       {/* View area */}
@@ -225,6 +258,9 @@ export default function App() {
 
       {showIngest && (
         <IngestForm onClose={() => setShowIngest(false)} onIngested={onIngested} />
+      )}
+      {showLogin && (
+        <LoginModal onClose={() => setShowLogin(false)} onLogin={() => setShowLogin(false)} />
       )}
     </div>
   );

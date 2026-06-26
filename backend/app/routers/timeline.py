@@ -5,6 +5,7 @@ from sqlmodel import Session, select
 
 from ..database import get_session
 from ..models import TimelineEvent
+from ..routers.auth import get_current_admin
 from ..routers.seal import ensure_unsealed
 from ..schemas import TimelineEventCreate, TimelineEventPatch, TimelineEventRead
 
@@ -12,7 +13,11 @@ router = APIRouter(prefix="/api/timeline", tags=["timeline"])
 
 
 @router.post("", response_model=TimelineEventRead, status_code=201)
-def create_event(payload: TimelineEventCreate, session: Session = Depends(get_session)):
+def create_event(
+    payload: TimelineEventCreate,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     event = TimelineEvent(**payload.model_dump())
     session.add(event)
@@ -32,6 +37,7 @@ def update_event(
     event_id: int,
     patch: TimelineEventPatch,
     session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     event = session.get(TimelineEvent, event_id)
@@ -46,7 +52,11 @@ def update_event(
 
 
 @router.delete("/{event_id}", status_code=204)
-def delete_event(event_id: int, session: Session = Depends(get_session)):
+def delete_event(
+    event_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     event = session.get(TimelineEvent, event_id)
     if not event:

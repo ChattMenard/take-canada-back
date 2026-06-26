@@ -30,10 +30,19 @@ class Settings(BaseSettings):
         "https://finney.calendar.eternitywall.com",
     ]
     timestamp_bitcoin_url: str = "https://blockstream.info/api"
-    # RFC 3161 timestamp authority (FreeTSA by default)
+    # RFC 3161 timestamp authority
+    # FreeTSA is the default for development (not suitable for evidentiary use)
+    # For production, use DigiCert or Sectigo with proper credentials
     rfc3161_enabled: bool = True
     rfc3161_tsa_url: str = "https://freetsa.org/tsr"
     rfc3161_tsa_cert_url: str = "https://freetsa.org/files/tsa.crt"
+    # Commercial TSA options (set via environment variables for production)
+    # DigiCert: https://www.digicert.com/secure-site/timestamping
+    # Sectigo: https://sectigo.com/ssl-certificates-tsa
+    rfc3161_commercial_tsa_url: str | None = None
+    rfc3161_commercial_tsa_cert_url: str | None = None
+    rfc3161_commercial_tsa_username: str | None = None
+    rfc3161_commercial_tsa_password: str | None = None
     # URL collector
     collect_timeout_seconds: float = 60.0
     collect_max_redirects: int = 5
@@ -43,6 +52,12 @@ class Settings(BaseSettings):
     # Batch/crawl collection limits
     collect_batch_limit: int = 50
     default_collector: str | None = None
+    # C2PA content provenance (Coalition for Content Provenance and Authenticity)
+    # Enables interoperable digital provenance verification across the global C2PA ecosystem
+    c2pa_enabled: bool = True
+    # C2PA signing certificate (optional - if not provided, manifests are unsigned)
+    c2pa_cert_path: str | None = None
+    c2pa_key_path: str | None = None
 
 
 settings = Settings()

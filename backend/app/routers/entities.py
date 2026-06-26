@@ -12,6 +12,7 @@ from ..models import (
     Evidence,
     EvidenceEntityLink,
 )
+from ..routers.auth import get_current_admin
 from ..routers.seal import ensure_unsealed
 from ..schemas import EntityCreate, EntityRead, LinkedEvidenceRead
 
@@ -19,7 +20,11 @@ router = APIRouter(prefix="/api/entities", tags=["entities"])
 
 
 @router.post("", response_model=EntityRead, status_code=201)
-def create_entity(payload: EntityCreate, session: Session = Depends(get_session)):
+def create_entity(
+    payload: EntityCreate,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     entity = Entity(**payload.model_dump())
     session.add(entity)
@@ -45,7 +50,11 @@ def get_entity(entity_id: int, session: Session = Depends(get_session)):
 
 
 @router.delete("/{entity_id}", status_code=204)
-def delete_entity(entity_id: int, session: Session = Depends(get_session)):
+def delete_entity(
+    entity_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     entity = session.get(Entity, entity_id)
     if not entity:
@@ -60,6 +69,7 @@ def link_evidence(
     evidence_id: int,
     role: str | None = None,
     session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     entity = session.get(Entity, entity_id)
@@ -88,7 +98,10 @@ def link_evidence(
 
 @router.delete("/{entity_id}/link/{evidence_id}", status_code=204)
 def unlink_evidence(
-    entity_id: int, evidence_id: int, session: Session = Depends(get_session)
+    entity_id: int,
+    evidence_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     link = session.get(EvidenceEntityLink, (evidence_id, entity_id))

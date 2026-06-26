@@ -11,6 +11,7 @@ from sqlalchemy import text as sa_text
 from sqlmodel import Session, select
 
 from .. import custody, rfc3161, storage, timestamp
+from ..c2pa_manifest import create_and_store_manifest
 from ..config import settings
 from ..database import get_session
 from ..extractor import extract_text
@@ -22,6 +23,7 @@ from ..models import (
     Evidence,
     EvidenceEntityLink,
 )
+from ..routers.auth import get_current_admin
 from ..routers.seal import ensure_unsealed
 from ..schemas import (
     CustodyNote,
@@ -81,6 +83,7 @@ async def ingest_evidence(
     notes: str | None = Form(None),
     session: Session = Depends(get_session),
     background_tasks: BackgroundTasks = None,
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     data = await file.read()
@@ -109,6 +112,19 @@ async def ingest_evidence(
     session.commit()
     session.refresh(evidence)
 
+    # Generate C2PA manifest if enabled
+    if settings.c2pa_enabled:
+        try:
+            await create_and_store_manifest(
+                data,
+                file.filename or "unnamed",
+                source_url=source_url,
+                collected_by=collected_by,
+                title=title or file.filename or sha256[:12],
+            )
+        except Exception as exc:
+            logger.warning("C2PA manifest generation failed for %s: %s", sha256, exc)
+
     _log(
         session,
         evidence.id,
@@ -129,6 +145,7 @@ async def collect_from_url(
     payload: UrlCollect,
     session: Session = Depends(get_session),
     background_tasks: BackgroundTasks = None,
+    admin: str = Depends(get_current_admin),
 ):
     """Fetch a public URL server-side, then hash, store, and file it as evidence."""
     ensure_unsealed()
@@ -155,6 +172,19 @@ async def collect_from_url(
     session.add(evidence)
     session.commit()
     session.refresh(evidence)
+
+    # Generate C2PA manifest if enabled
+    if settings.c2pa_enabled:
+        try:
+            await create_and_store_manifest(
+                res.content,
+                res.filename,
+                source_url=res.final_url,
+                collected_by=payload.collected_by,
+                title=payload.title or res.filename or sha256[:12],
+            )
+        except Exception as exc:
+            logger.warning("C2PA manifest generation failed for %s: %s", sha256, exc)
 
     _log(
         session,
@@ -247,6 +277,7 @@ def update_metadata(
     evidence_id: int,
     patch: EvidenceMetadata,
     session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     evidence = session.get(Evidence, evidence_id)
@@ -270,7 +301,12 @@ def update_metadata(
 
 
 @router.post("/{evidence_id}/note", response_model=EvidenceDetail)
-def add_note(evidence_id: int, note: CustodyNote, session: Session = Depends(get_session)):
+def add_note(
+    evidence_id: int,
+    note: CustodyNote,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     evidence = session.get(Evidence, evidence_id)
     if not evidence:
@@ -370,7 +406,9 @@ def download_timestamp(evidence_id: int, session: Session = Depends(get_session)
 
 @router.post("/{evidence_id}/timestamp", response_model=TimestampStatus, status_code=201)
 async def create_timestamp(
-    evidence_id: int, session: Session = Depends(get_session)
+    evidence_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     """Create an OpenTimestamps signature for this evidence hash."""
     evidence = session.get(Evidence, evidence_id)
@@ -403,7 +441,9 @@ async def create_timestamp(
 
 @router.post("/{evidence_id}/timestamp/upgrade", response_model=TimestampStatus)
 async def upgrade_timestamp(
-    evidence_id: int, session: Session = Depends(get_session)
+    evidence_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     """Upgrade a pending timestamp by re-submitting it to calendars."""
     evidence = session.get(Evidence, evidence_id)
@@ -502,9 +542,12 @@ async def download_rfc3161_tsr(
     "/{evidence_id}/timestamp/rfc3161", response_model=RFC3161Status, status_code=201
 )
 async def create_rfc3161_timestamp(
-    evidence_id: int, session: Session = Depends(get_session)
+    evidence_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
-    """Create an RFC 3161 timestamp for this evidence hash via FreeTSA."""
+    """Create an RFC 3161 timestamp for this evidence hash.
+    Uses commercial TSA if configured, otherwise falls back to FreeTSA."""
     evidence = session.get(Evidence, evidence_id)
     if not evidence:
         raise HTTPException(404, "Evidence not found.")

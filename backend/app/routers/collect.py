@@ -16,6 +16,7 @@ from ..database import get_session
 from ..extractor import extract_text
 from ..fetcher import FetchError, fetch_url
 from ..models import ChainOfCustodyEvent, CustodyAction, Evidence
+from ..routers.auth import get_current_admin
 from ..routers.seal import ensure_unsealed
 
 router = APIRouter(prefix="/api/collect", tags=["collect"])
@@ -94,7 +95,9 @@ async def _ingest_one(item: BatchUrlItem, session: Session) -> BatchResultItem:
 
 @router.post("/batch", response_model=list[BatchResultItem])
 async def batch_collect(
-    request: BatchRequest, session: Session = Depends(get_session)
+    request: BatchRequest,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     """Collect multiple URLs concurrently. Returns per-URL success/fail."""
     ensure_unsealed()
@@ -105,7 +108,9 @@ async def batch_collect(
 
 @router.post("/crawl", response_model=list[BatchResultItem])
 async def crawl_collect(
-    request: CrawlRequest, session: Session = Depends(get_session)
+    request: CrawlRequest,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     """Fetch root_url, discover first-level hrefs matching link_pattern, ingest each."""
     ensure_unsealed()

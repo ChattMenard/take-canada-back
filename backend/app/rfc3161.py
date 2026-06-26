@@ -143,22 +143,38 @@ async def request_tsr(sha256: str) -> bytes:
     """Request a TimeStampToken from the configured TSA for the given hash.
 
     Returns the raw DER `.tsr` bytes (the embedded TimeStampToken only).
+    Uses commercial TSA if configured, otherwise falls back to FreeTSA.
     """
     if not settings.rfc3161_enabled:
         raise RFC3161Error("RFC 3161 timestamping is disabled.")
 
+    # Use commercial TSA if configured
+    tsa_url = settings.rfc3161_commercial_tsa_url or settings.rfc3161_tsa_url
+    cert_url = settings.rfc3161_commercial_tsa_cert_url or settings.rfc3161_tsa_cert_url
+    
     nonce = int.from_bytes(_digest_from_sha256(sha256)[:8], "big")
     payload = _build_request(sha256, nonce=nonce)
 
+    headers = {
+        "Content-Type": "application/timestamp-query",
+        "Accept": "application/timestamp-reply",
+    }
+    
+    # Add basic auth for commercial TSA if credentials are provided
+    auth = None
+    if settings.rfc3161_commercial_tsa_username and settings.rfc3161_commercial_tsa_password:
+        import httpx
+        auth = httpx.BasicAuth(
+            settings.rfc3161_commercial_tsa_username,
+            settings.rfc3161_commercial_tsa_password
+        )
+
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(timeout=30.0, auth=auth) as client:
             resp = await client.post(
-                settings.rfc3161_tsa_url,
+                tsa_url,
                 content=payload,
-                headers={
-                    "Content-Type": "application/timestamp-query",
-                    "Accept": "application/timestamp-reply",
-                },
+                headers=headers,
             )
     except Exception as exc:
         raise RFC3161Error(f"Could not reach TSA: {exc}") from exc
@@ -183,12 +199,15 @@ async def store_tsr(sha256: str) -> bytes:
 
 
 def _load_tsa_cert() -> x509.Certificate | None:
-    """Load the TSA signing certificate if the configured URL is reachable."""
-    if not settings.rfc3161_tsa_cert_url:
+    """Load the TSA signing certificate if the configured URL is reachable.
+    Uses commercial TSA cert URL if configured, otherwise falls back to FreeTSA.
+    """
+    cert_url = settings.rfc3161_commercial_tsa_cert_url or settings.rfc3161_tsa_cert_url
+    if not cert_url:
         return None
     try:
         with httpx.Client(timeout=30.0) as client:
-            resp = client.get(settings.rfc3161_tsa_cert_url)
+            resp = client.get(cert_url)
             if resp.status_code == 200:
                 return x509.load_pem_x509_certificate(resp.content)
     except Exception as exc:

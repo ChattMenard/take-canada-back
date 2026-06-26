@@ -6,6 +6,7 @@ from sqlmodel import Session, select
 from .. import custody
 from ..database import get_session
 from ..models import Entity, Relationship_, Evidence, EvidenceRelationshipLink, ChainOfCustodyEvent, CustodyAction
+from ..routers.auth import get_current_admin
 from ..routers.seal import ensure_unsealed
 from ..schemas import RelationshipCreate, RelationshipRead, LinkedEvidenceRead
 
@@ -13,7 +14,11 @@ router = APIRouter(prefix="/api/relationships", tags=["relationships"])
 
 
 @router.post("", response_model=RelationshipRead, status_code=201)
-def create_relationship(payload: RelationshipCreate, session: Session = Depends(get_session)):
+def create_relationship(
+    payload: RelationshipCreate,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     for eid in (payload.source_entity_id, payload.target_entity_id):
         if not session.get(Entity, eid):
@@ -37,7 +42,11 @@ def list_relationships(entity_id: int | None = None, session: Session = Depends(
 
 
 @router.delete("/{relationship_id}", status_code=204)
-def delete_relationship(relationship_id: int, session: Session = Depends(get_session)):
+def delete_relationship(
+    relationship_id: int,
+    session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
+):
     ensure_unsealed()
     rel = session.get(Relationship_, relationship_id)
     if not rel:
@@ -51,6 +60,7 @@ def link_evidence(
     relationship_id: int,
     evidence_id: int,
     session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     rel = session.get(Relationship_, relationship_id)
@@ -78,6 +88,7 @@ def unlink_evidence(
     relationship_id: int,
     evidence_id: int,
     session: Session = Depends(get_session),
+    admin: str = Depends(get_current_admin),
 ):
     ensure_unsealed()
     rel = session.get(Relationship_, relationship_id)
