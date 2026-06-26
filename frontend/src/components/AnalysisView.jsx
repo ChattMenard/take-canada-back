@@ -13,8 +13,11 @@ import {
   FileText,
   GitBranch,
   Loader2,
+  Scale,
   Search,
   ShieldCheck,
+  TrendingUp,
+  Users,
 } from "lucide-react";
 import { api } from "../api.js";
 import { formatDate, shortHash } from "../lib/format.js";
@@ -47,6 +50,8 @@ const KIND_LABELS = {
   OTHER: "Other",
 };
 
+const DEFAULT_POPULATION = 1_000_000;
+
 export default function AnalysisView() {
   const [data, setData] = useState({
     evidence: [],
@@ -60,6 +65,7 @@ export default function AnalysisView() {
   const [query, setQuery] = useState("");
   const [copiedId, setCopiedId] = useState(null);
   const [selectedEntityId, setSelectedEntityId] = useState(null);
+  const [population, setPopulation] = useState(DEFAULT_POPULATION);
 
   useEffect(() => {
     let cancelled = false;
@@ -89,7 +95,7 @@ export default function AnalysisView() {
     };
   }, []);
 
-  const model = useMemo(() => buildAnalysisModel(data), [data]);
+  const model = useMemo(() => buildAnalysisModel(data, population), [data, population]);
 
   const filteredSources = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -141,14 +147,17 @@ export default function AnalysisView() {
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      <header className="shrink-0 border-b border-zinc-800 px-5 py-4">
+      <header className="shrink-0 border-b border-zinc-800 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_34%),linear-gradient(135deg,rgba(9,9,11,1),rgba(24,24,27,0.96))] px-5 py-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-sm font-semibold text-zinc-100">
               <BarChart3 size={18} className="text-cyan-300" />
               Investigation analysis
             </div>
-            <div className="mt-1 flex flex-wrap gap-2 text-xs text-zinc-500">
+            <div className="mt-1 max-w-3xl text-sm text-zinc-400">
+              Convert evidence-backed relationships into public-impact signals: total exposure, per-person cost, burn rate, and source confidence.
+            </div>
+            <div className="mt-2 flex flex-wrap gap-2 text-xs text-zinc-500">
               <span>{model.dateRange}</span>
               <span>·</span>
               <span>{model.linkedRelationshipCount} sourced links</span>
@@ -156,20 +165,32 @@ export default function AnalysisView() {
               <span>{model.unsourcedAmountCount} amounts need evidence</span>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-zinc-800 bg-zinc-800 text-xs sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-zinc-800 bg-zinc-800 text-xs sm:grid-cols-5">
             <Metric icon={DollarSign} label="Tracked value" value={formatMoney(model.totalAmount)} tone="text-emerald-300" />
+            <Metric icon={Users} label="Per capita" value={formatMoneyPrecise(model.perCapitaTotal)} tone="text-cyan-300" />
+            <Metric icon={TrendingUp} label="Per day" value={formatMoneyPrecise(model.dailyBurn)} tone="text-rose-300" />
             <Metric icon={GitBranch} label="Relationships" value={data.stats?.relationship_count ?? 0} tone="text-pink-300" />
             <Metric icon={Building} label="Entities" value={data.stats?.entity_count ?? 0} tone="text-blue-300" />
-            <Metric icon={ShieldCheck} label="Evidence" value={data.stats?.evidence_count ?? 0} tone="text-amber-300" />
           </div>
         </div>
       </header>
 
       <main className="min-h-0 flex-1 overflow-y-auto">
+        <section className="grid border-b border-zinc-800 xl:grid-cols-[minmax(0,1.1fr)_minmax(360px,0.9fr)]">
+          <div className="border-b border-zinc-800 p-5 xl:border-b-0 xl:border-r">
+            <SectionTitle icon={Scale} title="Public impact lens" meta={`${formatPopulation(model.population)} people`} />
+            <ImpactLens model={model} population={population} onPopulation={setPopulation} />
+          </div>
+          <div className="p-5">
+            <SectionTitle icon={ShieldCheck} title="Action signals" meta="what to strengthen next" />
+            <SignalGrid model={model} />
+          </div>
+        </section>
+
         <section className="grid border-b border-zinc-800 lg:grid-cols-[minmax(0,1.45fr)_minmax(360px,0.75fr)]">
           <div className="border-b border-zinc-800 p-5 lg:border-b-0 lg:border-r">
-            <SectionTitle icon={DollarSign} title="Citizen wealth transfer over time" meta={`${model.moneyEvents.length} dated monetary links`} />
-            <MoneyTimeline data={model.amountByYear} />
+            <SectionTitle icon={DollarSign} title="Citizen wealth transfer over time" meta={`${model.datedAmountCount} dated monetary links`} />
+            <MoneyTimeline data={model.amountByYear} perCapita={model.perCapitaByYear} />
           </div>
           <div className="p-5">
             <SectionTitle icon={AlertTriangle} title="Evidence coverage" meta={`${model.coverage}% linked`} />
@@ -321,7 +342,8 @@ export default function AnalysisView() {
   );
 }
 
-function buildAnalysisModel({ evidence, entities, relationships, timeline }) {
+function buildAnalysisModel({ evidence, entities, relationships, timeline }, population = DEFAULT_POPULATION) {
+  const normalizedPopulation = Math.max(1, Number(population) || DEFAULT_POPULATION);
   const entityMap = new Map(entities.map((e) => [e.id, e]));
   const entityName = (id) => entityMap.get(id)?.name ?? "Unknown";
   const entityType = (id) => entityMap.get(id)?.type ?? "OTHER";
@@ -333,7 +355,9 @@ function buildAnalysisModel({ evidence, entities, relationships, timeline }) {
   const unsourcedAmountCount = moneyEvents.filter((r) => !r.linked_evidence?.length).length;
   const undatedAmountCount = moneyEvents.filter((r) => !r.occurred_at).length;
 
-  const amountByYear = groupSum(moneyEvents.filter((r) => r.occurred_at), (r) => new Date(r.occurred_at).getFullYear());
+  const datedMoneyEvents = moneyEvents.filter((r) => r.occurred_at);
+  const rawAmountByYear = groupSum(datedMoneyEvents, (r) => new Date(r.occurred_at).getFullYear());
+  const amountByYear = fillYearSeries(rawAmountByYear);
   const amountByKind = groupSum(moneyEvents, (r) => r.kind || "OTHER");
   const amountByEntityType = groupSum(
     moneyEvents.flatMap((r) => [
@@ -351,6 +375,28 @@ function buildAnalysisModel({ evidence, entities, relationships, timeline }) {
   const dateRange = dates.length
     ? `${dates.reduce((a, b) => (a < b ? a : b)).getFullYear()}-${dates.reduce((a, b) => (a > b ? a : b)).getFullYear()}`
     : "No dated records";
+  const moneyDates = datedMoneyEvents
+    .map((r) => new Date(r.occurred_at))
+    .filter((d) => !Number.isNaN(d.valueOf()));
+  const minMoneyDate = moneyDates.length ? moneyDates.reduce((a, b) => (a < b ? a : b)) : null;
+  const maxMoneyDate = moneyDates.length ? moneyDates.reduce((a, b) => (a > b ? a : b)) : null;
+  const spanDays = minMoneyDate && maxMoneyDate
+    ? Math.max(1, Math.ceil((maxMoneyDate - minMoneyDate) / 86_400_000) + 1)
+    : Math.max(1, amountByYear.length * 365);
+  const yearsCovered = amountByYear.length || 1;
+  const perCapitaByYear = amountByYear.map((row) => ({ ...row, value: row.value / normalizedPopulation }));
+  const cumulativeByYear = amountByYear.reduce((rows, row) => [
+    ...rows,
+    { key: row.key, value: row.value + (rows.at(-1)?.value || 0) },
+  ], []);
+  const perCapitaTotal = totalAmount / normalizedPopulation;
+  const perCapitaAnnual = perCapitaTotal / yearsCovered;
+  const dailyBurn = totalAmount / spanDays;
+  const monthlyHouseholdLoad = (perCapitaAnnual * 2.45) / 12;
+  const topPerCapitaFlows = topFlows.slice(0, 5).map((rel) => ({
+    ...rel,
+    perCapita: Number(rel.amount || 0) / normalizedPopulation,
+  }));
   const graph = buildGraph(entities, relationships);
 
   return {
@@ -358,13 +404,23 @@ function buildAnalysisModel({ evidence, entities, relationships, timeline }) {
     amountByKind,
     amountByYear,
     coverage,
+    cumulativeByYear,
+    dailyBurn,
     dateRange,
+    datedAmountCount: datedMoneyEvents.length,
     entityById: entityMap,
     entityName,
     graph,
     linkedRelationshipCount,
     moneyEvents,
+    monthlyHouseholdLoad,
+    perCapitaAnnual,
+    perCapitaByYear,
+    perCapitaTotal,
+    population: normalizedPopulation,
+    spanDays,
     timelineAnchors: [...timeline].sort((a, b) => new Date(a.occurred_at) - new Date(b.occurred_at)),
+    topPerCapitaFlows,
     topFlows,
     totalAmount,
     undatedAmountCount,
@@ -430,6 +486,16 @@ function groupSum(rows, keyFor) {
     .sort((a, b) => String(a.key).localeCompare(String(b.key)));
 }
 
+function fillYearSeries(rows) {
+  if (!rows.length) return [];
+  const years = rows.map((row) => Number(row.key));
+  const byYear = new Map(rows.map((row) => [Number(row.key), row.value]));
+  return Array.from({ length: Math.max(...years) - Math.min(...years) + 1 }, (_, i) => {
+    const key = Math.min(...years) + i;
+    return { key, value: byYear.get(key) || 0 };
+  });
+}
+
 function sum(values) {
   return values.reduce((acc, value) => acc + Number(value || 0), 0);
 }
@@ -481,7 +547,173 @@ function CoverageBar({ coverage }) {
   );
 }
 
-function MoneyTimeline({ data }) {
+function ImpactLens({ model, population, onPopulation }) {
+  const quickPops = [100_000, 1_000_000, 5_000_000];
+
+  return (
+    <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(250px,0.42fr)_minmax(0,0.58fr)]">
+      <div className="space-y-4">
+        <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+          <label className="text-xs font-medium text-zinc-500" htmlFor="population-lens">Affected population</label>
+          <div className="mt-2 flex items-center gap-2">
+            <Users size={16} className="text-cyan-300" />
+            <input
+              id="population-lens"
+              min="1"
+              step="1000"
+              type="number"
+              value={population}
+              onChange={(e) => onPopulation(e.target.value)}
+              className="min-w-0 flex-1 rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm font-semibold text-zinc-100 outline-none focus:border-cyan-400"
+            />
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {quickPops.map((value) => (
+              <button
+                key={value}
+                onClick={() => onPopulation(value)}
+                className="rounded-md border border-zinc-800 px-2 py-1 text-xs text-zinc-400 hover:border-cyan-500 hover:text-cyan-200"
+              >
+                {formatPopulation(value)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-zinc-800 bg-zinc-800 text-xs">
+          <TinyStat label="per person" value={formatMoneyPrecise(model.perCapitaTotal)} />
+          <TinyStat label="per person/year" value={formatMoneyPrecise(model.perCapitaAnnual)} />
+          <TinyStat label="per household/mo" value={formatMoneyPrecise(model.monthlyHouseholdLoad)} />
+          <TinyStat label="days covered" value={model.spanDays.toLocaleString()} />
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <div className="text-xs font-medium text-zinc-500">$/capita by year</div>
+          <div className="text-xs text-zinc-600">derived from dated monetary relationships</div>
+        </div>
+        <PerCapitaBars data={model.perCapitaByYear} />
+      </div>
+    </div>
+  );
+}
+
+function SignalGrid({ model }) {
+  const sourcedMoney = sum(model.moneyEvents.filter((r) => r.linked_evidence?.length).map((r) => r.amount));
+  const sourcedMoneyShare = model.totalAmount ? Math.round((sourcedMoney / model.totalAmount) * 100) : 0;
+  const undatedShare = model.moneyEvents.length ? Math.round((model.undatedAmountCount / model.moneyEvents.length) * 100) : 0;
+
+  return (
+    <div className="mt-5 grid gap-3 sm:grid-cols-3 xl:grid-cols-1 2xl:grid-cols-3">
+      <InsightCard
+        label="Evidence strength"
+        value={`${sourcedMoneyShare}%`}
+        text={`${formatMoney(sourcedMoney)} of tracked value has source links.`}
+        tone="cyan"
+      />
+      <InsightCard
+        label="Timing clarity"
+        value={`${100 - undatedShare}%`}
+        text={`${model.undatedAmountCount} monetary links still need dates.`}
+        tone="amber"
+      />
+      <InsightCard
+        label="Biggest per-person flow"
+        value={formatMoneyPrecise(model.topPerCapitaFlows[0]?.perCapita || 0)}
+        text={model.topPerCapitaFlows[0] ? `${model.entityName(model.topPerCapitaFlows[0].source_entity_id)} -> ${model.entityName(model.topPerCapitaFlows[0].target_entity_id)}` : "Add amounts to rank flows."}
+        tone="emerald"
+      />
+      <div className="sm:col-span-3 xl:col-span-1 2xl:col-span-3">
+        <CumulativeImpact data={model.cumulativeByYear} population={model.population} />
+      </div>
+    </div>
+  );
+}
+
+function InsightCard({ label, value, text, tone }) {
+  const colors = {
+    amber: "border-amber-300/30 text-amber-200",
+    cyan: "border-cyan-300/30 text-cyan-200",
+    emerald: "border-emerald-300/30 text-emerald-200",
+  };
+
+  return (
+    <div className={`rounded-lg border bg-zinc-950 p-4 ${colors[tone] || colors.cyan}`}>
+      <div className="text-xs font-medium text-zinc-500">{label}</div>
+      <div className="mt-2 text-2xl font-semibold">{value}</div>
+      <p className="mt-2 line-clamp-2 text-xs text-zinc-500">{text}</p>
+    </div>
+  );
+}
+
+function PerCapitaBars({ data }) {
+  const max = Math.max(...data.map((d) => d.value), 0.01);
+
+  return data.length ? (
+    <div className="flex h-56 items-end gap-2">
+      {data.map((d) => (
+        <div key={d.key} className="flex min-w-0 flex-1 flex-col items-center gap-2">
+          <div className="flex h-44 w-full items-end rounded-t-md bg-zinc-900">
+            <div
+              className="w-full rounded-t-md bg-gradient-to-t from-cyan-500 to-emerald-300"
+              style={{ height: `${Math.max(3, (d.value / max) * 100)}%` }}
+              title={`${d.key}: ${formatMoneyPrecise(d.value)} per person`}
+            />
+          </div>
+          <div className="max-w-full truncate text-[11px] text-zinc-600">{d.key}</div>
+          <div className="max-w-full truncate text-[11px] font-medium text-zinc-300">{formatMoneyPrecise(d.value)}</div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <EmptyLine text="Add dated monetary relationships to calculate per-capita time impact." />
+  );
+}
+
+function CumulativeImpact({ data, population }) {
+  const width = 620;
+  const height = 170;
+  const pad = 24;
+  const max = Math.max(...data.map((d) => d.value), 1);
+  const points = data.map((d, i) => ({
+    ...d,
+    x: data.length === 1 ? width / 2 : pad + (i * (width - pad * 2)) / (data.length - 1),
+    y: height - pad - (d.value / max) * (height - pad * 2),
+  }));
+  const line = points.map((p) => `${p.x},${p.y}`).join(" ");
+
+  return (
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="text-xs font-medium text-zinc-500">Cumulative pressure</div>
+        <div className="text-xs text-zinc-600">{formatPopulation(population)} population lens</div>
+      </div>
+      {points.length ? (
+        <svg viewBox={`0 0 ${width} ${height}`} className="h-44 w-full" role="img" aria-label="Cumulative public cost">
+          {[0, 0.5, 1].map((t) => {
+            const y = pad + t * (height - pad * 2);
+            return <line key={t} x1={pad} x2={width - pad} y1={y} y2={y} stroke="#27272a" />;
+          })}
+          <polyline points={line} fill="none" stroke="#f59e0b" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          {points.map((p) => (
+            <g key={p.key}>
+              <circle cx={p.x} cy={p.y} r="4" fill="#09090b" stroke="#fbbf24" strokeWidth="2" />
+              <text x={p.x} y={height - 6} textAnchor="middle" fill="#71717a" fontSize="11">{p.key}</text>
+              <text x={p.x} y={Math.max(14, p.y - 9)} textAnchor="middle" fill="#d4d4d8" fontSize="11">
+                {formatMoneyPrecise(p.value / population)}
+              </text>
+            </g>
+          ))}
+        </svg>
+      ) : (
+        <EmptyLine text="No dated monetary records yet." />
+      )}
+    </div>
+  );
+}
+
+function MoneyTimeline({ data, perCapita }) {
   const width = 860;
   const height = 250;
   const pad = 32;
@@ -515,6 +747,9 @@ function MoneyTimeline({ data }) {
               <circle cx={p.x} cy={p.y} r="5" fill="#0a0a0a" stroke="#67e8f9" strokeWidth="3" />
               <text x={p.x} y={height - 8} textAnchor="middle" fill="#a1a1aa" fontSize="14">{p.key}</text>
               <text x={p.x} y={Math.max(16, p.y - 12)} textAnchor="middle" fill="#d4d4d8" fontSize="13">{formatMoney(p.value)}</text>
+              <text x={p.x} y={Math.min(height - 24, p.y + 18)} textAnchor="middle" fill="#67e8f9" fontSize="11">
+                {formatMoneyPrecise(perCapita.find((row) => row.key === p.key)?.value || 0)}/cap
+              </text>
             </g>
           ))}
         </svg>
@@ -745,6 +980,22 @@ function formatMoney(value) {
   if (n >= 1_000_000) return `${sign}$${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `${sign}$${(n / 1_000).toFixed(1)}K`;
   return `${sign}$${n.toLocaleString()}`;
+}
+
+function formatMoneyPrecise(value) {
+  const n = Math.abs(Number(value || 0));
+  const sign = Number(value || 0) < 0 ? "-" : "";
+  if (n >= 1_000_000) return formatMoney(value);
+  if (n >= 1_000) return `${sign}$${Math.round(n).toLocaleString()}`;
+  if (n >= 10) return `${sign}$${n.toFixed(1)}`;
+  return `${sign}$${n.toFixed(2)}`;
+}
+
+function formatPopulation(value) {
+  const n = Number(value || 0);
+  if (n >= 1_000_000) return `${(n / 1_000_000).toLocaleString(undefined, { maximumFractionDigits: 1 })}M`;
+  if (n >= 1_000) return `${(n / 1_000).toLocaleString(undefined, { maximumFractionDigits: 0 })}K`;
+  return n.toLocaleString();
 }
 
 function sourcesCsv(sources) {
