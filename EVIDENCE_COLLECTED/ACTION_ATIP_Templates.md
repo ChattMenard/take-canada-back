@@ -241,6 +241,295 @@ I am willing to pay reasonable fees up to $25.
 
 ---
 
+## TEMPLATE 4: Corporate Tax Revenue by Profit Bracket (CRA)
+
+### To
+**Institution:** Canada Revenue Agency (CRA)
+**ATIP Coordinator:** ATIP Coordinator, Canada Revenue Agency
+**Address:** 11th Floor, 395 Terminal Avenue, Ottawa, ON K1A 0L8
+**Email:** atip-aiprp@cra-arc.gc.ca
+
+---
+
+### Request
+
+Pursuant to the *Access to Information Act*, R.S.C., 1985, c. A-1, I request access to the following records:
+
+**1. Corporate Tax Return Statistics by Profit Bracket (2019–2024)**
+
+All aggregated statistical records, including but not limited to:
+- (a) The number of corporations filing T2 returns, grouped by annual profit bracket (e.g., $0–$700K, $700K–$20M, $20M–$50M, $50M–$100M, $100M–$500M, $500M–$1B, $1B–$5B, $5B+)
+- (b) The total corporate tax revenue collected from each profit bracket annually
+- (c) The effective tax rate (tax paid divided to taxable income) by profit bracket
+- (d) The number of corporations claiming the small business deduction annually
+- (e) The total value of corporate tax expenditures (credits, deductions, preferential rates) by category
+
+**2. Large Corporation Compliance and Audit Data**
+
+All records, including but not limited to:
+- (a) The number of large corporations (profit >$20M) audited annually
+- (b) The additional tax assessed from audits of large corporations
+- (c) Any internal reports on tax avoidance or profit shifting by large corporations
+- (d) Any modeling of revenue impact from proposed corporate tax rate changes
+
+---
+
+### Legal Basis for Disclosure
+
+1. **Statistical data is not personal information.** These are aggregated statistics that do not identify individual taxpayers. They fall outside the scope of personal information under s. 19 of the Act.
+
+2. **Parliamentary accountability.** The public has a right to know how much revenue is collected from corporations by size, and how much is foregone through tax expenditures. This information is necessary for informed debate about fiscal policy.
+
+3. **No commercial third-party exemption.** Aggregated statistical data does not reveal confidential commercial information of any specific corporation.
+
+---
+
+### Requested Format
+
+Electronic format (Excel or CSV) to the email address below.
+
+I am willing to pay reasonable fees up to $25.
+
+---
+
+### Contact Information
+
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
+
+---
+
+### Date
+[Date]
+
+---
+
+---
+
+## TEMPLATE 5: Irving Oil Refinery Operations (NRCan / StatCan)
+
+### To
+**Institution:** Natural Resources Canada (NRCan) AND Statistics Canada
+**ATIP Coordinator:** ATIP Coordinator, Natural Resources Canada / Statistics Canada
+**Address (NRCan):** 580 Booth Street, Ottawa, ON K1A 0E4
+**Email (NRCan):** atip-aiprp@nrcan-rncan.gc.ca
+**Email (StatCan):** atip-aiprp@statcan.gc.ca
+
+---
+
+### Request
+
+Pursuant to the *Access to Information Act*, R.S.C., 1985, c. A-1, I request access to the following records:
+
+**1. Irving Oil Refinery Configuration and Throughput**
+
+All records relating to the Irving Oil refinery in Saint John, New Brunswick, including:
+- (a) Annual refinery throughput capacity and actual throughput (barrels per day), 2019–2024
+- (b) Crude oil feedstock sources by origin (Canadian, US, Saudi, Nigerian, etc.) and percentage
+- (c) Refinery configuration: capacity to process heavy sour crude vs. light sweet crude
+- (d) Any records of applications or assessments for retooling to process Canadian heavy crude
+
+**2. Refined Product Export and Domestic Allocation**
+
+All records, including:
+- (a) Annual volumes of refined products (gasoline, diesel, jet fuel, heating oil) produced at the Irving refinery
+- (b) Percentage of production exported to the United States vs. sold in Canada
+- (c) Export destinations by region (US Northeast, Atlantic Canada, etc.)
+- (d) Pricing differentials between US Northeast and Atlantic Canadian markets
+
+**3. Regulatory Correspondence**
+
+All records of correspondence between Natural Resources Canada and Irving Oil regarding:
+- (a) Refinery output allocation for domestic vs. export markets
+- (b) Crude oil sourcing requirements or recommendations
+- (c) Any conditions or undertakings related to Canadian energy security
+
+---
+
+### Legal Basis for Disclosure
+
+1. **Energy security and public interest.** Atlantic Canada relies on the Irving refinery as the only refinery east of Quebec. The public has a right to know why Canadian crude is not refined there and why 80% of output is exported while Atlantic Canadians import from the US Gulf Coast.
+
+2. **No commercial confidentiality in aggregated data.** Throughput, capacity, and export percentages are standard energy market data that do not reveal Irving Oil's proprietary business strategy.
+
+3. **Regulatory accountability.** Natural Resources Canada has a mandate to ensure Canadian energy security. The public has a right to know whether that mandate is being fulfilled.
+
+---
+
+### Requested Format
+
+Electronic format (PDF, Excel, or CSV) to the email address below.
+
+I am willing to pay reasonable fees up to $25.
+
+---
+
+### Contact Information
+
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
+
+---
+
+### Date
+[Date]
+
+---
+
+---
+
+## TEMPLATE 6: CN / CPR Crude-by-Rail and Refined Product Volumes (Transport Canada)
+
+### To
+**Institution:** Transport Canada
+**ATIP Coordinator:** ATIP Coordinator, Transport Canada
+**Address:** 330 Sparks Street, Ottawa, ON K1A 0N5
+**Email:** atip-aiprp@tc.gc.ca
+
+---
+
+### Request
+
+Pursuant to the *Access to Information Act*, R.S.C., 1985, c. A-1, I request access to the following records:
+
+**1. Crude-by-Rail Volumes (2019–2024)**
+
+All records, including but not limited to:
+- (a) Annual volumes of crude oil transported by rail from Canada to the United States, by railway (CN, CPR/CPKC)
+- (b) Monthly or quarterly crude-by-rail volume data
+- (c) Origins (Alberta, Saskatchewan) and destinations (US Midwest, US Gulf Coast)
+- (d) Any records of premium rates charged for crude-by-rail transport vs. standard freight rates
+
+**2. Refined Product Rail Transport (2019–2024)**
+
+All records, including but not limited to:
+- (a) Annual volumes of refined petroleum products (gasoline, diesel, jet fuel) transported by rail into Canada from the United States
+- (b) Railways used (CN, CPR/CPKC, US railways)
+- (c) Canadian destinations (Atlantic Canada, Ontario, Quebec)
+- (d) Any records of "backhaul" arrangements where tank cars haul crude south and refined products north
+
+**3. Regulatory Oversight and Safety Records**
+
+All records relating to:
+- (a) Transport Canada oversight of dangerous goods (crude oil, refined products) transported by rail
+- (b) Any risk assessments or safety studies on crude-by-rail corridors
+- (c) Any correspondence with CN or CPR regarding capacity allocation between crude and passenger/freight services
+
+---
+
+### Legal Basis for Disclosure
+
+1. **Public safety and environmental protection.** Crude-by-rail transport poses documented safety risks (e.g., Lac-Mégantic). The public has a right to know the scale of this transport and the safety measures in place.
+
+2. **Energy sovereignty.** The public has a right to know how much Canadian crude leaves by rail and how much refined product returns by the same corridors. This is fundamental to understanding Canada's energy dependency.
+
+3. **Transportation policy transparency.** CN and CPR are Crown-chartered corporations operating on public lands with public right-of-way. The public has a right to know how their infrastructure is being used.
+
+---
+
+### Requested Format
+
+Electronic format (Excel or CSV) to the email address below.
+
+I am willing to pay reasonable fees up to $25.
+
+---
+
+### Contact Information
+
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
+
+---
+
+### Date
+[Date]
+
+---
+
+---
+
+## TEMPLATE 7: Edmonton GIM Assessment Methodology (City of Edmonton)
+
+### To
+**Institution:** City of Edmonton
+**FOIP Coordinator:** FOIP Coordinator, City of Edmonton
+**Address:** 10111 104 Avenue NW, Edmonton, AB T5J 0J4
+**Email:** foip@edmonton.ca
+
+---
+
+### Request
+
+Pursuant to the *Freedom of Information and Protection of Privacy Act* (Alberta), R.S.A. 2000, c. F-25, I request access to the following records:
+
+**1. GIM Assessment Methodology**
+
+All records relating to the Gross Income Multiplier (GIM) method used by the City of Edmonton for property assessment, including:
+- (a) The complete GIM calculation methodology and formula
+- (b) The multiplier coefficients used for different property types (single-family, multi-residential, commercial)
+- (c) How potential rental income is estimated for properties that are owner-occupied or non-rental
+- (d) Any adjustments made for neighbourhood, age, condition, or amenities
+- (e) The effective GIM range applied in Edmonton assessments (e.g., 6x, 7x, 8x gross income)
+
+**2. Multi-Residential Tax Premium Phase-Out Analysis**
+
+All records relating to the phase-out of the multi-residential property tax premium, including:
+- (a) The original rationale for the 15% premium and the rationale for its phase-out
+- (b) Revenue impact projections from the phase-out (city revenue, single-family tax burden shift)
+- (c) Any correspondence with multi-residential property owners, developers, or industry associations regarding the phase-out
+- (d) Any analysis of affordability impacts on tenants from the tax structure changes
+
+**3. Infill Development Impact Assessments**
+
+All records relating to the impact of infill development on:
+- (a) Below-market housing stock (demolitions of older, lower-rent properties)
+- (b) Community character and tree canopy
+- (c) Infrastructure strain (sewer, water, roads, transit)
+- (d) Any cost-benefit analyses comparing infill to greenfield development
+
+---
+
+### Legal Basis for Disclosure
+
+1. **Municipal accountability.** Property assessment directly affects tax bills and housing affordability. Property owners and tenants have a right to understand how their assessments are calculated.
+
+2. **Housing affordability.** The GIM method values properties based on income potential, which can inflate assessed values beyond replacement cost and drive rent increases. The public has a right to know whether this methodology is consistent with affordability goals.
+
+3. **No commercial confidentiality.** Assessment methodology is public policy, not proprietary business information.
+
+---
+
+### Requested Format
+
+Electronic format (PDF) to the email address below.
+
+I am willing to pay reasonable fees up to $25.
+
+---
+
+### Contact Information
+
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
+
+---
+
+### Date
+[Date]
+
+---
+
+---
+
 ## FILING INSTRUCTIONS
 
 ### How to File an ATIP Request in Canada
@@ -249,6 +538,10 @@ I am willing to pay reasonable fees up to $25.
 - VISP data → Public Health Agency of Canada (PHAC)
 - Pfizer contracts → Public Services and Procurement Canada (PSPC)
 - Duclos communications → Health Canada
+- Corporate tax data → Canada Revenue Agency (CRA)
+- Irving Oil refinery data → Natural Resources Canada (NRCan) / Statistics Canada
+- CN/CPR rail volumes → Transport Canada
+- Edmonton GIM methodology → City of Edmonton (FOIP)
 
 **Step 2: Submit Online (Recommended)**
 - Visit: https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/access-information/access-information-request-form.html
