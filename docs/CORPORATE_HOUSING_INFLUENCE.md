@@ -385,6 +385,105 @@ This request relates to understanding corporate influence on housing markets and
 
 ---
 
+## Case Study: Edmonton Infill — Destroying Affordable Housing to Build "Affordable" Housing
+
+### The Property
+
+- **Type:** Post-WWII single-family home, 2-bedroom, double-wide, corner lot
+- **Features:** Full backyard, firepit, mature shade trees, single-door garage
+- **Rent:** $1,700/month (bills included)
+- **Status:** Demolished for 8-unit row house infill
+
+### What Replaces It
+
+| | Original House | Replacement Row House |
+|---|---|---|
+| Units | 1 | 8 |
+| Bedrooms | 2 | Mostly 1-2 bed |
+| Rent per unit | $1,700 (bills included) | $1,350-$1,500 (bills extra) |
+| Total lot rent | $1,700 | $10,800-$12,000 |
+| Yard | Full corner lot | None |
+| Garage | Single-door | None |
+| Trees | Mature shade trees | New sod |
+| Community continuity | Resident gardener, sunflowers | Transient rental population |
+
+### The "Affordability" Lie
+
+The city and developers frame infill as increasing affordable housing supply. The reality:
+
+- **The demolished unit WAS affordable.** $1,700 for a 2BR with yard and bills included is below-market in Edmonton 2026.
+- **The replacement units are NOT cheaper.** A 1-bedroom at $1,350 without bills is not more affordable than a 2-bedroom at $1,700 with bills included — it's a worse deal per square foot, per bedroom, and per amenity.
+- **8 people now pay what 1 person paid.** The landlord extracts 6-7x the revenue from the same lot. The city gets 4x the property tax. The tenant gets a smaller box.
+- **The premium housing stock is permanently lost.** Post-war homes on corner lots with mature trees cannot be rebuilt. Once demolished, that quality of life is gone forever.
+
+### The Tax Transfer
+
+Edmonton's multi-residential tax premium (15% above base residential rate) is being phased out over 5 years via a 7-6 council vote. By 2026 (year 3), the premium is roughly 6% remaining.
+
+| | Old House | New 8-Unit Rental |
+|---|---|---|
+| Assessed value | ~$500K | ~$1.75-2.0M (GIM method) |
+| Tax rate | 1.036% | ~1.10% (phasing DOWN) |
+| Annual tax | ~$5,200 | ~$19,000-22,000 |
+| Tax per unit | N/A | ~$2,400-2,750 |
+| **Tax revenue for city** | **~$5,200** | **~$19,000-22,000** |
+
+The city collects **4x more tax** from the same footprint while the **tax rate on those units actively decreases**. Single-family homeowners who do not sell to infill developers absorb the shifted burden.
+
+### Who Benefits
+
+| Stakeholder | Benefit |
+|-------------|---------|
+| **Developer** | Construction profit + sale to landlord |
+| **Landlord** | 6-7x revenue from same lot; GIM-assessed property |
+| **City** | 4x property tax revenue; density targets met |
+| **Tenant** | Smaller unit, no yard, no garage, no trees, similar or higher all-in cost |
+| **Community** | Loss of established residents, gardens, neighborhood character |
+
+### Why Infill? Not Affordability — Developer Math
+
+The city frames infill as "sustainable growth." The actual driver is simpler:
+
+- **Farmland at the urban fringe is expensive** — assembly, servicing, road extensions, utility hookups, environmental assessments, and municipal contributions make greenfield development costly and slow.
+- **Existing lots inside the city are cheap and already serviced** — water, sewer, roads, and power exist. The landowner already holds title. No environmental review, no growth management, no regional planning fights.
+- **Upzoning turns a $500K lot into a $1.75M revenue machine** — the developer pays market rate for a single-family lot, demolishes the house, and builds 8 units. The profit margin on density far exceeds the margin on greenfield sprawl.
+
+Infill is not chosen because it serves tenants better. It is chosen because **it is cheaper for the developer and more profitable per square foot of land.** The city enables this by:
+- Fast-tracking demolition permits
+- Eliminating community consultation on "as-of-right" density
+- Phasing out the tax premium that might have made infill less attractive
+- Refusing to mandate below-market units or displacement compensation
+
+### The Policy Mechanism
+
+1. **Zoning upzoning** allows 8 units where 1 stood
+2. **GIM assessment** (income approach) values the property based on rent potential, not replacement cost — inflating assessed value
+3. **Tax premium phase-out** shifts burden to single-family homeowners
+4. **No affordable housing requirement** — no mandatory below-market units, no community land trust, no public benefit
+5. **Demolition permits** are rubber-stamped; no displacement mitigation
+
+### The Systematic Elimination of Below-Market Housing
+
+This is not an accident. It is the logical outcome of a system that treats "below market" as a defect to be corrected rather than a public good to be protected.
+
+Every policy lever works in the same direction:
+
+- **Upzoning** destroys below-market stock by making demolition profitable
+- **GIM assessment** prices housing based on maximum rent extraction, not replacement cost
+- **Tax premium phase-out** removes the disincentive that once made speculation less attractive
+- **No displacement protection** means tenants have no standing when their home is demolished
+- **No below-market replacement requirements** means every demolished affordable unit is gone forever
+
+The result is a city where nothing is allowed to exist below the market rate. Every lot, every unit, every square foot is pushed toward the maximum revenue it can generate. The post-war home with a yard and a garage and a $1,700 rent is not preserved — it is converted into eight $1,350 boxes because the aggregate revenue is higher.
+
+This is not housing policy. It is **market-rate enforcement** wearing the language of affordability.
+
+### Verdict
+
+This is not affordable housing policy. It is **density-for-profit policy** dressed in affordability language. The existing affordable unit is destroyed. The replacement units cost more per square foot. The landlord, developer, and city treasury benefit. The tenant and community lose.
+
+---
+
 ## Conclusion
 
 The Corporate Housing Influence Framework provides systematic tools for examining how corporate interests shape housing policy to maximize profits while creating affordable housing shortages. By focusing on documented evidence, statistical analysis, and transparent methodology, this framework enables citizens to understand the relationship between corporate profits and housing affordability.
