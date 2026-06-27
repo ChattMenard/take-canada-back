@@ -103,8 +103,11 @@ Use the following structure:
 ### Step 2: Include the Following Elements
 
 #### (a) Complainant Information
-- Your name and contact information
-- Your interest in the matter (e.g., Canadian taxpayer, patient, consumer advocate)
+- **Name:** [YOUR FULL NAME]
+- **Address:** [YOUR ADDRESS]
+- **Email:** [YOUR EMAIL]
+- **Telephone:** [YOUR PHONE]
+- **Interest in the matter:** Canadian taxpayer and concerned citizen affected by prescription drug pricing
 
 #### (b) Respondent Information
 - **Name:** Innovative Medicines Canada (IMC)

@@ -12,10 +12,10 @@
 
 ### COMPLAINANT INFORMATION
 
-**Name:** [Complainant Name]
-**Address:** [Address]
-**Email:** [Email]
-**Telephone:** [Phone]
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
 
 ---
 
@@ -181,6 +181,7 @@ I understand that the Conflict of Interest and Ethics Commissioner has the autho
 I consent to the Commissioner contacting me for additional information if required.
 
 **Signature:** _________________________
+([YOUR FULL NAME])
 
 **Date:** _________________________
 
@@ -215,5 +216,6 @@ The answer, based on the evidence, is yes.
 ---
 
 *This draft complaint is based on publicly available information and is intended for public accountability purposes. It does not constitute legal advice.*
+*Prepared by: [YOUR FULL NAME]*
 *Document prepared: June 26, 2026*
 *Part of the Veritas Corporate Accountability Research Project.*

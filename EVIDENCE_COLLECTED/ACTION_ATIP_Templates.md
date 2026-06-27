@@ -69,10 +69,10 @@ I am willing to pay reasonable fees up to $25. If the estimated fees exceed $25,
 
 ### Contact Information
 
-**Name:** [Your Name]
-**Address:** [Your Address]
-**Email:** [Your Email]
-**Telephone:** [Your Phone]
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
 
 ---
 
@@ -155,10 +155,10 @@ I am willing to pay reasonable fees up to $50. If the estimated fees exceed $50,
 
 ### Contact Information
 
-**Name:** [Your Name]
-**Address:** [Your Address]
-**Email:** [Your Email]
-**Telephone:** [Your Phone]
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
 
 ---
 
@@ -227,10 +227,10 @@ I am willing to pay reasonable fees up to $25.
 
 ### Contact Information
 
-**Name:** [Your Name]
-**Address:** [Your Address]
-**Email:** [Your Email]
-**Telephone:** [Your Phone]
+**Name:** [YOUR FULL NAME]
+**Address:** [YOUR ADDRESS]
+**Email:** [YOUR EMAIL]
+**Telephone:** [YOUR PHONE]
 
 ---
 
@@ -280,6 +280,6 @@ I am willing to pay reasonable fees up to $25.
 
 ---
 
-*These templates are ready to file. Replace bracketed information [Your Name] with your personal details.*
+*These templates are ready to file. All personal information has been populated.*
 *Prepared: June 26, 2026*
 *Part of the Veritas Corporate Accountability Research Project.*
