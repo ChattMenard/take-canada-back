@@ -113,6 +113,7 @@ In Canada, any person can initiate a criminal prosecution by:
 **Step 2: Draft the Information**
 
 The information must:
+- Name the complainant: Matthew Denis Chenard
 - Name the accused (Michel Fralick)
 - Specify the offence (Criminal Code s. 121(1)(d))
 - Set out the facts supporting the charge

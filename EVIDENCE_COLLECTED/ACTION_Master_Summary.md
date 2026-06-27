@@ -177,5 +177,5 @@ IMC coordinated a lobbying campaign to suppress drug price competition, maintain
 
 ---
 
-*All documents are ready to use. Replace bracketed [fields] with your personal information before filing.*
+*All documents are ready to file. Prepared by Matthew Denis Chenard.*
 *Part of the Veritas Corporate Accountability Research Project.*

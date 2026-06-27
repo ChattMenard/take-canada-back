@@ -174,11 +174,11 @@ We would welcome the opportunity to discuss how this evidence can assist your cl
 - Expert analysis if appropriate
 - An affidavit or amicus brief if the court permits
 
-Please contact us at [email] to arrange a discussion.
+Please contact me at MattChenard@Outlook.com to arrange a discussion.
 
 Yours truly,
 
-[Name]
+Matthew Denis Chenard
 Veritas Corporate Accountability Research Project
 ```
 

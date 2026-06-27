@@ -103,8 +103,11 @@ Use the following structure:
 ### Step 2: Include the Following Elements
 
 #### (a) Complainant Information
-- Your name and contact information
-- Your interest in the matter (e.g., Canadian taxpayer, patient, consumer advocate)
+- **Name:** Matthew Denis Chenard
+- **Address:** 101, 11805 47 Street N.W., Edmonton, AB T6C3R8
+- **Email:** MattChenard@Outlook.com
+- **Telephone:** 587-545-4570
+- **Interest in the matter:** Canadian taxpayer and concerned citizen affected by prescription drug pricing
 
 #### (b) Respondent Information
 - **Name:** Innovative Medicines Canada (IMC)

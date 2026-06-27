@@ -12,10 +12,10 @@
 
 ### COMPLAINANT INFORMATION
 
-**Name:** [Complainant Name]
-**Address:** [Address]
-**Email:** [Email]
-**Telephone:** [Phone]
+**Name:** Matthew Denis Chenard
+**Address:** 101, 11805 47 Street N.W., Edmonton, AB T6C3R8
+**Email:** MattChenard@Outlook.com
+**Telephone:** 587-545-4570
 
 ---
 
@@ -181,6 +181,7 @@ I understand that the Conflict of Interest and Ethics Commissioner has the autho
 I consent to the Commissioner contacting me for additional information if required.
 
 **Signature:** _________________________
+(Matthew Denis Chenard)
 
 **Date:** _________________________
 
@@ -215,5 +216,6 @@ The answer, based on the evidence, is yes.
 ---
 
 *This draft complaint is based on publicly available information and is intended for public accountability purposes. It does not constitute legal advice.*
+*Prepared by: Matthew Denis Chenard*
 *Document prepared: June 26, 2026*
 *Part of the Veritas Corporate Accountability Research Project.*
