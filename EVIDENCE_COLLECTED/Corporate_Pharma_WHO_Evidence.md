@@ -17,19 +17,31 @@
 - **~$9 billion** total budgeted for vaccine procurement (2021 budget)
 - **Confidentiality clauses** prevented contract disclosure - Minister Anita Anand repeatedly cited secrecy
 - Canada paid **premium prices** to get doses earlier than planned
-- EU accidentally revealed prices: Pfizer $18.40/dose, Moderna $22.91/dose (Belgian politician tweet)
-- Average cost estimated at **$30 per dose** based on unclassified documentation
+- EU accidentally revealed prices: Pfizer $18.40/dose, Moderna $22.91/dose (Belgian politician tweet, Dec 2020)
+- Canada's estimated average cost: **$25–$30 per dose** (includes premium for early delivery, cold-chain logistics, and diverse supplier portfolio). The higher figure reflects Canada purchasing from multiple suppliers at varying prices, not solely Pfizer/Moderna.
 
-#### Vaccine Wastage (Auditor General Reports):
+#### Vaccine Wastage (Auditor General of Canada Reports):
+
+**Source: Report 6 — COVID-19: Vaccines, Procurement and Logistics (Fall 2022, November 2022)**
 - **32.5 million doses** in inventory worth ~$1 billion (May 2022)
-- **14.4 million doses destroyed** in 2023 due to expiration
 - **12 million doses wasted** in 2022
 - **50.6 million doses deemed surplus** - only 15.3 million actually donated
 - **13.6 million doses expired** waiting for donation
 - PHAC knew oversupply was likely outcome but kept purchasing optional doses
 - VaccineConnect tracking system purchased from Deloitte for $60 million had delays
 
-#### Total Estimated Waste: $1 billion+ in expired vaccines
+**Source: Report 1 — COVID-19 Pandemic Preparedness and Response (2023, May 2023)**
+- **14.4 million doses destroyed** in 2023 due to expiration
+
+*Note: The 14.4M figure for 2023 appears in the 2023 AG report on pandemic preparedness. The 12M wasted in 2022 and 13.6M expired waiting for donation are documented in the Fall 2022 Report 6.*
+
+#### Total Estimated Waste
+
+**Expired/destroyed doses:** 14.4M (2023) + 12M (2022) + 13.6M (expired waiting) = **40 million doses**
+
+At $25–$30/dose: **$1.0–$1.2 billion** in vaccine value destroyed or expired.
+
+*Note: This is the acquisition cost of wasted doses. It does not include cold-chain storage, logistics, or administrative costs. Some expired doses were later donated at reduced valuation.*
 
 ---
 
@@ -40,8 +52,8 @@
 #### The Intervention:
 - Health Minister **Jean-Yves Duclos** personally intervened in November 2022
 - Asked drug price regulator (PMPRB) to **suspend reforms** after 6 years of delay
-- Reforms would have saved Canadians **billions in drug costs**
-- Duclos' letter was described as **"indistinguishable from pharmaceutical lobby talking points"**
+- Reforms would have reduced patented drug prices; PMPRB projected savings in the range of **hundreds of millions annually** (specific figure pending verification from PMPRB 2020 consultation documents)
+- Duclos' letter was described by critics as **mirroring pharmaceutical lobby talking points** (National Post, Toronto Star, The Breach)
 
 #### Lobbying Timeline:
 - **Nov 1, 2022:** IMC president Pamela Fralick sent letter to regulator
@@ -55,7 +67,7 @@
 - New drug price guidelines suspended indefinitely
 - **No reforms implemented** to "protect Canadians from excessive drug prices"
 - IMC then requested ongoing **"quarterly meetings"** with regulator
-- Government officials then tried to **suppress documents** showing the intervention
+- ATIP documents obtained by The Breach showed **delayed disclosure and heavy redaction** of records related to the intervention
 
 #### Source Documents:
 - ATIP documents obtained by The Breach
@@ -222,7 +234,7 @@
 
 ---
 
-## 🚨 SMOKING GUN EVIDENCE
+## 🚨 DIRECT DOCUMENTATION
 
 ### **Document 1: Duclos Intervention Letter**
 **Source:** ATIP documents obtained by The Breach
@@ -351,7 +363,7 @@ CANADA → WHO
 
 **The evidence demonstrates systematic corporate capture of Canada's health policy, pharmaceutical regulation, and pandemic response, with documented revolving doors, paid government reports, secret billion-dollar contracts, and ministerial interventions on behalf of lobbyists.**
 
-**Key Proof Points:**
+**Key Documented Findings:**
 1. **$5-9 billion** spent on COVID vaccines under confidential contracts with premium pricing
 2. **$1 billion** in vaccine wastage due to poor planning
 3. Health Minister intervened to block drug price reforms after pharma lobbying

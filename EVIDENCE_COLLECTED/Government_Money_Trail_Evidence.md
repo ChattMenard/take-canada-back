@@ -13,14 +13,15 @@
 **Evidence Level:** HIGH - Direct documented evidence from public records
 
 #### Financial Holdings:
-- **$6.8 million USD** in Brookfield Asset Management stock (per SEC 10-K filing)
+- **$6.8 million USD** in Brookfield Corporation stock (per SEC Schedule 14A / proxy statement, Brookfield Corporation CIK: 0001001082, filed prior to his 2025 appointment as Prime Minister)
+  - *Note: Stock value fluctuates with market price. The $6.8M figure reflects the value at the time of the referenced SEC disclosure, not a current valuation.*
 - Stock options and deferred share units in Brookfield Corporation and Brookfield Asset Management
 - Notional Long Term Incentive Plan in Brookfield Global Transition Fund ($15B fund he spearheaded)
 - Shares in 560+ companies through third-party managed investment account
 - All placed in blind trust upon becoming Prime Minister (March 2025)
 
 #### Corporate Background:
-- Former **board chair** of Brookfield Asset Management ($1 trillion asset manager)
+- Former **board chair** of Brookfield Asset Management ($1 trillion AUM — assets under management, not Brookfield's market capitalization or equity)
 - Set up ethics screens for Brookfield, Stripe, and 100+ related entities
 - Screens administered by Privy Council Clerk and chief of staff
 
@@ -34,7 +35,9 @@
 | Largest Contract | **$5.7 billion** | - | Single largest government contract to Brookfield |
 | Contract Amendments | **$2.7 billion** increase | - | Average 40% increase on amended contracts |
 
-**Total Documented Government Payments to Brookfield: $22.8+ billion**
+**Total Documented Government Payments to Brookfield: $22.8+ billion (potential ceiling over 18-year contract term)**
+
+*Note: The $22.8B figure represents the maximum potential value of the RP-1 contract series (2014–2032), including all options and amendments. Actual annual spending is approximately $1.1B. The ceiling figure is used here to show the scale of the contractual relationship, not as a claim of realized expenditure.*
 
 #### Policy Areas of Direct Benefit to Brookfield:
 - Canada Infrastructure Bank investments
@@ -69,7 +72,7 @@
 #### Conflicts of Interest:
 - **Recused from Economical Mutual Insurance IPO** (Nov 4, 2021) - as Finance Minister
 - **Recused from hiring senior advisor** (Aug 3, 2023) - to avoid preferential treatment for "family friend"
-- Currently advising Ukrainian President while still MP - ethics watchdog calls conflict of interest
+- Reportedly provided informal advisory input to Ukrainian officials (2022–2024) while serving as MP and Deputy Prime Minister — the Ethics Commissioner has flagged that former ministers/MPs advising foreign governments can create perceived conflicts; clarify whether this was in an official government capacity or personal capacity
 - Multiple properties create direct conflict with housing policy decisions
 
 ---
@@ -79,31 +82,35 @@
 **Evidence Level:** MEDIUM - Media investigation based on official disclosures
 
 #### Evidence from Passage Media Investigation:
-- **20+ Liberal MPs in Greater Toronto** invest in property
-- **9+ Liberal MPs in Metro Vancouver** invest in property
+- **20+ Liberal MPs in Greater Toronto** disclosed rental or investment real estate (per Ethics Commissioner filings)
+- **9+ Liberal MPs in Metro Vancouver** disclosed rental or investment real estate (per Ethics Commissioner filings)
 - More than 20 Liberal MPs in Toronto area are landlords
 - Multiple properties generating rental income while voting on housing policy
 
+*Note: "Invest in property" refers to income-generating rental or investment real estate disclosed to the Ethics Commissioner, not primary residences or recreational properties.*
+
 ---
 
-### **Finding 4: Blind Trust Loopholes**
+### **Finding 4: Blind Trust Limitations**
 
 **Evidence Level:** HIGH - Official government documents and expert analysis
 
-#### Loophole Evidence:
-- **Blind trusts don't require asset sale** - only removal from direct control
+#### How Blind Trusts Work:
+- Blind trusts are **legally required** under the Conflict of Interest Act for public office holders
+- They remove assets from **direct control** but do not require **divestiture**
 - **Trustee likely holds Brookfield stock** in Carney's trust
 - Politician can still benefit from stock value changes
-- **Ethics screens allow avoidance** of reporting requirements for recusals
-- House of Commons ethics committee recommends requiring divestiture, not just blind trusts
+- **Ethics screens limit public visibility** of recusal decisions
+- House of Commons ethics committee has recommended requiring divestiture, not just blind trusts
 
 #### Key Quote from Ethics Commissioner Office:
 > "Blind trusts are managed by individual trustees in order to maximize the value of the trust assets, without any instruction or advice from the reporting public office holders, who (have) no way of knowing what trust assets have been sold or purchased."
 
-#### Problem:
+#### The Gap:
 - Trustee's fiduciary duty is to **maximize value** of assets
 - If stock increases in value due to government policy, politician benefits
 - No requirement to divest or diversify away from policy-sensitive holdings
+- Blind trusts are legally mandated but **insufficient** for holdings in companies with major government contracts
 
 ---
 
@@ -148,7 +155,7 @@
 
 ---
 
-## 🚨 SMOKING GUN EVIDENCE
+## 🚨 DIRECT DOCUMENTATION
 
 ### **Document 1: Mark Carney's Asset Declaration**
 **Source:** Office of Conflict of Interest and Ethics Commissioner
@@ -194,19 +201,19 @@
 
 ```
 MARK CARNEY (Prime Minister)
-├── Former Board Chair: Brookfield Asset Management ($1T asset manager)
-├── Financial Holdings: $6.8M Brookfield stock → BLIND TRUST
+├── Former Board Chair: Brookfield Asset Management ($1T AUM)
+├── Financial Holdings: $6.8M Brookfield stock (at time of SEC filing) → BLIND TRUST
 ├── Eligible for: Brookfield Global Transition Fund incentives ($15B fund)
 ├── Ethics Screen: 100+ Brookfield-related entities
 └── Government Decisions:
     ├── Canada Infrastructure Bank → Brookfield projects
     ├── Canada Growth Fund → Brookfield investments
-    ├── PSPC Contracts → $22.8B to Brookfield
+    ├── PSPC Contracts → $22.8B potential ceiling / ~$1.1B annual to Brookfield
     └── Housing/Climate Policy → Benefits real estate/energy assets
 
 BROOKFIELD ASSET MANAGEMENT
-├── Receives: $1.1B+ annually from government
-├── Contracts: $22.8B potential value
+├── Receives: ~$1.1B annually from government (actual spending)
+├── Contracts: $22.8B potential ceiling over 18-year term
 ├── Lobbies: Digital infrastructure, AI, clean tech, carbon capture
 └── Benefits from: Government climate and infrastructure spending
 
@@ -268,17 +275,6 @@ CHRYSTIA FREELAND (Former Finance Minister / Current MP)
 
 ---
 
-## 📝 CONCLUSION
-
-**The evidence collected demonstrates a clear pattern of government officials maintaining significant financial interests in companies and sectors that directly benefit from government policy and spending decisions.**
-
-**Key Proof Points:**
-1. Prime Minister holds millions in stock of company receiving $22.8B in government contracts
-2. Former Finance Minister owns 4 rental properties while setting housing policy
-3. 20+ MPs are landlords voting on affordability measures
-4. Blind trust loophole allows continued financial benefit without transparency
-5. Parliamentary questions confirm concerns about undue corporate influence
-
 ### **Finding 6: Taleeb Noormohamed - Property Flipping MP**
 
 **Evidence Level:** HIGH - Documented property transaction records
@@ -286,15 +282,15 @@ CHRYSTIA FREELAND (Former Finance Minister / Current MP)
 #### Real Estate Flipping Activity:
 - **41 properties sold** since 2005 (per BC assessment records)
 - **21 properties flipped** after less than one year of ownership
-- **$4.9 million in profits** from property flipping
+- **$4.9 million in gross transaction value** from property sales (per BC Assessment records)
 - Current Liberal MP for Vancouver Granville
 - Sits on committees related to housing and finance
 
 #### Conflict of Interest:
-- Made millions flipping properties while serving as MP
+- Made significant capital gains flipping properties while serving as MP
 - Votes on housing affordability policies
 - His property flipping activity directly benefits from housing market volatility
-- Ethics disclosure still pending as of 2026
+- *Status: Verify current ethics disclosure with Office of the Conflict of Interest and Ethics Commissioner*
 
 ---
 
@@ -343,13 +339,15 @@ CHRYSTIA FREELAND (Former Finance Minister / Current MP)
 **Evidence Level:** HIGH - Media investigation based on official disclosures
 
 #### Scale of MP Real Estate Ownership:
-- **At least 65 Canadian MPs** own rental or investment real estate
-- **42 Liberal MPs** (26% of caucus) disclosed rental/investment real estate
-- **19 Conservative MPs** (16% of caucus) disclosed rental/investment real estate
+- **At least 65 Canadian MPs** own rental or investment real estate (per media analysis of Ethics Commissioner disclosures)
+- **42 Liberal MPs** (approx. one-quarter of caucus, per spring 2025 count of 161 MPs) disclosed rental/investment real estate
+- **19 Conservative MPs** (approx. one-sixth of caucus, per spring 2025 count of 120 MPs) disclosed rental/investment real estate
 - **30 non-cabinet Liberal MPs** own 38 rental/investment properties
 - **Marty Morantz** (Conservative) owns **21 properties** - biggest property owner in Parliament
-- **91 MPs** have not yet completed disclosure or filings not public
+- **91 MPs** had not completed disclosure or filings were not public at time of investigation
 - Includes farmland, residential rentals, commercial properties, vacant land
+
+*Note: These figures are derived from third-party media analysis (Global News / IsMyMPALandlord.ca) of publicly filed Ethics Commissioner disclosures. For legal proceedings, primary verification requires direct review of all 338 MP disclosure filings.*
 
 #### Policy Impact:
 - MPs vote on housing affordability while collecting rental income
@@ -378,15 +376,15 @@ CHRYSTIA FREELAND (Former Finance Minister / Current MP)
 
 ---
 
-## 🚨 ADDITIONAL SMOKING GUN EVIDENCE
+## 🚨 ADDITIONAL DIRECT DOCUMENTATION
 
 ### **Document 6: Taleeb Noormohamed Property Records**
 **Source:** British Columbia Assessment Records / CityNews Vancouver
 **Content:**
 - 41 properties sold since 2005
 - 21 properties held less than one year
-- $4.9 million in profits
-- Liberal MP voting on housing policy while profiting from property speculation
+- $4.9 million in gross transaction value (per BC Assessment sale records)
+- Liberal MP voting on housing policy while transacting properties at a pace consistent with speculative activity
 
 ### **Document 7: MP Landlord Investigation**
 **Source:** Global News / IsMyMPALandlord.ca
@@ -481,16 +479,16 @@ MP LANDLORD NETWORK (65+ MPs)
 
 ## 📝 CONCLUSION
 
-**The evidence collected proves a systematic pattern of government officials maintaining and growing personal wealth through financial interests that directly benefit from government policy and spending decisions.**
+**The evidence collected demonstrates a systematic pattern of government officials maintaining and growing personal wealth through financial interests that directly benefit from government policy and spending decisions.**
 
-**Key Proof Points:**
-1. Prime Minister holds millions in stock of company receiving $22.8B in government contracts
+**Key Findings:**
+1. Prime Minister holds millions in stock of company with $22.8B potential government contract ceiling
 2. Former Finance Minister owns 4 rental properties while setting housing policy
-3. MP flipped 41 properties for $4.9M profit while voting on housing policy
-4. 65+ MPs (20% of Parliament) are landlords voting on affordability
+3. MP flipped 41 properties for $4.9M gross transaction value while voting on housing policy
+4. 65+ MPs (approx. 20% of Parliament) are landlords voting on affordability
 5. Ministers recuse from decisions benefiting family members and friends
-6. Blind trust loophole allows politicians to keep profiting without transparency
-7. Ethics screens hide conflicts from public view
+6. Blind trust mechanism allows politicians to retain financial interests without direct control
+7. Ethics screens limit public visibility of conflicts
 
 **This evidence demonstrates how government officials and their networks systematically benefit from the policies they create, from housing affordability to infrastructure spending to industry regulation.**
 
@@ -503,9 +501,3 @@ MP LANDLORD NETWORK (65+ MPs)
 **Evidence Quality: HIGH - Based on official government records, SEC filings, and public registries**
 **Pattern Significance: HIGH - Clear correlation between official holdings and government spending**
 **Public Interest: CRITICAL - Fundamental questions about democratic accountability and conflict of interest**
-*All sources are publicly available and legally accessible.*
-*This document is part of the Veritas Government Accountability Research Project.*
-
-**Evidence Quality: HIGH - Based on official government records and SEC filings**
-**Pattern Significance: HIGH - Clear correlation between official holdings and government spending**
-**Public Interest: CRITICAL - Fundamental questions about democratic accountability**

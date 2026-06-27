@@ -11,7 +11,7 @@ This document unifies the Veritas accountability analyses into one actionable po
 ```text
 Progressive corporate tax (30-37.5% on >$20M profit)
     ↓
-Generates $10.5B – $43.5B annually
+Generates $10.5B – $43.5B annually (static estimate; dynamic estimate accounting for behavioral response would be lower)
     ↓
     ├─→ Crown refineries + fuel sovereignty
     ├─→ Public housing construction (500K units / 10 yr)
@@ -72,7 +72,8 @@ Source: `TAX_PROPOSAL_INTEGRATION.md`
 
 | Project | Cost | Timeline | Revenue Source |
 |---------|------|----------|---------------|
-| 1-2 new heavy-crude upgraders + refineries | **$8.5B** | 8-12 years | ~1 year of multinational tax revenue |
+| 1-2 heavy-crude upgraders + refineries (brownfield expansion / acquisition of distressed assets) | **$8.5B** | 8-12 years | ~1 year of multinational tax revenue |
+  - *Note: New greenfield refinery construction in North America typically costs $10–15B+ per facility. The $8.5B figure here assumes brownfield expansion, retrofit, or acquisition of existing distressed refining capacity, not new greenfield construction.*
 | Refurbish / expand Sarnia + Montreal corridor | ~$3-5B | 4-6 years | Partial year |
 | Atlantic Crown refinery (process Canadian crude for Atlantic Canadians) | ~$2-3B | 6-8 years | Partial year |
 
@@ -256,8 +257,8 @@ Source: `ACTION_Draft_Ethics_Complaint_Duclos.md`
 | Objection | Rebuttal |
 |-----------|----------|
 | "Corporations will leave." | See `CORPORATE_FLIGHT_REBUTTAL.md` — 90% flight required to break even; no historical precedent. If they leave, we buy their assets at discount. |
-| "We can't afford it." | The $36.7B-$88B annual extraction (see `AGGREGATE_EXTRACTION.md`) proves we already *produce* the wealth — we just let corporations capture it. |
-| "Government can't run businesses." | Hydro-Québec, SaskTel, ATB, and Caisses populaires prove otherwise. The failures are political sabotage, not public ownership. |
+| "We can't afford it." | The $36.7B-$88B annual foregone value add and extraction (see `AGGREGATE_EXTRACTION.md`) demonstrates that Canada already *produces* the wealth — current policy simply directs it to corporate capture rather than public reinvestment. |
+| "Government can't run businesses." | Hydro-Québec, SaskTel, ATB, and Caisses populaires demonstrate otherwise. The failures are political sabotage, not public ownership. |
 | "It will take too long." | The proportionality clause trapped us for 30 years. USMCA removed it in 2020. The door is open — we just need to walk through it. |
 | "Alberta will revolt like 1980." | The NEP failed because it was imposed, not because sovereignty is wrong. A *Crown refinery in Alberta* creates Alberta jobs and Alberta tax revenue — the opposite of the NEP's Ottawa-centric model. |
 

@@ -10,7 +10,8 @@ This document aggregates verified and estimated figures across housing, energy, 
 
 | Sector | Annual Extraction | Confidence | Primary Source |
 |--------|------------------|------------|---------------|
-| **Tax (uncollected corporate revenue)** | **$10.5B – $43.5B** | High (modeled) | `TAX_PROPOSAL_INTEGRATION.md` |
+| **Tax (uncollected corporate revenue)** | **$10.5B – $43.5B** (static estimate) | High (modeled) | `TAX_PROPOSAL_INTEGRATION.md` |
+  - *Static estimate assumes no behavioral response. Dynamic estimate accounting for profit shifting would be lower.*
 | **Energy (refining margin exported)** | **$14.6B – $21.9B** | Medium (estimated) | CER export data + crack spread analysis |
 | **Energy (diesel exports to US)** | **$4.6B** | High (verified) | StatCan 2024 RPP export data |
 | **Housing (below-market stock destruction)** | **$5B – $15B** (national estimate) | Low (indicative) | Edmonton infill case study scaled |
@@ -63,6 +64,8 @@ The "crack spread" — the margin between crude oil input and refined product ou
 | **Annual margin exported** | **$14.6B** | **$21.9B** |
 
 This is not hypothetical. It is the difference between what Canadian bitumen is worth raw and what the refined products sell for — a value-add step that occurs in **Texas and Louisiana, not Alberta or New Brunswick**.
+
+*Note: This figure represents **estimated foregone value add** — the refining margin Canada does not capture because it exports raw crude rather than refining domestically. It is not an extraction from existing Canadian assets but a counterfactual: what Canada would retain if it had domestic refining capacity equivalent to its export volume. Without Crown refineries, this value is captured by foreign refiners, not lost from Canadian wealth.*
 
 Source: `FUEL_CIRCLE_JERK.md`, CER data, industry crack spread benchmarks
 

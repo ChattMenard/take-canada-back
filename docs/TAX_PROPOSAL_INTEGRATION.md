@@ -129,11 +129,13 @@ The corporate tax proposal represents a significant opportunity for fiscal trans
 
 ### Revenue Modeling
 
-**Current Estimates:**
+**Current Estimates (Static):**
 - Multinationals only: $10.5B annually
 - All companies: $43.5B annually
 - Companies affected: 7,250 (0.3% of total)
 - Deficit reduction: 19-79% of 2025-26 deficit
+
+*Note: These are static revenue estimates assuming no behavioral response (no profit shifting, base erosion, or compliance changes). A dynamic estimate accounting for corporate behavioral responses would be lower.*
 
 **Verification Requirements:**
 - Validate corporation count estimates

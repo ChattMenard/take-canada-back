@@ -23,7 +23,8 @@
 - **July 14, 2017**: Cellscript sublicenses to **BioNTech** (BEFORE pandemic)
 
 ### The Money
-- Penn has collected **~$1 billion** in royalties from COVID vaccine sales
+- Penn has collected **~$1 billion** in royalties from COVID vaccine sales (per The Philadelphia Inquirer, June 12, 2022; citing Penn Medicine royalty disclosures to the Inquirer)
+  - *Note: This is a cumulative estimate across all mRNA vaccine licensees, not a single-year figure. Penn's exact annual royalty revenue is not fully public.*
 - Moderna paid Cellscript: **$635 million (2022)** + **$641 million (2021)**
 - If BioNTech paid similar rates: additional **~$1.82 billion** to Cellscript
 - Karikó and Weissman entitled to **30% of Penn's royalties** = potentially **hundreds of millions** each
@@ -53,10 +54,10 @@
 - **Shaun Ryan** (Moderna) — Deputy General Counsel
 
 ### What This Means
-- NIH and Moderna had a **joint ownership agreement** for mRNA coronavirus vaccines before COVID-19 was known to exist
-- The agreement was signed **19 days before** the first reported COVID-19 case
-- The material transfer went to **Ralph Baric** — the scientist who developed techniques for engineering chimeric coronaviruses and collaborated with the Wuhan Institute of Virology
-- The agreement was later **amended in February 2020** to specifically add SARS-CoV-2
+- NIH and Moderna had a **joint ownership agreement** for mRNA coronavirus vaccines before SARS-CoV-2 was identified
+- The agreement was signed **19 days before** WHO became aware of the Wuhan pneumonia cluster
+- **Critical context:** NIAID had been funding coronavirus vaccine research since SARS-1 (2003) and MERS (2012). The December 2019 agreement covered **generic mRNA coronavirus vaccine candidates** for known coronaviruses, not SARS-CoV-2 specifically. The agreement was amended in February 2020 to add SARS-CoV-2 after the novel virus was sequenced.
+- The material transfer went to **Ralph Baric** — a leading coronavirus researcher who had collaborated with the Wuhan Institute of Virology on chimeric coronavirus studies (published 2015)
 
 ---
 

@@ -126,7 +126,8 @@ The numbers below are drawn from public data and are documented with sources, fo
 - **Current structure:** 15% federal + 12% provincial average = 27% general rate
 - **Small business deduction:** $700,000 limit (increased from $500,000 April 1, 2025)
 - **Proposed progressive rates:** 30-37.5% for >$20M Canadian profits
-- **Revenue potential:** $10.5B (multinationals only) to $43.5B (all companies) annually
+- **Revenue potential (static estimate):** $10.5B (multinationals only) to $43.5B (all companies) annually
+  - *Static estimate: assumes no behavioral response (profit shifting, base erosion). Dynamic estimate would be lower.*
 - **Companies affected:** Only 7,250 corporations (0.3% of total) with >$20M profits
 - **Deficit reduction:** Could eliminate 19-79% of 2025-26 deficit
 - **Sources:** CRA corporate tax rates 2026, EY tax calculator 2026, KPMG tax tables 2026

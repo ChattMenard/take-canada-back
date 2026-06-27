@@ -22,6 +22,53 @@ This document quantifies the break-even analysis for corporate tax flight threat
 
 ---
 
+## International Tax Context: Where Canada Actually Stands
+
+### The Discrepancy: World Bank vs. OECD
+
+A common claim circulating in this debate uses World Bank data showing Canada at **13.9% tax revenue as a share of GDP** versus Nordic countries at 40%+. This comparison is **methodologically invalid**.
+
+| Data Source | Metric | Canada | Denmark | Finland | Norway | Sweden | OECD Avg |
+|-------------|--------|--------|---------|---------|--------|--------|----------|
+| **World Bank** `GC.TAX.TOTL.GD.ZS` | Central gov't tax revenue (% GDP) | **13.9%** (2024) | **33.4%** (2024) | **25.3%** (2024) | **25.4%** (2024) | **27.3%** (2024) | — |
+| **OECD Revenue Statistics** | Total tax revenue, all gov't levels (% GDP) | **34.8%** (2023) | **44.0%** (2023) | **~42.8%** (2023) | **41.4%** (2023) | **~42.7%** (2023) | **33.9%** |
+
+**Why the gap:** The World Bank indicator measures **central government tax revenue only**. Canada is a federal state where provinces collect significant taxes (income tax, sales tax, property tax). Nordic countries are unitary states where the central government collects most revenue. Comparing the World Bank figures across federal and unitary states is comparing apples to oranges.
+
+The **OECD total tax revenue figure** is the only valid cross-country comparison because it includes all levels of government.
+
+### The Real Position
+
+- Canada collects **34.8% of GDP in total taxes** — barely above the OECD average of **33.9%** and **~7–10 percentage points below Nordic peers** (OECD, *Revenue Statistics 2025*).
+- Canada ranked **20th out of 38 OECD countries** in tax-to-GDP ratio in 2023.
+- Canada is **not a high-tax outlier**. It is a **moderate-tax jurisdiction** with room to increase revenue without exceeding Nordic levels.
+
+### Corporate Tax Specifically
+
+The argument for raising corporate taxes on the largest firms requires examining corporate tax specifically:
+
+| Metric | Canada | Norway | Sweden | Denmark | Finland |
+|--------|--------|--------|--------|---------|---------|
+| Statutory combined corporate rate | ~26.5% (15% fed + ~11.5% prov) | 22% | 20.6% | 22% | 20% |
+| Corporate tax revenue (% GDP) | Above OECD average | Above OECD average (energy sector) | Near OECD average | Near OECD average | Near OECD average |
+
+Canada's **statutory corporate tax rate is already higher** than all four Nordic countries. However, Canada's **effective tax rate on large multinationals** is lower than the statutory rate due to:
+
+- Accelerated depreciation and tax credits
+- Profit shifting to lower-tax jurisdictions
+- Thin capitalization rules that are weaker than Nordic equivalents
+- The **income sprinkling** and **passive income** loopholes inside private corporations
+
+The progressive corporate tax proposal does not raise Canada's statutory rate above Nordic levels. It closes the gap between **statutory rate** (what the law says) and **effective rate** (what large firms actually pay) by applying higher marginal rates on profits above $20M — the segment of the corporate sector that benefits most from base erosion.
+
+### What This Means for the Flight Debate
+
+If Canada raised its total tax revenue from 34.8% to Nordic levels (~42–44%), it would generate an additional **$180–250B annually** in total government revenue. The progressive corporate tax proposal captures only a fraction of that gap (**$10.5–43.5B**) — concentrated on the 7,250 largest firms that are least likely to flee because they are tethered to Canadian assets, consumers, and resources.
+
+Canada is not proposing to out-tax the Nordics. It is proposing to **stop under-collecting** from its largest corporate taxpayers while remaining below Nordic total tax burdens.
+
+---
+
 ## The Flight Scenarios
 
 ### Assumptions
