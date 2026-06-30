@@ -23,6 +23,7 @@
 - **July 14, 2017**: Cellscript sublicenses to **BioNTech** (BEFORE pandemic)
 
 ### The Money
+
 - Penn has collected **~$1 billion** in royalties from COVID vaccine sales (per The Philadelphia Inquirer, June 12, 2022; citing Penn Medicine royalty disclosures to the Inquirer)
   - *Note: This is a cumulative estimate across all mRNA vaccine licensees, not a single-year figure. Penn's exact annual royalty revenue is not fully public.*
 - Moderna paid Cellscript: **$635 million (2022)** + **$641 million (2021)**

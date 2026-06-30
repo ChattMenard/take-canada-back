@@ -147,7 +147,9 @@ EVIDENCE (detailed substantiation)
 ├── TEN_WORST_ACTIONS.md                   → "Top 10 government harms"
 ├── VISUAL_EVIDENCE.md                     → "Diagrams, flowcharts, timelines"
 ├── CANADA_2126_DYSTOPIA.md                → "100-year projection"
-└── OATH_AND_ALLEGIANCE.md                 → "Constitutional duty framework"
+├── OATH_AND_ALLEGIANCE.md                 → "Constitutional duty framework"
+├── REBUTTAL_AND_REFUTATION.md             → "Counter-arguments destroyed"
+└── NO_ESCAPE.md                           → "Every avenue of rebuttal sealed"
 │
 ▼
 ACTION (ready-to-use tools)
