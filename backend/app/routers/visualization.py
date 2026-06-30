@@ -5,7 +5,7 @@ from pathlib import Path
 import json
 from typing import Dict, List, Any
 
-router = APIRouter(prefix="/visualization", tags=["visualization"])
+router = APIRouter(prefix="/api/visualization", tags=["visualization"])
 
 # Path to extracted visualization data
 DATA_DIR = Path("/home/x99/Desktop/FUCK/frontend/src/data")

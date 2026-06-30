@@ -10,7 +10,7 @@ from datetime import datetime, date
 import json
 
 from ..database import get_db
-from ..models.government_wealth import (
+from ..govt_models.government_wealth import (
     OfficialAssetDeclaration, AssetHolding, BusinessInterest, 
     PolicyDecision, FinancialTransaction, PolicyTransactionCorrelation,
     GovernmentContract, OwnershipEntity, ContractAmendment,
