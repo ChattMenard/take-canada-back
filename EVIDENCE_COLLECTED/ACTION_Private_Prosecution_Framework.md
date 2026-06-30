@@ -3,6 +3,27 @@
 
 ---
 
+## ⚠️ PHASE 1 CONNECTION: The Pre-Pandemic Platform Context
+
+**The private prosecution framework below targets the revolving door between pharma and government. This revolving door enabled the deployment of a pre-built mRNA platform.**
+
+### The Platform Was Pre-Built
+- **Penn patents licensed to Moderna/BioNTech (2017)** — Before pandemic
+- **NIH/Moderna joint ownership agreement (December 12, 2019)** — 19 days before WHO awareness
+- **DARPA funding to Moderna (2013)** — $25M for "engineered biological threats"
+- **Gates Foundation framework (2016)** — Up to $100M for mRNA infectious diseases
+
+### Why This Matters for This Document
+The revolving door documented in ETHICS_DISCLOSURES_INVESTIGATION.md facilitated the deployment of a pre-built mRNA platform. Former government officials who moved to Innovative Medicines Canada (IMC) used their insider knowledge to influence decisions that enabled the rapid procurement and deployment of vaccines whose platforms were already built and funded before COVID existed. This private prosecution framework seeks to hold these individuals accountable for influence peddling.
+
+**[📖 READ THE FULL PHASE 1 EVIDENCE →](./Pre_Pandemic_Connections_The_Platform.md)**
+
+**[📋 VIEW PHASE 1 EXECUTIVE SUMMARY →](./PHASE_1_EXECUTIVE_SUMMARY.md)**
+
+**[📊 RELATED: Ethics Disclosures Investigation →](./ETHICS_DISCLOSURES_INVESTIGATION.md)**
+
+---
+
 ## EXECUTIVE SUMMARY
 
 This document provides a framework for considering a **private prosecution** under section 121(1)(d) of the *Criminal Code* against individuals who used former government positions to facilitate pharmaceutical industry interests.

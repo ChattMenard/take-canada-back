@@ -5,6 +5,27 @@
 
 ---
 
+## ⚠️ PHASE 1 CONNECTION: The Pre-Pandemic Platform Context
+
+**The secrecy claims validated below conceal the deployment of a pre-built mRNA platform. The FDA redactions and FOIA battles hide information about a technology that was funded and patented before COVID-19 existed.**
+
+### The Platform Was Pre-Built
+- **Penn patents licensed to Moderna/BioNTech (2017)** — Before pandemic
+- **NIH/Moderna joint ownership agreement (December 12, 2019)** — 19 days before WHO awareness
+- **DARPA funding to Moderna (2013)** — $25M for "engineered biological threats"
+- **Gates Foundation framework (2016)** — Up to $100M for mRNA infectious diseases
+
+### Why This Matters for This Document
+The FDA redactions of Pfizer vaccine ingredients and the FOIA battles documented below are not about protecting proprietary technology developed during the pandemic. The secrecy conceals the fact that the platform was pre-built and funded before COVID existed. If the full technical details were transparent, it would be evident that the technology was not developed in response to COVID, but was a pre-existing platform activated by the pandemic.
+
+**[📖 READ THE FULL PHASE 1 EVIDENCE →](./Pre_Pandemic_Connections_The_Platform.md)**
+
+**[📋 VIEW PHASE 1 EXECUTIVE SUMMARY →](./PHASE_1_EXECUTIVE_SUMMARY.md)**
+
+**[📊 RELATED: Pfizer Patent Secrecy Redactions →](./Pfizer_Patent_Secrecy_Redactions.md)**
+
+---
+
 ## CLAIM 1: FDA Redacted the Pfizer Vaccine Ingredients List
 
 ### The Claim
