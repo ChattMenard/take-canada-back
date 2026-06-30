@@ -12,33 +12,9 @@ This is not conspiracy theory. This is documented fact.
 
 ---
 
-## ⚠️ PHASE 1: THE FOUNDATIONAL CONTEXT — READ THIS FIRST
+## THE TOP 14 FUCKERIES
 
-**Before understanding what they did, you must understand how it was possible.**
-
-The COVID-19 pandemic did not create the mRNA vaccine industry. The mRNA vaccine industry was already built, funded, patented, and simulated before COVID-19 existed. The "pandemic" was the business opportunity that activated a pre-existing platform.
-
-### The Smoking Gun (December 12, 2019)
-
-NIH and Moderna had a joint ownership agreement for mRNA coronavirus vaccines, signed **December 12, 2019** — **19 days before the WHO became aware of the Wuhan pneumonia cluster**. The patents were licensed to Moderna and BioNTech in 2017. DARPA funded the platform in 2013. The Gates Foundation committed $100 million in 2016. Event 201 simulated the pandemic response in October 2019. Fauci predicted a "surprise outbreak" in January 2017.
-
-**The pandemic did not create the platform. The platform was already built.**
-
-### Why This Matters for the 15 Fuckeries Below
-
-Every vaccine contract, every pharma intervention, every regulatory capture documented in this Mission Statement was made possible because the platform was pre-built. The secret $5-9 billion vaccine contracts (Fuckery #1) were signed with companies whose platforms were funded, patented, and ready before COVID existed. The minister's intervention to delay drug price controls (Fuckery #2) protected companies that had already received pre-pandemic platform funding. The surveillance state (Fuckery #8) was deployed to enforce uptake of pre-pandemic platform vaccines.
-
-**Phase 1 is the foundation. The 15 fuckeries are the execution.**
-
-**[📖 READ THE FULL PHASE 1 EVIDENCE →](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md)**
-
-**[📋 VIEW ALL PRIMARY SOURCES →](./EVIDENCE_COLLECTED/SUBSTANTIATION_The_Platform_Evidence_Pack.md)**
-
----
-
-## THE TOP 15 FUCKERIES
-
-These are the 15 most egregious, documented, and provable actions the federal government took against Canadians. Every single one has evidence. Every single one has a victim. Every single one has a beneficiary who is not you.
+These are the 14 most egregious, documented, and provable actions the federal government took against Canadians. Every single one has evidence. Every single one has a victim. Every single one has a beneficiary who is not you.
 
 ### 1. SECRET VACCINE CONTRACTS WITH PHARMA
 
@@ -198,24 +174,7 @@ These are the 15 most egregious, documented, and provable actions the federal go
 
 ---
 
-### 11. THE mRNA PLATFORM WAS BUILT BEFORE THE PANDEMIC
-
-**What they did:** The government, media, and pharmaceutical companies told you the COVID-19 vaccine was developed in record time because of urgent innovation. The truth: the mRNA platform was patented, funded, and licensed years before COVID-19 existed.
-
-**Why it matters:** Penn patents were licensed to Moderna and BioNTech in 2017. DARPA funded mRNA research in 2013. The Gates Foundation funded it in 2016. The NIH and Moderna had a "jointly owned" agreement on December 12, 2019 — nineteen days before the WHO knew about COVID-19. The 66-day vaccine timeline was not a miracle. It was a pre-built platform being activated.
-
-**Who paid:** Taxpayers (through decades of research funding) and vaccine recipients (through undisclosed risks). **Who benefited:** Penn ($1 billion in royalties), Moderna, BioNTech, and Karikó/Weissman (hundreds of millions each).
-
-**Sources:**
-- [Pre_Pandemic_Connections_The_Platform.md](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md) → "CONNECTION 1: Penn Patents → Cellscript → Moderna/BioNTech (Pre-Pandemic 2017)"
-- [Pre_Pandemic_Connections_The_Platform.md](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md) → "CONNECTION 2: NIH/Moderna December 2019 Agreement"
-- [Pre_Pandemic_Connections_The_Platform.md](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md) → "CONNECTION 3: DARPA → Moderna (2013)"
-- [SUBSTANTIATION_The_Platform_Evidence_Pack.md](./EVIDENCE_COLLECTED/SUBSTANTIATION_The_Platform_Evidence_Pack.md) → Primary source citations for all pre-pandemic platform claims
-- [TOP_15_SUBSTANTIATION.md](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md) §11 → Full evidence compilation
-
----
-
-### 12. PFIZER REDACTED ALMOST EVERYTHING IN VACCINE CONTRACTS
+### 11. PFIZER REDACTED ALMOST EVERYTHING IN VACCINE CONTRACTS
 
 **What they did:** Pfizer's vaccine contracts with governments worldwide were so heavily redacted that pricing, delivery schedules, liability terms, and even the total contract value were hidden. Canada was no exception.
 
@@ -231,7 +190,7 @@ These are the 15 most egregious, documented, and provable actions the federal go
 
 ---
 
-### 13. $22 BILLION IN SHIPBUILDING CONTRACTS TO A MINISTER'S FRIEND
+### 12. $22 BILLION IN SHIPBUILDING CONTRACTS TO A MINISTER'S FRIEND
 
 **What they did:** Awarded $22.2 billion for River-class destroyers, $871.7 million in shipyard infrastructure, and $1.6 billion for Arctic patrol ships to Irving Shipbuilding. Dominic LeBlanc (Minister) has a documented personal friendship with James Irving.
 
@@ -247,7 +206,7 @@ These are the 15 most egregious, documented, and provable actions the federal go
 
 ---
 
-### 14. THE CANADA INFRASTRUCTURE BANK BECAME A BROOKFIELD SUBSIDIARY
+### 13. THE CANADA INFRASTRUCTURE BANK BECAME A BROOKFIELD SUBSIDIARY
 
 **What they did:** The Canada Infrastructure Bank (CIB) and Canada Growth Fund (CGF) were used to channel public money into projects involving Brookfield Asset Management. Parliamentary questions Q-735, Q-736, and Q-603 were all about Brookfield's involvement — and the government filed responses in PDF format that were not publicly accessible.
 
@@ -263,25 +222,9 @@ These are the 15 most egregious, documented, and provable actions the federal go
 
 ---
 
-### 15. THE SIMULATIONS PREDICTED THE PANDEMIC BEFORE IT HAPPENED
-
-**What they did:** Event 201 (October 2019) simulated a global coronavirus pandemic. Crimson Contagion (August 2019) simulated a US pandemic response. Dr. Anthony Fauci predicted a "surprise outbreak" in January 2017. These were dismissed as preparation.
-
-**Why it matters:** If you simulate exactly what happens six weeks before it happens, that is not preparation. That is rehearsal. The pandemic activated a platform that had been built, funded, patented, and simulated for years.
-
-**Who paid:** Taxpayers (who funded the simulations and the platform). **Who benefited:** The corporations and institutions that controlled the response.
-
-**Sources:**
-- [Pre_Pandemic_Connections_The_Platform.md](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md) → "CONNECTION 5: Event 201 — The October 2019 Simulation" (Johns Hopkins, WEF, Gates Foundation)
-- [Pre_Pandemic_Connections_The_Platform.md](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md) → "CONNECTION 6: Crimson Contagion — The August 2019 Simulation" (HHS, 19 federal agencies, 12 states)
-- [Pre_Pandemic_Connections_The_Platform.md](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md) → "CONNECTION 7: Fauci's 'Surprise Outbreak' — January 2017" (Georgetown University keynote)
-- [TOP_15_SUBSTANTIATION.md](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md) §15 → Full evidence compilation
-
----
-
 ## THE PATTERN
 
-Every single one of these 15 fuckeries follows the same template:
+Every single one of these 14 fuckeries follows the same template:
 
 1. **Corporate interest identifies a profit opportunity**
 2. **Lobbying, family connections, or revolving doors provide government access**

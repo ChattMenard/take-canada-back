@@ -47,6 +47,13 @@
 
 ---
 
+## CLEANUP PERFORMED
+
+Removed unfounded pre-pandemic mRNA conspiracy claims from:
+- `README.md` (Phase 1 section)
+- `MISSION_STATEMENT.md` (Phase 1 section + Fuckeries #11 and #15)
+- Renumbered remaining fuckeries: 1-10, 11-14
+
 ## NEXT STEPS
 
 1. Run git commit/push (lock file may need manual removal: `rm .git/index.lock`)
