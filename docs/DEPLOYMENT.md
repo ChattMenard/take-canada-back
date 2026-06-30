@@ -96,7 +96,7 @@ The project is deployed with a split stack:
 
 **Live URLs:**
 
-- **Frontend:** `https://proofstacked.com`
+- **Frontend:** `https://frontend-rho-six-94.vercel.app`
 - **Backend API:** `https://backend-production-cf1f.up.railway.app`
 - **API Docs:** `https://backend-production-cf1f.up.railway.app/docs`
 
@@ -189,7 +189,7 @@ curl -s https://backend-production-cf1f.up.railway.app/api/health
 curl -s https://backend-production-cf1f.up.railway.app/api/stats
 
 # Frontend availability
-curl -s -I https://proofstacked.com | grep "HTTP"
+curl -s -I https://frontend-rho-six-94.vercel.app | grep "HTTP"
 
 # Railway logs (last 100 lines)
 railway logs --limit 100
@@ -200,7 +200,7 @@ vercel list --prod
 
 ### Deployment verification checklist
 
-- [ ] Frontend loads at `https://proofstacked.com`
+- [ ] Frontend loads at `https://frontend-rho-six-94.vercel.app`
 - [ ] Backend responds at `https://backend-production-cf1f.up.railway.app/api/health`
 - [ ] API docs accessible at `https://backend-production-cf1f.up.railway.app/docs`
 - [ ] CORS allows frontend domain (check browser dev tools)

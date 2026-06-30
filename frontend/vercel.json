@@ -10,6 +10,8 @@
     { "source": "/api/relationships/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/relationships/$1" },
     { "source": "/api/timeline", "destination": "https://backend-production-cf1f.up.railway.app/api/timeline" },
     { "source": "/api/timeline/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/timeline/$1" },
+    { "source": "/api/visualization", "destination": "https://backend-production-cf1f.up.railway.app/api/visualization" },
+    { "source": "/api/visualization/(.*)", "destination": "https://backend-production-cf1f.up.railway.app/api/visualization/$1" },
     { "source": "/((?!api/).*)", "destination": "/" }
   ]
 }

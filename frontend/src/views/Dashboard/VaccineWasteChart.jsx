@@ -1,60 +1,93 @@
-import { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart3 } from "lucide-react";
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useRemoteData } from "../../hooks/useRemoteData.js";
+
+const FALLBACK = {
+  purchased: 169000000,
+  administered: 85000000,
+  wasted: 40000000,
+  expired: 13600000,
+  donated: 15300000,
+  waste_cost_billion: 1.2,
+  per_dose_cost: 25,
+  source: "Auditor General reports 6 (2022) and 1 (2023)",
+};
+
+const COLORS = ["#22d3ee", "#34d399", "#fb7185", "#f59e0b", "#a78bfa"];
 
 export default function VaccineWasteChart() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/visualization/vaccine-waste')
-      .then(res => res.json())
-      .then(setData)
-      .catch(err => console.error('Failed to load vaccine waste data:', err));
-  }, []);
-
-  if (!data) return <div className="text-slate-400">Loading...</div>;
-
+  const { data } = useRemoteData("/api/visualization/vaccine-waste", FALLBACK);
   const chartData = [
-    { name: 'Purchased', value: data.purchased, color: '#3b82f6' },
-    { name: 'Administered', value: data.administered, color: '#22c55e' },
-    { name: 'Wasted', value: data.wasted, color: '#ef4444' },
-    { name: 'Expired', value: data.expired, color: '#f97316' },
-    { name: 'Donated', value: data.donated, color: '#8b5cf6' },
-  ];
+    ["Purchased", data.purchased],
+    ["Administered", data.administered],
+    ["Wasted", data.wasted],
+    ["Expired", data.expired],
+    ["Donated", data.donated],
+  ].map(([name, value]) => ({ name, value }));
 
   return (
-    <div className="w-full bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-lg">
-      <h2 className="text-2xl font-bold text-white mb-6">Vaccine Waste Analysis</h2>
-      
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
-          <XAxis dataKey="name" stroke="#94a3b8" />
-          <YAxis stroke="#94a3b8" tickFormatter={(value) => `${(value / 1000000).toFixed(0)}M`} />
-          <Tooltip 
-            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-            formatter={(value) => [`${(value / 1000000).toFixed(1)}M doses`, '']}
-          />
-          <Legend />
-          {chartData.map((entry, index) => (
-            <Bar key={index} dataKey="value" fill={entry.color} />
-          ))}
-        </BarChart>
-      </ResponsiveContainer>
-
-      <div className="mt-6 grid grid-cols-2 gap-4">
-        <div className="bg-red-900/30 border border-red-500 p-4 rounded-lg">
-          <div className="text-red-400 font-bold">Total Waste Cost</div>
-          <div className="text-red-300 text-2xl">${data.waste_cost_billion}B</div>
+    <article className="flex h-full min-h-[420px] flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/65">
+      <div className="flex items-start justify-between border-b border-slate-800/80 p-5 sm:p-6">
+        <div>
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-rose-300">
+            <BarChart3 size={14} aria-hidden="true" /> Procurement
+          </div>
+          <h2 className="text-lg font-semibold text-white">Vaccine inventory outcome</h2>
+          <p className="mt-1 text-sm text-slate-400">Reported doses, grouped by disposition.</p>
         </div>
-        <div className="bg-slate-700 p-4 rounded-lg">
-          <div className="text-slate-400 font-bold">Cost Per Dose</div>
-          <div className="text-white text-2xl">${data.per_dose_cost}</div>
+        <div className="text-right">
+          <div className="font-mono text-xl font-semibold text-rose-300">${data.waste_cost_billion}B</div>
+          <div className="text-[10px] uppercase tracking-wider text-slate-500">reported waste cost</div>
         </div>
       </div>
 
-      <div className="mt-4 text-xs text-slate-400">
-        Source: {data.source}
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="h-[230px] min-h-0">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} margin={{ top: 8, right: 4, left: -18, bottom: 8 }}>
+              <CartesianGrid vertical={false} stroke="#1e293b" />
+              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: "#64748b", fontSize: 10 }} />
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "#64748b", fontSize: 10 }}
+                tickFormatter={(value) => `${value / 1000000}M`}
+              />
+              <Tooltip
+                cursor={{ fill: "rgba(148,163,184,.05)" }}
+                contentStyle={{
+                  background: "#07101d",
+                  border: "1px solid #334155",
+                  borderRadius: 10,
+                  color: "#e2e8f0",
+                  fontSize: 12,
+                }}
+                formatter={(value) => [`${(value / 1000000).toFixed(1)} million`, "Doses"]}
+              />
+              <Bar dataKey="value" radius={[5, 5, 0, 0]} maxBarSize={46} isAnimationActive={false}>
+                {chartData.map((entry, index) => (
+                  <Cell key={entry.name} fill={COLORS[index]} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="mt-auto grid grid-cols-2 gap-3">
+          <div className="rounded-xl border border-slate-800 bg-slate-950/55 p-3">
+            <div className="text-[10px] uppercase tracking-wider text-slate-500">Cost per dose</div>
+            <div className="mt-1 font-mono text-lg font-semibold text-white">${data.per_dose_cost}</div>
+          </div>
+          <div className="rounded-xl border border-slate-800 bg-slate-950/55 p-3">
+            <div className="text-[10px] uppercase tracking-wider text-slate-500">Reported wasted</div>
+            <div className="mt-1 font-mono text-lg font-semibold text-white">
+              {(data.wasted / 1000000).toFixed(0)}M
+            </div>
+          </div>
+        </div>
+        <p className="mt-3 truncate text-[10px] text-slate-500" title={data.source}>
+          Source: {data.source}
+        </p>
       </div>
-    </div>
+    </article>
   );
 }
