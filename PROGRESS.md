@@ -49,10 +49,13 @@
 
 ## CLEANUP PERFORMED
 
-Removed unfounded pre-pandemic mRNA conspiracy claims from:
+Removed unfounded pre-pandemic mRNA platform-built claims from:
 - `README.md` (Phase 1 section)
 - `MISSION_STATEMENT.md` (Phase 1 section + Fuckeries #11 and #15)
+- 14 files across EVIDENCE_COLLECTED/
+- Replaced "platform was built" with "platform was funded and patented"
 - Renumbered remaining fuckeries: 1-10, 11-14
+- Archive re-sealed with new Merkle root
 
 ## NEXT STEPS
 

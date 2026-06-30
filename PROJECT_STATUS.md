@@ -1,6 +1,6 @@
 # PROJECT STATUS: TAKE_CANADA_BACK
 
-**Last Updated:** June 29, 2026
+**Last Updated:** June 30, 2026
 **Project Phase:** Evidence Collection & Legal Strategy Execution
 **Technical Status:** Platform Operational
 
@@ -153,9 +153,16 @@ TAKE_CANADA_BACK is a dual-focus project:
 
 ---
 
-## 📈 RECENT ACCOMPLISHMENTS (June 29, 2026)
+## 📈 RECENT ACCOMPLISHMENTS (June 30, 2026)
 
-### Evidence Connectivity Improvements
+### Narrative Accuracy Correction
+- ✅ Removed all claims that mRNA platform was "built" before COVID-19
+- ✅ Replaced with accurate framing: platform was "funded and patented" before COVID
+- ✅ Updated 14 files across EVIDENCE_COLLECTED/ and README.md
+- ✅ Archive re-sealed with new Merkle root: 4a6bc5ebe934abddd744aba3eed231f647acfd96b3923825f3e7c8d61c4e7a26
+- ✅ Committed and pushed to landscape-overview branch
+
+### Evidence Connectivity Improvements (June 29, 2026)
 - ✅ Added Phase 1 connections to 6 additional evidence files
 - ✅ Created cross-links between related action documents
 - ✅ Updated MASTER_INDEX with comprehensive navigation

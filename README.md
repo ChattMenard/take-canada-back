@@ -4,6 +4,9 @@
 
 > *This is not opinion. This is not theory. Every claim is sourced. Every source is primary. Every rebuttal is dead.*
 
+**Last Updated:** June 30, 2026  
+**Archive Merkle Root:** `6a4352d020b6f2a6e2f6d18b0d366f442a18a7cd57987af0b0fce040bce55dd0`
+
 ---
 
 ## [>>> THE TOP 14 FUCKERIES <<<](./MISSION_STATEMENT.md)
@@ -50,7 +53,7 @@ This repository contains:
 
 10. **The ethics disclosure system is designed to hide conflicts.** 8,373 entries. Not searchable by name. You cannot look up what your minister owns. The system that should expose conflicts was built to bury them. [Source: Office of the Ethics Commissioner website](./EVIDENCE_COLLECTED/Government_Money_Trail_Evidence.md)
 
-**Every single one has a named source. Every single one is in this repository. [Read the full Mission Statement with all 15 fuckeries →](./MISSION_STATEMENT.md)**
+**Every single one has a named source. Every single one is in this repository. [Read the full Mission Statement with all 14 fuckeries →](./MISSION_STATEMENT.md)**
 
 ---
 
@@ -58,9 +61,9 @@ This repository contains:
 
 | Document | What It Is | Why Read It |
 |----------|------------|-------------|
-| **[⚠️ PHASE 1: Pre-Pandemic Platform](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md)** | **FOUNDATIONAL EVIDENCE** | **START HERE. The smoking gun: platform built before COVID.** |
+| **[⚠️ PHASE 1: Pre-Pandemic Platform](./EVIDENCE_COLLECTED/Pre_Pandemic_Connections_The_Platform.md)** | **FOUNDATIONAL EVIDENCE** | **START HERE. The smoking gun: platform funded and patented before COVID.** |
 | **[⚠️ PHASE 1: Primary Sources](./EVIDENCE_COLLECTED/SUBSTANTIATION_The_Platform_Evidence_Pack.md)** | **VERIFICATION PACK** | **Every Phase 1 claim with direct primary source citations.** |
-| [MISSION_STATEMENT.md](./MISSION_STATEMENT.md) | **The Top 15 Fuckeries** | What they did with the funded and patented platform |
+| [MISSION_STATEMENT.md](./MISSION_STATEMENT.md) | **The Top 14 Fuckeries** | What they did with the funded and patented platform |
 | [TOP_15_SUBSTANTIATION.md](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md) | Evidence for every claim | Primary source citations, exact quotes, and cross-references |
 | [REBUTTAL_AND_REFUTATION.md](./EVIDENCE_COLLECTED/REBUTTAL_AND_REFUTATION.md) | Counter-arguments destroyed | Every legitimate rebuttal steel-manned, then demolished |
 | [NO_ESCAPE.md](./EVIDENCE_COLLECTED/NO_ESCAPE.md) | All exits sealed | The 10 remaining retreat routes — closed with evidence |
@@ -76,7 +79,7 @@ This repository contains:
 
 ```
 TAKE_CANADA_BACK/
-├── MISSION_STATEMENT.md              → The Top 15 Fuckeries (START HERE)
+├── MISSION_STATEMENT.md              → The Top 14 Fuckeries (START HERE)
 ├── README.md                         → This page
 ├── IMMORTAL_ARCHIVE.md               → How to seal, verify, and mirror
 ├── EVIDENCE_COLLECTED/               → 42 files, cryptographically sealed

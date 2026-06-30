@@ -1,4 +1,4 @@
-# MISSION STATEMENT: The Top 15 Fuckeries
+# MISSION STATEMENT: The Top 14 Fuckeries
 
 **Why this repository exists, why it matters, and why you should care.**
 
