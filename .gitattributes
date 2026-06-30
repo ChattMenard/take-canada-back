@@ -1,0 +1,2 @@
+EVIDENCE_COLLECTED/elections_contributions.zip filter=lfs diff=lfs merge=lfs -text
+PoliticalFinance/* filter=lfs diff=lfs merge=lfs -text
