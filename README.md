@@ -26,20 +26,31 @@ This repository contains:
 
 ---
 
-## KEY FINDINGS AT A GLANCE
+## HERE IS WHAT THEY DID TO YOU
 
-- **$1 billion** in COVID vaccines destroyed or expired while contracts remained secret
-- **$22.8 billion** in government contracts to Brookfield while the Prime Minister held $6.8 million in Brookfield stock
-- **$22.2 billion** in shipbuilding contracts to a firm connected to the minister through personal friendship
-- **$900 million+** sent to WHO with no parliamentary vote on binding treaties
-- **Health Minister intervened** to keep drug prices high after pharmaceutical lobbying
-- **Pharma IP lawyer appointed** to chair the board that regulates pharma prices
-- **65+ MPs are landlords** voting on housing policy while collecting rent
-- **Minister's brother's company** used as strikebreaker against postal workers
-- **FDA redacted vaccine ingredients** from approval documents; fought to keep data secret for 75 years
-- **The mRNA platform was patented and licensed in 2017** — before COVID-19 existed
+**The 10 worst actions — each one documented, each one sourced, each one verifiable:**
 
-**[Read the full substantiation →](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md)**
+1. **Signed secret $5-9 billion vaccine contracts** with Pfizer and Moderna, then hid the pricing, liability terms, and total value from you. [Source: Auditor General Report 6, 2022](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md#1-secret-vaccine-contracts-with-pharma)
+
+2. **Your Health Minister intervened** to delay drug price controls after 9 meetings with the pharmaceutical lobby in 8 months. [Source: Hansard, Carol Hughes (NDP), 2021-2022](./EVIDENCE_COLLECTED/Corporate_Pharma_WHO_Evidence.md)
+
+3. **Appointed a pharmaceutical IP lawyer** to chair the board that regulates pharmaceutical prices. The fox is guarding the henhouse and nobody fired him. [Source: ETHICS_DISCLOSURES_INVESTIGATION.md](./EVIDENCE_COLLECTED/ETHICS_DISCLOSURES_INVESTIGATION.md)
+
+4. **The Prime Minister holds $6.8 million in Brookfield stock** while Brookfield pitches a $50 billion fund seeking $10 billion from your government. [Source: SEC Schedule 13D](./EVIDENCE_COLLECTED/MAPLE_FUND_INVESTIGATION.md)
+
+5. **65+ Members of Parliament are landlords** voting against rent control and affordable housing while collecting your rent. One flipped 41 properties for $4.9 million while in office. [Source: Ethics Commissioner disclosures, BC Assessment records](./EVIDENCE_COLLECTED/Government_Money_Trail_Evidence.md)
+
+6. **Used the minister's brother's company as a strikebreaker** against postal workers. Jean-Sébastien Joly, brother of Mélanie Joly, is CEO of Intelcom — the firm Canada Post used to break the 2024 strike. [Source: Quebec Enterprise Register](./EVIDENCE_COLLECTED/FAMILY_NETWORK_INVESTIGATION.md)
+
+7. **Gave $900 million+ to the WHO** with no parliamentary vote on a binding pandemic treaty. Nearly a billion dollars to an unaccountable international body. [Source: WHO Programme Budget Web Portal](./EVIDENCE_COLLECTED/Corporate_Pharma_WHO_Evidence.md)
+
+8. **Built a surveillance state and called it "public health."** ArriveCAN cost $54 million (budgeted $80,000). Vaccine passports tracked your movements. No sunset clause. No deletion requirement. [Source: Auditor General Report 1, 2024](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md#8-built-a-surveillance-state-and-called-it-public-health)
+
+9. **The revolving door is wide open.** The president of the pharmaceutical lobby became a government advisor. The CEO of the same lobby became head of federal research funding. No cooling-off period. No recusal. [Source: Lobbying Registry, ETHICS_DISCLOSURES_INVESTIGATION.md](./EVIDENCE_COLLECTED/ETHICS_DISCLOSURES_INVESTIGATION.md)
+
+10. **The ethics disclosure system is designed to hide conflicts.** 8,373 entries. Not searchable by name. You cannot look up what your minister owns. The system that should expose conflicts was built to bury them. [Source: Office of the Ethics Commissioner website](./EVIDENCE_COLLECTED/Government_Money_Trail_Evidence.md)
+
+**Every single one has a named source. Every single one is in this repository. [Read the full Mission Statement with all 15 fuckeries →](./MISSION_STATEMENT.md)**
 
 ---
 
