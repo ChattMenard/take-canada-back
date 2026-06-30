@@ -138,7 +138,7 @@ This document provides the step-by-step evidence collection plan for proving how
 ### Step 3: Evidence Organization (Week 2-3)
 
 **Actions:**
-1. Create evidence database using Veritas models
+1. Create evidence database using TAKE_CANADA_BACK models
 2. Establish chain of custody for all evidence
 3. Implement verification protocols
 4. Set up analysis frameworks
@@ -333,9 +333,9 @@ class PolicyTransactionCorrelation(BaseModel):
 
 This evidence collection plan provides a systematic approach to proving how government officials and their networks benefit from policy decisions. By focusing on documented evidence, temporal correlations, and statistical analysis, we can build a compelling case for government accountability.
 
-The framework maintains Veritas standards for evidence-based analysis while addressing legitimate public interest questions about government ethics and accountability.
+The framework maintains TAKE_CANADA_BACK standards for evidence-based analysis while addressing legitimate public interest questions about government ethics and accountability.
 
 ---
 
-*Document prepared for Veritas government money trail evidence collection.*
+*Document prepared for TAKE_CANADA_BACK government money trail evidence collection.*
 *Updated: June 26, 2026*

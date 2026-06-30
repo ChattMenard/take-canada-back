@@ -127,8 +127,8 @@ This request relates to a matter of significant public interest — understandin
 
 ## Contact Information
 
-**Requester:** [Citizen Researcher - Veritas Project]
-**Email:** [research@veritas-project.ca]
+**Requester:** [Citizen Researcher - TAKE_CANADA_BACK Project]
+**Email:** [research@TAKE_CANADA_BACK-project.ca]
 **Phone:** [555-0123]
 **Address:** [123 Research Street, Ottawa, ON K1A 0A4]
 
@@ -169,4 +169,4 @@ Please confirm receipt of this request within 5 business days and provide:
 
 ---
 
-*This request is filed as part of the Veritas government accountability research project, focused on evidence-based analysis of government procurement and spending decisions.*
+*This request is filed as part of the TAKE_CANADA_BACK government accountability research project, focused on evidence-based analysis of government procurement and spending decisions.*

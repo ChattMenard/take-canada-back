@@ -1,4 +1,4 @@
-"""Signed export bundle functionality for Veritas.
+"""Signed export bundle functionality for TAKE_CANADA_BACK.
 
 Creates cryptographically signed export bundles that can be verified
 offline without needing to trust the transport or storage medium.
@@ -76,7 +76,7 @@ def sign_bundle(manifest: dict, bundle_data: bytes) -> dict:
         "signature": signature.hex(),
         "public_key": get_public_key(),
         "algorithm": "Ed25519",
-        "format": "veritas-signed-bundle-v1"
+        "format": "TAKE_CANADA_BACK-signed-bundle-v1"
     }
 
 

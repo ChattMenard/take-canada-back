@@ -1,8 +1,8 @@
 # Evidence Web
 
-## Interconnection Matrix for Veritas Accountability Framework
+## Interconnection Matrix for TAKE_CANADA_BACK Accountability Framework
 
-This document maps the relationships between policies, corporations, government bodies, and economic mechanisms across all Veritas analyses. The goal is to surface hidden connections that appear separate on the surface but share common beneficiaries, common victims, and common root causes.
+This document maps the relationships between policies, corporations, government bodies, and economic mechanisms across all TAKE_CANADA_BACK analyses. The goal is to surface hidden connections that appear separate on the surface but share common beneficiaries, common victims, and common root causes.
 
 ---
 
@@ -200,5 +200,5 @@ The response should be unified:
 
 ---
 
-*Document prepared for Veritas integrated accountability framework.*
+*Document prepared for TAKE_CANADA_BACK integrated accountability framework.*
 *Updated: 2026-06-26*

@@ -1,4 +1,4 @@
-"""Shared pytest fixtures for the Veritas backend test suite."""
+"""Shared pytest fixtures for the TAKE_CANADA_BACK backend test suite."""
 
 import os
 
@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 
 @pytest.fixture(scope="session")
 def tmp_data_dir(tmp_path_factory):
-    return tmp_path_factory.mktemp("veritas_test_data")
+    return tmp_path_factory.mktemp("TAKE_CANADA_BACK_test_data")
 
 
 @pytest.fixture(scope="session")
@@ -17,12 +17,12 @@ def client(tmp_data_dir):
     store_path = tmp_data_dir / "store"
     store_path.mkdir(exist_ok=True)
 
-    os.environ["VERITAS_DATA_DIR"] = str(tmp_data_dir)
-    os.environ["VERITAS_DATABASE_URL"] = f"sqlite:///{db_path}"
-    os.environ["VERITAS_STORAGE_DIR"] = str(store_path)
-    os.environ["VERITAS_ALLOW_PRIVATE_COLLECT"] = "true"
-    os.environ["VERITAS_TIMESTAMP_DIR"] = str(tmp_data_dir / "timestamps")
-    os.environ["VERITAS_TIMESTAMP_ENABLED"] = "false"
+    os.environ["TAKE_CANADA_BACK_DATA_DIR"] = str(tmp_data_dir)
+    os.environ["TAKE_CANADA_BACK_DATABASE_URL"] = f"sqlite:///{db_path}"
+    os.environ["TAKE_CANADA_BACK_STORAGE_DIR"] = str(store_path)
+    os.environ["TAKE_CANADA_BACK_ALLOW_PRIVATE_COLLECT"] = "true"
+    os.environ["TAKE_CANADA_BACK_TIMESTAMP_DIR"] = str(tmp_data_dir / "timestamps")
+    os.environ["TAKE_CANADA_BACK_TIMESTAMP_ENABLED"] = "false"
 
     from app.config import settings
 

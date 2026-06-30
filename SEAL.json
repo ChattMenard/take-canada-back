@@ -1,6 +1,6 @@
 {
-  "merkle_root": "f4250ab1c252a392baa4408a80b11441512ba60c961816bb1afd016cdab70a14",
-  "manifest_sha256": "e29398ba65d4cd96acfaebe4d07e000b8d627ffa44460919792063cad2fa69d1",
+  "merkle_root": "1a923174dd5d52ca60d53c7663a90d320fc51153a72c97eb0dc63d9c98da1807",
+  "manifest_sha256": "087cc0097235e0f881500dcdae1289fec1a20bcf6d865bd9598abebe46ad9f79",
   "file_count": 43,
   "source_directory": "EVIDENCE_COLLECTED"
 }

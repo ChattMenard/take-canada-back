@@ -73,7 +73,7 @@ def write_warc(path: Path, evidence_items: list[Evidence], *, vault_id: str) -> 
 
     Each evidence item is exported as:
       * a WARC `resource` record with the exact stored object bytes
-      * a WARC `metadata` record with Veritas provenance and integrity fields
+      * a WARC `metadata` record with TAKE_CANADA_BACK provenance and integrity fields
     """
     path.parent.mkdir(parents=True, exist_ok=True)
     warc_date = _now()
@@ -81,7 +81,7 @@ def write_warc(path: Path, evidence_items: list[Evidence], *, vault_id: str) -> 
     with path.open("wb") as fh:
         info = _warcinfo_bytes(
             {
-                "software": "Veritas Evidentiary Collection Engine",
+                "software": "TAKE_CANADA_BACK Evidentiary Collection Engine",
                 "format": "WARC File Format 1.1",
                 "vault-id": vault_id,
                 "generated-at": warc_date,

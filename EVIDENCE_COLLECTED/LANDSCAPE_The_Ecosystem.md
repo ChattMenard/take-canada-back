@@ -375,4 +375,4 @@ Not to "win" a single case. But to **make the system visible**. Once enough peop
 
 *This document is designed to be read as a whole, then referenced in part. Start at Part I and read through to Part V. Then return to specific sections as needed.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

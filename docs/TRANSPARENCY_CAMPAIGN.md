@@ -6,7 +6,7 @@
 
 ## Purpose
 
-This document provides templates and guidance for Canadian citizens who wish to exercise their right to access information about government operations — from financial institutions to emergency powers to surveillance infrastructure. The goal is **transparency and accountability** through primary-source evidence, preserved in Veritas with tamper-evident chain of custody.
+This document provides templates and guidance for Canadian citizens who wish to exercise their right to access information about government operations — from financial institutions to emergency powers to surveillance infrastructure. The goal is **transparency and accountability** through primary-source evidence, preserved in TAKE_CANADA_BACK with tamper-evident chain of custody.
 
 Every Canadian has the right to understand how public institutions operate, especially when those institutions can suspend Charter rights, freeze bank accounts, compel medical interventions, or build surveillance backdoors by ministerial order.
 
@@ -349,10 +349,10 @@ Given the housing affordability crisis affecting Canadians, understanding the Ba
 5. **Or send via registered mail** to the ATIP coordinator of the respective department
 6. **Wait up to 30 days** for response (extensions are common — follow up)
 
-### Preserve ATIP responses in Veritas
+### Preserve ATIP responses in TAKE_CANADA_BACK
 
 When you receive a response:
-1. Upload the document to Veritas via the UI or `POST /api/evidence`
+1. Upload the document to TAKE_CANADA_BACK via the UI or `POST /api/evidence`
 2. Tag with `atip_response` plus the relevant category tag
 3. Record the ATIP request number and date in the notes field
 4. Run integrity verification after upload
@@ -411,7 +411,7 @@ This is NOT about:
 - ❌ Attacking individuals
 - ❌ Illegal activities
 
-Every Canadian has the right to ask questions. Use the templates, file the requests, preserve the responses in Veritas, and build a defensible evidentiary record.
+Every Canadian has the right to ask questions. Use the templates, file the requests, preserve the responses in TAKE_CANADA_BACK, and build a defensible evidentiary record.
 
 ---
 

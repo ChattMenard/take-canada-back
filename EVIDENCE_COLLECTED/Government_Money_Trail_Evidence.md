@@ -496,7 +496,7 @@ MP LANDLORD NETWORK (65+ MPs)
 
 *Evidence compiled from public records, SEC filings, parliamentary records, government contract databases, BC assessment records, and ethics commissioner disclosures as of June 26, 2026.*
 *All sources are publicly available and legally accessible.*
-*This document is part of the Veritas Government Accountability Research Project.*
+*This document is part of the TAKE_CANADA_BACK Government Accountability Research Project.*
 
 **Evidence Quality: HIGH - Based on official government records, SEC filings, and public registries**
 **Pattern Significance: HIGH - Clear correlation between official holdings and government spending**

@@ -1,10 +1,10 @@
 # Integrity & Chain of Custody
 
-This document explains the guarantees Veritas makes, how they work, and — just
+This document explains the guarantees TAKE_CANADA_BACK makes, how they work, and — just
 as importantly — what they do **not** prove. Being precise here is what makes
 the tool trustworthy.
 
-## What Veritas currently guarantees
+## What TAKE_CANADA_BACK currently guarantees
 
 1. **Tamper-detection for ordinary handling.** If a stored file is altered after
    ingest, verification will detect it. The recorded SHA-256 will no longer match
@@ -20,7 +20,7 @@ the tool trustworthy.
 
 ### Content-addressed storage
 
-When bytes are ingested, Veritas computes `SHA-256(bytes)` and stores the file
+When bytes are ingested, TAKE_CANADA_BACK computes `SHA-256(bytes)` and stores the file
 at:
 
 ```text
@@ -95,7 +95,7 @@ Implemented and planned in [ROADMAP.md](./ROADMAP.md):
 - **OpenTimestamps anchoring** *(implemented)* — each evidence hash is submitted
   as a best-effort background task on ingest, producing a detached `.ots` file.
   Once confirmed in a Bitcoin block, the timestamp proves the hash existed no
-  later than that block time, independent of the Veritas server. Until a block
+  later than that block time, independent of the TAKE_CANADA_BACK server. Until a block
   confirms, the timestamp is `pending` and does not yet prove existence time. See
   the `POST /api/evidence/{id}/timestamp` API.
 - **RFC 3161 anchoring** *(implemented)* — each evidence hash can be submitted to
@@ -109,7 +109,7 @@ Implemented and planned in [ROADMAP.md](./ROADMAP.md):
   itself (e.g., to a public timestamped location) so even a privileged rewrite
   is detectable.
 - **PostgreSQL backend** *(implemented)* — switch to PostgreSQL via
-  `VERITAS_DATABASE_URL`; Row-Level Security policies are auto-applied to
+  `TAKE_CANADA_BACK_DATABASE_URL`; Row-Level Security policies are auto-applied to
   make the custody log append-only at the database layer.
 - **Signed exports** — bundle evidence + custody + a signature for sharing.
 - **Source capture** — store HTTP response headers and a rendered screenshot at

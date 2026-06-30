@@ -1,4 +1,4 @@
-"""Authentication utilities for Veritas API.
+"""Authentication utilities for TAKE_CANADA_BACK API.
 
 Implements JWT-based authentication for write operations.
 """
@@ -11,7 +11,7 @@ import bcrypt
 from jose import JWTError, jwt
 
 # JWT settings
-SECRET_KEY = os.getenv("VERITAS_SECRET_KEY", os.urandom(32))
+SECRET_KEY = os.getenv("TAKE_CANADA_BACK_SECRET_KEY", os.urandom(32))
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 1 week
 
@@ -54,7 +54,7 @@ def decode_access_token(token: str) -> Optional[dict]:
 
 def get_admin_password_hash() -> str:
     """Get the admin password hash from environment or generate a default."""
-    admin_password = os.getenv("VERITAS_ADMIN_PASSWORD")
+    admin_password = os.getenv("TAKE_CANADA_BACK_ADMIN_PASSWORD")
     if admin_password:
         return get_password_hash(admin_password)
     # Default admin password (should be changed in production)

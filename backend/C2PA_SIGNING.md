@@ -25,7 +25,7 @@ openssl ecparam -name prime256v1 -genkey -noout -out c2pa_key.pem
 
 # Generate self-signed certificate
 openssl req -new -x509 -key c2pa_key.pem -out c2pa_cert.pem -days 365 \
-  -subj "/CN=Veritas Evidence/O=Proofstacked/C=CA"
+  -subj "/CN=TAKE_CANADA_BACK Evidence/O=Proofstacked/C=CA"
 ```
 
 ## Configuration
@@ -33,15 +33,15 @@ openssl req -new -x509 -key c2pa_key.pem -out c2pa_cert.pem -days 365 \
 Set the following environment variables:
 
 ```bash
-export VERITAS_C2PA_CERT_PATH="/path/to/c2pa_cert.pem"
-export VERITAS_C2PA_KEY_PATH="/path/to/c2pa_key.pem"
+export TAKE_CANADA_BACK_C2PA_CERT_PATH="/path/to/c2pa_cert.pem"
+export TAKE_CANADA_BACK_C2PA_KEY_PATH="/path/to/c2pa_key.pem"
 ```
 
 Or add to `.env` file:
 
 ```text
-VERITAS_C2PA_CERT_PATH=/path/to/c2pa_cert.pem
-VERITAS_C2PA_KEY_PATH=/path/to/c2pa_key.pem
+TAKE_CANADA_BACK_C2PA_CERT_PATH=/path/to/c2pa_cert.pem
+TAKE_CANADA_BACK_C2PA_KEY_PATH=/path/to/c2pa_key.pem
 ```
 
 ## Signing Algorithm

@@ -1,6 +1,6 @@
 # PostgreSQL Migration Guide
 
-This guide explains how to migrate Veritas from SQLite to PostgreSQL with row-level security (RLS) for enhanced tamper-evidence.
+This guide explains how to migrate TAKE_CANADA_BACK from SQLite to PostgreSQL with row-level security (RLS) for enhanced tamper-evidence.
 
 ## Why PostgreSQL?
 
@@ -14,10 +14,10 @@ PostgreSQL provides:
 ## Prerequisites
 
 1. PostgreSQL 14+ installed and running
-2. Database created: `createdb veritas`
+2. Database created: `createdb TAKE_CANADA_BACK`
 3. Environment variables set:
    ```bash
-   export VERITAS_DATABASE_URL="postgresql://user:password@localhost/veritas"
+   export TAKE_CANADA_BACK_DATABASE_URL="postgresql://user:password@localhost/TAKE_CANADA_BACK"
    ```
 
 ## Migration Steps
@@ -32,13 +32,13 @@ pip install psycopg2-binary
 ### 2. Set database URL
 
 ```bash
-export VERITAS_DATABASE_URL="postgresql://veritas:yourpassword@localhost/veritas"
+export TAKE_CANADA_BACK_DATABASE_URL="postgresql://TAKE_CANADA_BACK:yourpassword@localhost/TAKE_CANADA_BACK"
 ```
 
 Or add to `.env` file:
 
 ```
-VERITAS_DATABASE_URL=postgresql://veritas:yourpassword@localhost/veritas
+TAKE_CANADA_BACK_DATABASE_URL=postgresql://TAKE_CANADA_BACK:yourpassword@localhost/TAKE_CANADA_BACK
 ```
 
 ## 3. Run database initialization

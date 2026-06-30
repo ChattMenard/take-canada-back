@@ -216,4 +216,4 @@ As new evidence emerges, update the matrices. As new cases are decided, update t
 
 *The Landscape exists to make the invisible visible. The system depends on complexity and fragmentation to hide its architecture. These documents reassemble the pieces so you — and others — can see what was done, how it was hidden, and why it matters.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

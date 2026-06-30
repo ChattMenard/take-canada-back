@@ -83,7 +83,7 @@ Our investigation has compiled evidence that directly supports the plaintiffs' c
 ### Evidence Submission Package
 
 1. **Executive Summary** — One-page overview of evidence and claim support
-2. **Document Index** — All Veritas evidence categorized by claim type
+2. **Document Index** — All TAKE_CANADA_BACK evidence categorized by claim type
 3. **Key Evidence Summaries** — FDA redactions, patent secrecy, contract secrecy, manufacturing secrecy, VISP data, Yale PVS study
 4. **Expert Affidavit Potential** — Data analysis, pharmaceutical regulation, patent law, public health policy expertise
 5. **Common Law Precedents** — *R. v. Carson*, *Trudeau II Report*, *PHMPT v. FDA*
@@ -179,10 +179,10 @@ Please contact me at [YOUR EMAIL] to arrange a discussion.
 Yours truly,
 
 [YOUR FULL NAME]
-Veritas Corporate Accountability Research Project
+TAKE_CANADA_BACK Corporate Accountability Research Project
 ```
 
 ---
 
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

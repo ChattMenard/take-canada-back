@@ -145,7 +145,7 @@ While waiting 30-60 days for ATIP responses, immediately begin collecting public
 
 ### Data Organization:
 - **Spreadsheet Tracking:** Master database of all findings
-- **Database Entry:** Direct entry into Veritas system
+- **Database Entry:** Direct entry into TAKE_CANADA_BACK system
 - **Document Storage:** Organized file system for source documents
 - **Chain of Custody:** Record all sources and collection methods
 

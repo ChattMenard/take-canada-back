@@ -488,9 +488,9 @@ This is not affordable housing policy. It is **density-for-profit policy** dress
 
 The Corporate Housing Influence Framework provides systematic tools for examining how corporate interests shape housing policy to maximize profits while creating affordable housing shortages. By focusing on documented evidence, statistical analysis, and transparent methodology, this framework enables citizens to understand the relationship between corporate profits and housing affordability.
 
-This approach maintains Veritas standards for evidence-based accountability while addressing legitimate public interest questions about corporate influence in housing markets and policy.
+This approach maintains TAKE_CANADA_BACK standards for evidence-based accountability while addressing legitimate public interest questions about corporate influence in housing markets and policy.
 
 ---
 
-*Document prepared for Veritas corporate housing influence tracking.*
+*Document prepared for TAKE_CANADA_BACK corporate housing influence tracking.*
 *Updated: June 26, 2026*

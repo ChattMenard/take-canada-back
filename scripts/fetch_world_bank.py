@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Batch-fetch World Bank indicators for Veritas evidence base."""
+"""Batch-fetch World Bank indicators for TAKE_CANADA_BACK evidence base."""
 import json
 import urllib.request
 import urllib.error

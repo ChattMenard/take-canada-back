@@ -77,7 +77,7 @@ def get_seal_status():
         sealed_at=sealed_at,
         evidence_objects=evidence_count,
         timestamp_files=timestamp_count,
-        db_path=str(DATA_DIR / "veritas.db"),
+        db_path=str(DATA_DIR / "TAKE_CANADA_BACK.db"),
     )
 
 
@@ -96,7 +96,7 @@ def seal_vault(admin: str = Depends(get_current_admin)):
 
     sealed_at = datetime.now(timezone.utc).isoformat()
 
-    db_path = DATA_DIR / "veritas.db"
+    db_path = DATA_DIR / "TAKE_CANADA_BACK.db"
     evidence_locked = _set_readonly(settings.storage_dir)
     timestamp_locked = _set_readonly(settings.timestamp_dir)
 

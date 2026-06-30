@@ -2,7 +2,7 @@
 
 ## A Single Framework Connecting Tax, Ownership, Housing, Labour, and Banking
 
-This document unifies the Veritas accountability analyses into one actionable policy architecture. The goal is to show how **progressive corporate taxation** generates the revenue to **purchase public ownership** of strategic infrastructure, which in turn **restores housing affordability, energy sovereignty, worker protections, and financial independence** — while remaining fiscally neutral or positive.
+This document unifies the TAKE_CANADA_BACK accountability analyses into one actionable policy architecture. The goal is to show how **progressive corporate taxation** generates the revenue to **purchase public ownership** of strategic infrastructure, which in turn **restores housing affordability, energy sovereignty, worker protections, and financial independence** — while remaining fiscally neutral or positive.
 
 ---
 
@@ -305,7 +305,7 @@ This policy package is not a wish list. It is an **accounting exercise** showing
 
 ---
 
-*Document prepared for Veritas unified policy accountability.*
+*Document prepared for TAKE_CANADA_BACK unified policy accountability.*
 *Updated: 2026-06-27*
 
 ## Linked Analyses

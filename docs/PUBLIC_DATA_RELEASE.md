@@ -2,27 +2,27 @@
 
 ## Goal
 
-Make the Veritas vault's evidence collection publicly accessible and verifiable without compromising the integrity of the source database. The public should be able to:
+Make the TAKE_CANADA_BACK vault's evidence collection publicly accessible and verifiable without compromising the integrity of the source database. The public should be able to:
 - Browse the evidence catalog
 - Download individual documents by hash
 - Verify the integrity of the collection
 - See the entity/relationship graph and timeline
-- Access the data without running the full Veritas stack
+- Access the data without running the full TAKE_CANADA_BACK stack
 
 ## Architecture
 
 ### Separation of Concerns
 
-- **Code repository** (`ChattMenard/Veritas`): Source code only. No data.
-- **Data repository** (`ChattMenard/Veritas-data`): Exported vault data, versioned by release.
+- **Code repository** (`ChattMenard/TAKE_CANADA_BACK`): Source code only. No data.
+- **Data repository** (`ChattMenard/TAKE_CANADA_BACK-data`): Exported vault data, versioned by release.
 - **Public index**: Static HTML/JS generated from the manifest for browsing.
 
 ### Data Layers
 
-1. **Manifest** (`veritas-manifest.json`): Small, version-controllable metadata
+1. **Manifest** (`TAKE_CANADA_BACK-manifest.json`): Small, version-controllable metadata
 2. **Object store** (`data/store/`): Content-addressed files by SHA-256
 3. **Timestamps** (`data/timestamps/`): OpenTimestamps `.ots` and RFC 3161 `.tsr` files
-4. **Database** (`data/veritas.db`): NOT exported — only the manifest is needed for public access
+4. **Database** (`data/TAKE_CANADA_BACK.db`): NOT exported — only the manifest is needed for public access
 
 ## Manifest Schema
 
@@ -116,7 +116,7 @@ Before export, run verification on all evidence:
 - Export entities and relationships
 - Export timeline events
 - Include seal status and timestamps
-- Write to `veritas-manifest.json`
+- Write to `TAKE_CANADA_BACK-manifest.json`
 
 ### Step 4: Package Object Store
 
@@ -124,9 +124,9 @@ Before export, run verification on all evidence:
   - `data/store/` (all evidence objects)
   - `data/timestamps/` (all timestamp files)
 - The manifest references these by hash, so the tar can be extracted anywhere
-- Generate `veritas-data-<vault_id>.warc.gz` for archival interoperability:
+- Generate `TAKE_CANADA_BACK-data-<vault_id>.warc.gz` for archival interoperability:
   - one WARC `resource` record per evidence object
-  - one paired WARC `metadata` record with Veritas provenance fields
+  - one paired WARC `metadata` record with TAKE_CANADA_BACK provenance fields
 
 ### Step 5: Publish
 

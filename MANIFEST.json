@@ -1,38 +1,38 @@
 {
   "ACTION_ATIP_Templates.md": {
-    "mtime": 1782551151.839304,
-    "sha256": "7da7ac72a3a94f743a2266df74809914efe04f0a5f3ef56c9d402629fbf19d46",
-    "size": 23294
+    "mtime": 1782794674.430394,
+    "sha256": "a7d6ec9faf4bd81339ed65ae4e204f1a817c4a58b70989922a2b8c11372ca03c",
+    "size": 23303
   },
   "ACTION_Competition_Act_Complaint_Framework.md": {
-    "mtime": 1782550698.2309887,
-    "sha256": "bbad09e208e81b9c340561f134bd34f61ab80572dc60782e63329d84dd03185d",
-    "size": 11722
+    "mtime": 1782794674.4391322,
+    "sha256": "9255ee65dc9c51a36a19288f8f49752b80a986fdd890a3a57365d2cb8fbad791",
+    "size": 11731
   },
   "ACTION_Draft_Ethics_Complaint_Duclos.md": {
-    "mtime": 1782550698.2309887,
-    "sha256": "da348c125ba8dc9141814b3a24e33373517d57e2f567ac9c6652b3bd159e951b",
-    "size": 10121
+    "mtime": 1782794674.4152052,
+    "sha256": "06778d7d2c7cfbcee3c6811b3d2549fdcf63d32758770a6110764e320a322b20",
+    "size": 10130
   },
   "ACTION_Master_Summary.md": {
-    "mtime": 1782550698.2309887,
-    "sha256": "0b050b20aaf126462193ed98dafc62c92eb4a2fdda505d200c7e8a95f532245b",
-    "size": 6556
+    "mtime": 1782794674.373343,
+    "sha256": "294f2b5806352f9c61673f500e934ec4efa29d90b81091b1be5b24aa1e31555f",
+    "size": 6565
   },
   "ACTION_Political_Donations_Cross_Reference.md": {
-    "mtime": 1782551212.885324,
-    "sha256": "56ff4e35993c8e20e79bb4d5a8437ee9fb5cd97623668c99f956ef74f52ecace",
-    "size": 13234
+    "mtime": 1782794674.394005,
+    "sha256": "9b1230b97be41b3f3e1838ce4ca1fc04c541a9a598f1218db2e6c8ffd056201b",
+    "size": 13243
   },
   "ACTION_Private_Prosecution_Framework.md": {
-    "mtime": 1782550698.2319887,
-    "sha256": "b56bb52dd1d5f91c2bb1958eadcdae458a873328f2636356bd37dc446d006133",
-    "size": 12270
+    "mtime": 1782794674.4265292,
+    "sha256": "6aa037e87f6ada7a760db8abf36571cdd6460ef129ff37775e5f476c58ef33ac",
+    "size": 12279
   },
   "ACTION_Sakamoto_Class_Action_Intervention.md": {
-    "mtime": 1782550698.2319887,
-    "sha256": "74ccccdbc0e8c50c000c9d8c25321f6f321072d10d6cf6e70fefb6c2389f520c",
-    "size": 7761
+    "mtime": 1782794674.384779,
+    "sha256": "689a52d9be6c6f48185737f7e79cb560a3a1d571079a15923969c1dffd65c303",
+    "size": 7788
   },
   "ATIP_REQUEST_TEMPLATES.md": {
     "mtime": 1782771235.2143538,
@@ -55,14 +55,14 @@
     "size": 5249
   },
   "CORPORATE_TAX_REFORM_ANALYSIS.md": {
-    "mtime": 1782531271.501379,
-    "sha256": "85ba2087e865f0f3d241cdfcaaf371a51e8666372729c575b4096e7a886354c9",
-    "size": 11723
+    "mtime": 1782794674.3877103,
+    "sha256": "a19751dd6ec4853d27e3fe51fbc256b3073165496e35347a55699f022b1e5429",
+    "size": 11732
   },
   "Common_Law_References_Legal_Precedents.md": {
-    "mtime": 1782496492.0063694,
-    "sha256": "15f54de03cc00b332ca6ce3ab5dbf64a16cbc2a0eec9ac9a5476aa9e95d64e57",
-    "size": 17712
+    "mtime": 1782794674.432473,
+    "sha256": "acf4787bfc85f3794ee79799ea5707a2a300c0350925db7edb8503dd40902399",
+    "size": 17721
   },
   "Corporate_Pharma_WHO_Evidence.md": {
     "mtime": 1782791440.9888532,
@@ -85,9 +85,9 @@
     "size": 9290
   },
   "EVIDENCE_VETTING_REPORT.md": {
-    "mtime": 1782582325.6843245,
-    "sha256": "c41497a02e64662b41a98480a6a26f2cb777ce6db6366550017877ed5ef3f078",
-    "size": 15730
+    "mtime": 1782794674.4412856,
+    "sha256": "d7f9b46242e72e4950eca0e903eaed6812b8a810a2b15453fda453dddc2067db",
+    "size": 15739
   },
   "FAMILY_NETWORK_INVESTIGATION.md": {
     "mtime": 1782771108.055529,
@@ -95,34 +95,34 @@
     "size": 5433
   },
   "Government_Money_Trail_Evidence.md": {
-    "mtime": 1782582302.1164472,
-    "sha256": "0fbc65a4c47ac3c15253bd5d4f093e4d442ab780e74288dc4cc4e73cb31e9aca",
-    "size": 23875
+    "mtime": 1782794674.4069908,
+    "sha256": "d508416ce7d1628d8efb704c852e24193cc72637cbe085efd481a544b10f52be",
+    "size": 23884
   },
   "LANDSCAPE_Evidence_Verification_Matrix.md": {
-    "mtime": 1782525328.1077461,
-    "sha256": "52eec7d4a63d950d4d9a3b208aaf608da89585f95ba1d76c56df30f1f5dee554",
-    "size": 14311
+    "mtime": 1782794674.447532,
+    "sha256": "45f5cb1872d0d6af9844e584a57fa38dd120f0d4327c3840c5ab6bd8a1ecaf9c",
+    "size": 14320
   },
   "LANDSCAPE_README.md": {
-    "mtime": 1782790669.9065025,
-    "sha256": "2d8224d2d92a865327f7014200a248949e470fe322ba8dcabfcd17b4eb51efdc",
-    "size": 8673
+    "mtime": 1782794674.3795006,
+    "sha256": "6cc429f728c660a6ed54da8ba7757646561a76a1aa4ff1cb8de2cd0f7ed78fff",
+    "size": 8682
   },
   "LANDSCAPE_The_Ecosystem.md": {
-    "mtime": 1782525297.0779722,
-    "sha256": "6665853a18149778fa7ec4fac388f849819f1fc7e460bedd3f8a255be265a70e",
-    "size": 22887
+    "mtime": 1782794674.4211514,
+    "sha256": "b905c54833896a725c74804e2256534f1cc70c6bc761a2a1b110500264db3740",
+    "size": 22896
   },
   "LANDSCAPE_Timeline_Master.md": {
-    "mtime": 1782525383.2657886,
-    "sha256": "b1d29c2cfa8de0568b5a74cb0f28870b5eca9e4d3330699b211cb17817097717",
-    "size": 9837
+    "mtime": 1782794674.4091861,
+    "sha256": "042ad8e1067c2f7f4380ed92bf5c220b49246bee699bf1b1a742202a770670f7",
+    "size": 9846
   },
   "LANDSCAPE_Who_is_Who.md": {
-    "mtime": 1782525358.2481291,
-    "sha256": "1aed550a95e8799251526c8db19773ff2f4cd8bece372331a4f34a6ee2428aa6",
-    "size": 12377
+    "mtime": 1782794674.3822494,
+    "sha256": "a8861be5c4f6608bcbb005d70908dbd3ecf082a4df8eafb0def4921eff5d0486",
+    "size": 12386
   },
   "LOBBYING_MEETINGS_ANALYSIS.md": {
     "mtime": 1782771215.1605136,
@@ -155,9 +155,9 @@
     "size": 3091
   },
   "Pfizer_Patent_Secrecy_Redactions.md": {
-    "mtime": 1782496004.6036534,
-    "sha256": "7c1c1afdad3d01fc4949cbfbb8d60eca6f247f83999d0783f367020a6260ef91",
-    "size": 10136
+    "mtime": 1782794674.4031274,
+    "sha256": "0c77959a5c56696e94d11929ca6f02815c2a407e241dd326df94c8705ff1b100",
+    "size": 10145
   },
   "PoliticalFinance/od_cntrbtn_de_e.csv": {
     "mtime": 1781775146.0,
@@ -165,9 +165,9 @@
     "size": 3683731350
   },
   "Pre_Pandemic_Connections_The_Platform.md": {
-    "mtime": 1782583578.2549946,
-    "sha256": "faecb93b9e0211e4294f6483c7199c8d575a3bce23662e8310934ff0e8bd937c",
-    "size": 18345
+    "mtime": 1782794674.3910139,
+    "sha256": "d36eb440639f1aef2caa743ca6cf173bca5da83e96716cf24bd41d8cbd930698",
+    "size": 18354
   },
   "REBUTTAL_AND_REFUTATION.md": {
     "mtime": 1782790623.0580528,
@@ -175,9 +175,9 @@
     "size": 24926
   },
   "SUBSTANTIATION_The_Platform_Evidence_Pack.md": {
-    "mtime": 1782495910.5537066,
-    "sha256": "b53602abfe9b1c43aa90e18468b72b5abf3760817a47b329107e8f141f7c098e",
-    "size": 24326
+    "mtime": 1782794674.435039,
+    "sha256": "f4ac7dd9de5aa05cd5d09a97e9ee0d98927862822ca4dba3cf184afdd68699c7",
+    "size": 24335
   },
   "TEN_WORST_ACTIONS.md": {
     "mtime": 1782789852.2428198,

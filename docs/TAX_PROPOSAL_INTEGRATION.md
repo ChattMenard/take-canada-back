@@ -1,8 +1,8 @@
 # Tax Proposal Integration Guide
 
-## Connecting Corporate Tax Analysis to the Veritas Transparency Campaign
+## Connecting Corporate Tax Analysis to the TAKE_CANADA_BACK Transparency Campaign
 
-This document provides a comprehensive framework for integrating the corporate tax proposal analysis into the Veritas evidence collection and accountability system.
+This document provides a comprehensive framework for integrating the corporate tax proposal analysis into the TAKE_CANADA_BACK evidence collection and accountability system.
 
 ---
 
@@ -191,7 +191,7 @@ The corporate tax proposal represents a significant opportunity for fiscal trans
 
 ---
 
-## Veritas Integration
+## TAKE_CANADA_BACK Integration
 
 ### Evidence Type Extensions
 
@@ -302,11 +302,11 @@ class DeficitImpact(BaseModel):
 
 ## Conclusion
 
-The corporate tax proposal integration represents a significant opportunity to demonstrate how quantitative economic analysis can support evidence-based policy making and government accountability. By connecting rigorous analysis with the Veritas evidence collection framework, we provide citizens with the tools to understand and engage with complex fiscal policy decisions.
+The corporate tax proposal integration represents a significant opportunity to demonstrate how quantitative economic analysis can support evidence-based policy making and government accountability. By connecting rigorous analysis with the TAKE_CANADA_BACK evidence collection framework, we provide citizens with the tools to understand and engage with complex fiscal policy decisions.
 
 This integration ensures that tax policy discussions are grounded in verifiable evidence, transparent methodology, and clear accountability frameworks, strengthening democratic oversight of economic decision-making.
 
 ---
 
-*Document prepared for Veritas tax proposal integration.*
+*Document prepared for TAKE_CANADA_BACK tax proposal integration.*
 *Updated: 2026-06-26*

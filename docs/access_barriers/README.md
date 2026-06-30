@@ -56,4 +56,4 @@ This is the open government paradox documented in real time.
 
 ---
 
-*Screenshots captured: 2026-06-25. Evidence items: 58, 60, 61 in Veritas vault.*
+*Screenshots captured: 2026-06-25. Evidence items: 58, 60, 61 in TAKE_CANADA_BACK vault.*

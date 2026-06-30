@@ -189,4 +189,4 @@ Focus on the ✓ claims. These need additional verification. Strengthening them 
 
 *This matrix is a living document. As new evidence emerges, update the verification levels. The goal is to maximize ✓✓✓ claims and minimize ✓ claims.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enter corporate pharma/WHO evidence into the Veritas database.
+Enter corporate pharma/WHO evidence into the TAKE_CANADA_BACK database.
 """
 
 import sys

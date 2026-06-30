@@ -323,7 +323,7 @@ def analyze_policy_transaction_timing(policies, transactions):
 - Temporal query support
 - Network analysis functions
 
-**Integration with Veritas:**
+**Integration with TAKE_CANADA_BACK:**
 - Extend existing evidence models
 - Add policy timing analysis capabilities
 - Create specialized evidence types
@@ -439,9 +439,9 @@ def analyze_policy_transaction_timing(policies, transactions):
 
 The Policy Timing Analysis Framework provides systematic, evidence-based tools for examining potential relationships between government policy decisions and personal financial transactions. By focusing on documented evidence, statistical analysis, and transparent methodology, this framework enables citizens to understand potential conflicts between public service and private enrichment.
 
-This approach maintains Veritas standards for evidence-based accountability while addressing legitimate public interest questions about the timing of policy decisions and their financial impacts.
+This approach maintains TAKE_CANADA_BACK standards for evidence-based accountability while addressing legitimate public interest questions about the timing of policy decisions and their financial impacts.
 
 ---
 
-*Document prepared for Veritas policy timing analysis integration.*
+*Document prepared for TAKE_CANADA_BACK policy timing analysis integration.*
 *Updated: June 26, 2026*

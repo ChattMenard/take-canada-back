@@ -218,4 +218,4 @@ Answer:
 
 *This directory is a reference tool. Use it to look up specific people, companies, or institutions and understand their role in the ecosystem.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

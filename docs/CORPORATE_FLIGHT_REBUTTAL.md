@@ -258,5 +258,5 @@ The threat is a negotiating tactic. The math says call the bluff.
 
 ---
 
-*Document prepared for Veritas economic accountability framework.*
+*Document prepared for TAKE_CANADA_BACK economic accountability framework.*
 *Updated: 2026-06-26*

@@ -36,7 +36,7 @@ def test_export_warc_contains_evidence_resource_and_metadata(client):
     resp = client.post("/api/export/warc?vault_id=test-warc")
     assert resp.status_code == 200
     result = resp.json()
-    assert result["warc_path"].endswith("veritas-data-test-warc.warc.gz")
+    assert result["warc_path"].endswith("TAKE_CANADA_BACK-data-test-warc.warc.gz")
     assert result["warc_bytes"] > 0
 
     records = _records(result["warc_path"])
@@ -63,4 +63,4 @@ def test_package_can_include_warc(client):
     assert resp.status_code == 200
     body = resp.json()
     assert body["package_path"] is None
-    assert body["warc_path"].endswith("veritas-data-test-package.warc.gz")
+    assert body["warc_path"].endswith("TAKE_CANADA_BACK-data-test-package.warc.gz")

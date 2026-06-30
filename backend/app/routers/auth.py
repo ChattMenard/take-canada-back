@@ -1,4 +1,4 @@
-"""Authentication endpoints for Veritas API."""
+"""Authentication endpoints for TAKE_CANADA_BACK API."""
 
 from datetime import timedelta
 

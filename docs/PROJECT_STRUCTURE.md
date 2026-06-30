@@ -1,7 +1,7 @@
-# Veritas Project Structure
+# TAKE_CANADA_BACK Project Structure
 
 ## Overview
-Veritas is an open-source evidentiary collection engine for documenting government accountability with cryptographic integrity guarantees.
+TAKE_CANADA_BACK is an open-source evidentiary collection engine for documenting government accountability with cryptographic integrity guarantees.
 
 ## Architecture
 

@@ -2,7 +2,7 @@
 
 ## Bridging Economic Analysis to Government Accountability
 
-This document connects our quantitative economic research with the Veritas transparency campaign, providing a framework for evidence collection and accountability requests focused on economic policy and fiscal responsibility.
+This document connects our quantitative economic research with the TAKE_CANADA_BACK transparency campaign, providing a framework for evidence collection and accountability requests focused on economic policy and fiscal responsibility.
 
 ---
 
@@ -74,7 +74,7 @@ Economic accountability extends government oversight beyond traditional transpar
 ## Implementation Timeline
 
 ### Phase 1: Foundation (Week 1-2)
-- Integrate economic evidence types into Veritas
+- Integrate economic evidence types into TAKE_CANADA_BACK
 - Create economic accountability ATIP templates
 - Establish quantitative analysis verification
 
@@ -119,11 +119,11 @@ Economic accountability extends government oversight beyond traditional transpar
 
 ## Conclusion
 
-Economic accountability extends government transparency to include fiscal responsibility, tax fairness, and energy security. By integrating quantitative economic analysis with the Veritas evidence framework, we provide citizens with the tools to hold governments accountable for economic decisions that affect every Canadian.
+Economic accountability extends government transparency to include fiscal responsibility, tax fairness, and energy security. By integrating quantitative economic analysis with the TAKE_CANADA_BACK evidence framework, we provide citizens with the tools to hold governments accountable for economic decisions that affect every Canadian.
 
 This framework ensures that economic policy is subject to the same rigorous evidence collection and verification standards as other areas of government accountability, creating a comprehensive approach to democratic oversight.
 
 ---
 
-*Document prepared for Veritas economic accountability integration.*
+*Document prepared for TAKE_CANADA_BACK economic accountability integration.*
 *Updated: 2026-06-26*

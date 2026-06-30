@@ -218,4 +218,4 @@ The answer, based on the evidence, is yes.
 *This draft complaint is based on publicly available information and is intended for public accountability purposes. It does not constitute legal advice.*
 *Prepared by: [YOUR FULL NAME]*
 *Document prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

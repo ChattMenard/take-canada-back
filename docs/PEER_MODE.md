@@ -18,7 +18,7 @@ Build a production-quality, tamper-evident archive of Canadian government accoun
 - Collect evidence aligned with the four campaign tracks
 - Ensure every evidence item has context (threat level, legal relevance, notes)
 - Build the entity/relationship graph to map connections between actors
-- Improve the Veritas tooling to support the campaign
+- Improve the TAKE_CANADA_BACK tooling to support the campaign
 - Audit and update documentation to reflect current state
 - Challenge decisions that don't serve the mission
 

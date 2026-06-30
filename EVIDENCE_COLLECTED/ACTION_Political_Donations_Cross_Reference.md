@@ -256,5 +256,5 @@ When you find a correlation, document it in this format:
 
 ---
 
-*Framework prepared for Veritas political accountability research.*
+*Framework prepared for TAKE_CANADA_BACK political accountability research.*
 *Updated: 2026-06-27*

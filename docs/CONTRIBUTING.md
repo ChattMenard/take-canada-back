@@ -1,6 +1,6 @@
 # Contributing
 
-Veritas is open source (MIT) and welcomes contributions that strengthen its
+TAKE_CANADA_BACK is open source (MIT) and welcomes contributions that strengthen its
 core promise: **collecting and preserving public-record evidence with provable
 integrity.**
 

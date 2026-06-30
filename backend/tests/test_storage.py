@@ -17,7 +17,7 @@ def _setup_store(tmp_path, monkeypatch):
 def test_hash_bytes():
     from app.storage import hash_bytes
 
-    data = b"hello veritas"
+    data = b"hello TAKE_CANADA_BACK"
     expected = hashlib.sha256(data).hexdigest()
     assert hash_bytes(data) == expected
 

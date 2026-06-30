@@ -1,6 +1,6 @@
 # Deployment & Running
 
-Veritas runs as two processes: the **backend** (FastAPI on port 8000) and the
+TAKE_CANADA_BACK runs as two processes: the **backend** (FastAPI on port 8000) and the
 **frontend** (Vite dev server on port 5173). For local accountability work,
 running both on your own machine is the recommended setup.
 
@@ -21,7 +21,7 @@ uvicorn app.main:app --reload --port 8000
 
 - API: `http://127.0.0.1:8000`
 - Interactive docs: `http://127.0.0.1:8000/docs`
-- On first run, `data/veritas.db` and `data/store/` are created automatically.
+- On first run, `data/TAKE_CANADA_BACK.db` and `data/store/` are created automatically.
 
 ## Frontend
 
@@ -37,19 +37,19 @@ npm run dev
 
 ## Configuration
 
-Override any setting with a `VERITAS_`-prefixed environment variable
+Override any setting with a `TAKE_CANADA_BACK_`-prefixed environment variable
 (see `backend/app/config.py`):
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `VERITAS_DATA_DIR` | `backend/data` | Directory for generated manifests, packages, and WARC files. |
-| `VERITAS_DATABASE_URL` | `sqlite:///…/data/veritas.db` | DB location / engine. |
-| `VERITAS_STORAGE_DIR` | `…/data/store` | Object store path. |
-| `VERITAS_TIMESTAMP_DIR` | `…/data/timestamps` | OpenTimestamps `.ots` signatures. |
-| `VERITAS_TIMESTAMP_ENABLED` | `true` | Auto-create timestamps on ingest. |
-| `VERITAS_TIMESTAMP_CALENDARS` | 3 public calendars | JSON array of calendar URLs. |
-| `VERITAS_MAX_UPLOAD_MB` | `512` | Max upload size. |
-| `VERITAS_CORS_ORIGINS` | localhost:5173 | Allowed browser origins. |
+| `TAKE_CANADA_BACK_DATA_DIR` | `backend/data` | Directory for generated manifests, packages, and WARC files. |
+| `TAKE_CANADA_BACK_DATABASE_URL` | `sqlite:///…/data/TAKE_CANADA_BACK.db` | DB location / engine. |
+| `TAKE_CANADA_BACK_STORAGE_DIR` | `…/data/store` | Object store path. |
+| `TAKE_CANADA_BACK_TIMESTAMP_DIR` | `…/data/timestamps` | OpenTimestamps `.ots` signatures. |
+| `TAKE_CANADA_BACK_TIMESTAMP_ENABLED` | `true` | Auto-create timestamps on ingest. |
+| `TAKE_CANADA_BACK_TIMESTAMP_CALENDARS` | 3 public calendars | JSON array of calendar URLs. |
+| `TAKE_CANADA_BACK_MAX_UPLOAD_MB` | `512` | Max upload size. |
+| `TAKE_CANADA_BACK_CORS_ORIGINS` | localhost:5173 | Allowed browser origins. |
 
 A `.env` file in `backend/` is also read.
 
@@ -73,7 +73,7 @@ regularly:
 
 ```bash
 # Simple, consistent snapshot
-tar czf veritas-backup-$(date +%F).tgz -C backend data
+tar czf TAKE_CANADA_BACK-backup-$(date +%F).tgz -C backend data
 ```
 
 Store backups securely and off-machine. Losing this directory means losing the
@@ -109,16 +109,16 @@ volume mounted at `/app/data` for the SQLite database and object store.
 
 | Setting | Value |
 | --- | --- |
-| Railway project | `veritas` |
+| Railway project | `TAKE_CANADA_BACK` |
 | Service | `backend` |
 | Environment | `production` |
 | Region | `us-west2` |
 | Public URL | `https://backend-production-cf1f.up.railway.app` |
 | Domain target port | `8000` |
 | Volume mount | `/app/data` (5 GB) |
-| `VERITAS_DATABASE_URL` | `sqlite:////app/data/veritas.db` |
-| `VERITAS_STORAGE_DIR` | `/app/data/store` |
-| `VERITAS_CORS_ORIGINS` | `["https://frontend-rho-six-94.vercel.app","http://localhost:5173","http://127.0.0.1:5173"]` |
+| `TAKE_CANADA_BACK_DATABASE_URL` | `sqlite:////app/data/TAKE_CANADA_BACK.db` |
+| `TAKE_CANADA_BACK_STORAGE_DIR` | `/app/data/store` |
+| `TAKE_CANADA_BACK_CORS_ORIGINS` | `["https://frontend-rho-six-94.vercel.app","http://localhost:5173","http://127.0.0.1:5173"]` |
 
 Railway is configured in code for both supported deployment paths:
 
@@ -144,7 +144,7 @@ railway up --detach
 ### Vercel frontend
 
 The Vite-built frontend is deployed to Vercel, auto-deploying from the
-`ChattMenard/Veritas` GitHub repo on push to `main`.
+`ChattMenard/TAKE_CANADA_BACK` GitHub repo on push to `main`.
 
 | Setting | Value |
 | --- | --- |
@@ -165,7 +165,7 @@ vercel --prod --yes
 
 ```bash
 railway login                    # one-time auth
-railway link                     # select project "veritas", env "production", service "backend"
+railway link                     # select project "TAKE_CANADA_BACK", env "production", service "backend"
 railway up --detach              # deploy
 railway logs                     # view deploy logs
 railway variables                # inspect env vars
@@ -177,7 +177,7 @@ railway variables                # inspect env vars
 
 - **Backend health:** `GET /api/health` → `{"status":"ok","version":"0.1.0"}`
 - **Backend stats:** `GET /api/stats` → evidence/entity counts and storage usage
-- **Frontend:** HTTP 200 response with `<title>Veritas — Evidentiary Collection Engine</title>`
+- **Frontend:** HTTP 200 response with `<title>TAKE_CANADA_BACK — Evidentiary Collection Engine</title>`
 
 ### Monitoring commands
 
@@ -227,7 +227,7 @@ docker-compose up --build
 The backend can run against PostgreSQL instead of SQLite. Set:
 
 ```bash
-VERITAS_DATABASE_URL=postgresql://user:password@localhost:5432/veritas
+TAKE_CANADA_BACK_DATABASE_URL=postgresql://user:password@localhost:5432/TAKE_CANADA_BACK
 ```
 
 Tables and indexes are created automatically on startup. Full-text search falls

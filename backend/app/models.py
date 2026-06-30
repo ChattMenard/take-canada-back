@@ -1,4 +1,4 @@
-"""Database models for the Veritas evidentiary collection engine.
+"""Database models for the TAKE_CANADA_BACK evidentiary collection engine.
 
 Architecture spans all three phases:
   * Phase 1 (implemented): Evidence + ChainOfCustodyEvent  -> the vault.

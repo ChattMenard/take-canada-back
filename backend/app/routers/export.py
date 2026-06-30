@@ -103,7 +103,7 @@ def package_vault(
     manifest = generate_manifest(vault_id, session)
 
     # Write manifest to data directory
-    manifest_path = settings.data_dir / f"veritas-manifest-{vault_id}.json"
+    manifest_path = settings.data_dir / f"TAKE_CANADA_BACK-manifest-{vault_id}.json"
     with open(manifest_path, "w") as f:
         json.dump(manifest.model_dump(mode="json"), f, indent=2, default=str)
 
@@ -112,7 +112,7 @@ def package_vault(
 
     if include_store:
         # Create tarball of object store
-        package_path = settings.data_dir / f"veritas-data-{vault_id}.tar.gz"
+        package_path = settings.data_dir / f"TAKE_CANADA_BACK-data-{vault_id}.tar.gz"
         store_path = settings.storage_dir
         timestamp_path = settings.timestamp_dir
 
@@ -124,7 +124,7 @@ def package_vault(
 
     if include_warc:
         evidence = session.exec(select(Evidence).order_by(Evidence.id)).all()
-        warc_path = settings.data_dir / f"veritas-data-{vault_id}.warc.gz"
+        warc_path = settings.data_dir / f"TAKE_CANADA_BACK-data-{vault_id}.warc.gz"
         _write_warc_or_410(warc_path, evidence, vault_id)
 
     return ExportResult(
@@ -143,7 +143,7 @@ def export_warc(
 ):
     """Export stored evidence objects as a compressed WARC 1.1 archive."""
     evidence = session.exec(select(Evidence).order_by(Evidence.id)).all()
-    warc_path = settings.data_dir / f"veritas-data-{vault_id}.warc.gz"
+    warc_path = settings.data_dir / f"TAKE_CANADA_BACK-data-{vault_id}.warc.gz"
     _write_warc_or_410(warc_path, evidence, vault_id)
     return WarcExportResult(
         warc_path=str(warc_path),
@@ -187,7 +187,7 @@ def create_signed_export(
     manifest = generate_manifest(vault_id, session)
     
     # Write manifest to data directory
-    manifest_path = settings.data_dir / f"veritas-manifest-{vault_id}.json"
+    manifest_path = settings.data_dir / f"TAKE_CANADA_BACK-manifest-{vault_id}.json"
     with open(manifest_path, "w") as f:
         json.dump(manifest.model_dump(mode="json"), f, indent=2, default=str)
     
@@ -197,7 +197,7 @@ def create_signed_export(
     
     if include_store:
         # Create tarball of object store
-        bundle_path = settings.data_dir / f"veritas-data-{vault_id}.tar.gz"
+        bundle_path = settings.data_dir / f"TAKE_CANADA_BACK-data-{vault_id}.tar.gz"
         store_path = settings.storage_dir
         timestamp_path = settings.timestamp_dir
         
@@ -210,13 +210,13 @@ def create_signed_export(
     
     if include_warc:
         evidence = session.exec(select(Evidence).order_by(Evidence.id)).all()
-        warc_path = settings.data_dir / f"veritas-data-{vault_id}.warc.gz"
+        warc_path = settings.data_dir / f"TAKE_CANADA_BACK-data-{vault_id}.warc.gz"
         _write_warc_or_410(warc_path, evidence, vault_id)
         bundle_files.append(warc_path)
     
     # Create final bundle if we have multiple files
     if len(bundle_files) > 1:
-        final_bundle_path = settings.data_dir / f"veritas-bundle-{vault_id}.tar.gz"
+        final_bundle_path = settings.data_dir / f"TAKE_CANADA_BACK-bundle-{vault_id}.tar.gz"
         with tarfile.open(final_bundle_path, "w:gz") as tar:
             for file_path in bundle_files:
                 tar.add(file_path, arcname=file_path.name)
@@ -231,7 +231,7 @@ def create_signed_export(
     signed_bundle = sign_bundle(manifest.model_dump(mode="json"), bundle_data)
     
     # Write signed bundle
-    signed_bundle_path = settings.data_dir / f"veritas-signed-{vault_id}.json"
+    signed_bundle_path = settings.data_dir / f"TAKE_CANADA_BACK-signed-{vault_id}.json"
     with open(signed_bundle_path, "w") as f:
         json.dump(signed_bundle, f, indent=2)
     

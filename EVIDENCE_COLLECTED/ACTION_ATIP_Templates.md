@@ -575,4 +575,4 @@ I am willing to pay reasonable fees up to $25.
 
 *These templates are ready to file. All personal information has been populated.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

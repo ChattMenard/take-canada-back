@@ -93,7 +93,7 @@ curl -X POST http://127.0.0.1:8000/api/evidence/collect-url \
 **Security (SSRF guard):** only `http`/`https` are allowed; hosts that resolve
 to private, loopback, link-local, reserved, or NAT64-embedded private addresses
 are refused, and **every redirect hop is re-validated**. Set
-`VERITAS_ALLOW_PRIVATE_COLLECT=true` only for trusted local testing.
+`TAKE_CANADA_BACK_ALLOW_PRIVATE_COLLECT=true` only for trusted local testing.
 **422** is returned for blocked hosts, bad schemes, empty bodies, over-size
 resources, too many redirects, or upstream HTTP errors.
 
@@ -356,7 +356,7 @@ curl -X POST "http://127.0.0.1:8000/api/export/warc?vault_id=release-2026-06"
 ```
 
 The WARC contains one `resource` record per evidence object and a paired
-`metadata` record with Veritas provenance fields.
+`metadata` record with TAKE_CANADA_BACK provenance fields.
 
 ### `POST /api/export/verify-all`
 
@@ -388,7 +388,7 @@ Response:
 ]
 ```
 
-The batch is capped at `VERITAS_COLLECT_BATCH_LIMIT` (default 50).
+The batch is capped at `TAKE_CANADA_BACK_COLLECT_BATCH_LIMIT` (default 50).
 
 ### `POST /api/collect/crawl`
 

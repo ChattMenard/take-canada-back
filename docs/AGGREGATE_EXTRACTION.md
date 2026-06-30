@@ -183,5 +183,5 @@ To improve this analysis, the following data is required:
 
 ---
 
-*Document prepared for Veritas aggregate extraction accountability.*
+*Document prepared for TAKE_CANADA_BACK aggregate extraction accountability.*
 *Updated: 2026-06-27*

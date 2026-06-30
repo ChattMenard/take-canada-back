@@ -2,7 +2,7 @@
 
 ## Scope
 
-Veritas preserves potentially sensitive public-record evidence. Two security
+TAKE_CANADA_BACK preserves potentially sensitive public-record evidence. Two security
 surfaces matter most:
 
 1. **Integrity** — can stored evidence or the custody log be altered without
@@ -34,7 +34,7 @@ surfaces matter most:
 
 Please **do not** open a public issue for security/integrity vulnerabilities.
 Instead, report privately to the repository owner via GitHub (e.g., a private
-security advisory on `ChattMenard/Veritas`, or direct contact).
+security advisory on `ChattMenard/TAKE_CANADA_BACK`, or direct contact).
 
 Include:
 

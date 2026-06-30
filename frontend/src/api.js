@@ -1,15 +1,15 @@
-// Thin API client for the Veritas backend.
+// Thin API client for the TAKE_CANADA_BACK backend.
 // In dev, Vite proxies /api to :8000. In production, set VITE_API_BASE_URL.
 const BASE = import.meta.env.VITE_API_BASE_URL || "/api";
 
-let authToken = localStorage.getItem("veritas_token");
+let authToken = localStorage.getItem("TAKE_CANADA_BACK_token");
 
 export function setToken(token) {
   authToken = token;
   if (token) {
-    localStorage.setItem("veritas_token", token);
+    localStorage.setItem("TAKE_CANADA_BACK_token", token);
   } else {
-    localStorage.removeItem("veritas_token");
+    localStorage.removeItem("TAKE_CANADA_BACK_token");
   }
 }
 

@@ -275,4 +275,4 @@ Private prosecutions are not covered by legal aid. You would need to:
 
 *This framework is for informational and strategic purposes. It does not constitute legal advice. Private prosecutions are complex and should not be undertaken without qualified legal counsel.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

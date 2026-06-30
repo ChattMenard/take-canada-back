@@ -1,6 +1,6 @@
 """
 Government Wealth Tracking Models
-Veritas Evidence Collection System
+TAKE_CANADA_BACK Evidence Collection System
 """
 
 from sqlalchemy import Column, Integer, String, Date, Text, Boolean, ForeignKey, DateTime, Numeric

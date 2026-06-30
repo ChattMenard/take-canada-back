@@ -7,17 +7,17 @@ DATA_DIR = BASE_DIR / "data"
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="VERITAS_", env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_prefix="TAKE_CANADA_BACK_", env_file=".env", extra="ignore")
 
-    app_name: str = "Veritas Evidentiary Collection Engine"
+    app_name: str = "TAKE_CANADA_BACK Evidentiary Collection Engine"
     data_dir: Path = DATA_DIR
-    database_url: str = f"sqlite:///{DATA_DIR / 'veritas.db'}"
+    database_url: str = f"sqlite:///{DATA_DIR / 'TAKE_CANADA_BACK.db'}"
     # Content-addressed object store: files saved under store/<sha256[:2]>/<sha256>
     storage_dir: Path = DATA_DIR / "store"
     # OpenTimestamps detached signatures: one .ots file per evidence hash
     timestamp_dir: Path = DATA_DIR / "timestamps"
     # Comma-friendly CORS origins. Add your Vercel frontend URL via
-    # VERITAS_CORS_ORIGINS env var (JSON array format).
+    # TAKE_CANADA_BACK_CORS_ORIGINS env var (JSON array format).
     cors_origins: list[str] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",

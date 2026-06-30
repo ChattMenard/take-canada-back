@@ -28,7 +28,7 @@ Good provenance habits:
 ## 2. Collect evidence from a public URL (one click)
 
 In the **Preserve evidence** dialog, switch to the **From URL** tab, paste a
-public URL, add any metadata, and click **Collect & hash**. Veritas fetches the
+public URL, add any metadata, and click **Collect & hash**. TAKE_CANADA_BACK fetches the
 resource server-side, hashes it, derives the filename (from the
 `Content-Disposition` header when present), and records the source URL, HTTP
 status, and retrieval time in the chain of custody.
@@ -54,7 +54,7 @@ In the UI, click any item in the sidebar to open its detail view:
 
 ## 4. Verify integrity
 
-Click **Verify integrity** (or `POST /api/evidence/{id}/verify`). Veritas
+Click **Verify integrity** (or `POST /api/evidence/{id}/verify`). TAKE_CANADA_BACK
 re-reads the stored bytes, recomputes the hash, and compares it to the recorded
 value:
 
@@ -83,9 +83,9 @@ curl -X POST "http://127.0.0.1:8000/api/export/warc?vault_id=release-2026-06"
 curl -X POST "http://127.0.0.1:8000/api/export/package?vault_id=release-2026-06&include_warc=true"
 ```
 
-The WARC export is written as `backend/data/veritas-data-<vault_id>.warc.gz` by
+The WARC export is written as `backend/data/TAKE_CANADA_BACK-data-<vault_id>.warc.gz` by
 default and preserves each evidence object as an interoperable WARC `resource`
-record with paired Veritas metadata.
+record with paired TAKE_CANADA_BACK metadata.
 
 ## 7. Search
 

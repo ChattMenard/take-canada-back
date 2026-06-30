@@ -138,4 +138,4 @@ If you read this timeline carefully, a pattern emerges:
 
 *Use this timeline to answer "when did this happen?" and "what was happening at the same time in other domains?"*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

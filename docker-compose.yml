@@ -3,11 +3,11 @@ version: '3.8'
 services:
   db:
     image: postgres:15-alpine
-    container_name: veritas-db
+    container_name: TAKE_CANADA_BACK-db
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-veritas}
+      POSTGRES_USER: ${POSTGRES_USER:-TAKE_CANADA_BACK}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_in_production}
-      POSTGRES_DB: ${POSTGRES_DB:-veritas}
+      POSTGRES_DB: ${POSTGRES_DB:-TAKE_CANADA_BACK}
     volumes:
       - ./backend/data/postgres:/var/lib/postgresql/data
     # Not exposed to the host; only the backend service connects internally.
@@ -22,16 +22,16 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: veritas-backend
+    container_name: TAKE_CANADA_BACK-backend
     ports:
       - "8000:8000"
     volumes:
       - ./backend/data:/app/data
     environment:
       - PYTHONUNBUFFERED=1
-      - VERITAS_DATABASE_URL=postgresql://${POSTGRES_USER:-veritas}:${POSTGRES_PASSWORD:-change_me_in_production}@db:5432/${POSTGRES_DB:-veritas}
-      - VERITAS_STORAGE_DIR=/app/data/store
-      - VERITAS_TIMESTAMP_DIR=/app/data/timestamps
+      - TAKE_CANADA_BACK_DATABASE_URL=postgresql://${POSTGRES_USER:-TAKE_CANADA_BACK}:${POSTGRES_PASSWORD:-change_me_in_production}@db:5432/${POSTGRES_DB:-TAKE_CANADA_BACK}
+      - TAKE_CANADA_BACK_STORAGE_DIR=/app/data/store
+      - TAKE_CANADA_BACK_TIMESTAMP_DIR=/app/data/timestamps
     depends_on:
       db:
         condition: service_healthy
@@ -41,7 +41,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: veritas-frontend
+    container_name: TAKE_CANADA_BACK-frontend
     ports:
       - "80:80"
     depends_on:

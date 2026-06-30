@@ -1,7 +1,7 @@
 # Evidence Vetting Report
 
 **Date:** 2026-06-27
-**Vetter:** Veritas internal audit
+**Vetter:** TAKE_CANADA_BACK internal audit
 **Scope:** All `EVIDENCE_COLLECTED/` and `docs/` files for factual accuracy, sourcing strength, inflated framing, and internal consistency.
 
 ---

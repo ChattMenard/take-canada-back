@@ -329,4 +329,4 @@ The Court set out the elements of breach of trust:
 ---
 
 *All case citations verified against publicly available court records and legal databases (CanLII, SCC, Federal Court).*
-*This document is part of the Veritas Corporate Accountability Research Project.*
+*This document is part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

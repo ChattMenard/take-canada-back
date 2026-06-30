@@ -337,4 +337,4 @@ The "big fellas" can afford to pay more. Canada cannot afford to let them contin
 
 *Prepared: June 26, 2026*
 *Analysis based on CRA data, OECD comparisons, and economic modeling*
-*Part of the Veritas Economic Accountability Research Project*
+*Part of the TAKE_CANADA_BACK Economic Accountability Research Project*

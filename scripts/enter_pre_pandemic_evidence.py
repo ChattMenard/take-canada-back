@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enter pre-pandemic connection evidence into the Veritas database.
+Enter pre-pandemic connection evidence into the TAKE_CANADA_BACK database.
 """
 
 import sys

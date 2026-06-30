@@ -1,6 +1,6 @@
 # Architecture
 
-Veritas is a two-tier application: a **Python engine** that owns all integrity
+TAKE_CANADA_BACK is a two-tier application: a **Python engine** that owns all integrity
 and persistence concerns, and a **React UI** that is a thin client over the
 engine's HTTP API. Everything important happens in the backend; the frontend
 holds no authoritative state.
@@ -23,7 +23,7 @@ holds no authoritative state.
                 │                        │
         ┌───────▼────────┐      ┌────────▼─────────────┐
         │  SQLite (DB)   │      │  Content-addressed   │
-        │  veritas.db    │      │  object store        │
+        │  TAKE_CANADA_BACK.db    │      │  object store        │
         │  metadata,     │      │  data/store/<ab>/<h> │
         │  custody log   │      │  raw bytes by SHA-256│
         └────────────────┘      └──────────────────────┘
@@ -79,12 +79,12 @@ holds no authoritative state.
 
 ## Configuration
 
-All settings are environment-overridable with the `VERITAS_` prefix (see
+All settings are environment-overridable with the `TAKE_CANADA_BACK_` prefix (see
 `app/config.py`). Examples:
 
 ```bash
-export VERITAS_MAX_UPLOAD_MB=1024
-export VERITAS_DATABASE_URL="sqlite:////absolute/path/veritas.db"
+export TAKE_CANADA_BACK_MAX_UPLOAD_MB=1024
+export TAKE_CANADA_BACK_DATABASE_URL="sqlite:////absolute/path/TAKE_CANADA_BACK.db"
 ```
 
 ## Known architectural limits (today)

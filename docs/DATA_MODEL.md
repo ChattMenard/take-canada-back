@@ -38,7 +38,7 @@ The canonical record for one preserved item.
 | `collected_by` | str? | Operator/handle who collected it. |
 | `notes` | str? | Context, significance. |
 | `extracted_text` | str? | Plain text extracted from PDF/HTML/text for full-text search. |
-| `created_at` | datetime (indexed) | When ingested into Veritas. |
+| `created_at` | datetime (indexed) | When ingested into TAKE_CANADA_BACK. |
 
 ### Full-text search (`evidence_fts`)
 

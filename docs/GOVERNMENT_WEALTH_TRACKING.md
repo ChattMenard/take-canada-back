@@ -2,7 +2,7 @@
 
 ## Following the Money: Policy, Power, and Personal Enrichment
 
-This framework extends the Veritas transparency campaign to track how government officials and their networks benefit from policy decisions, procurement contracts, and regulatory changes.
+This framework extends the TAKE_CANADA_BACK transparency campaign to track how government officials and their networks benefit from policy decisions, procurement contracts, and regulatory changes.
 
 ---
 
@@ -507,11 +507,11 @@ This request relates to understanding how government officials manage their fina
 
 ## Conclusion
 
-The Government Wealth Tracking Framework extends Veritas accountability tools to examine how public officials might benefit from policy decisions. By focusing on documented evidence, temporal patterns, and verifiable data, this framework provides citizens with tools to understand potential conflicts between public service and private enrichment.
+The Government Wealth Tracking Framework extends TAKE_CANADA_BACK accountability tools to examine how public officials might benefit from policy decisions. By focusing on documented evidence, temporal patterns, and verifiable data, this framework provides citizens with tools to understand potential conflicts between public service and private enrichment.
 
-This approach maintains the Veritas commitment to evidence-based accountability while addressing legitimate public interest questions about the intersection of policy-making and personal wealth.
+This approach maintains the TAKE_CANADA_BACK commitment to evidence-based accountability while addressing legitimate public interest questions about the intersection of policy-making and personal wealth.
 
 ---
 
-*Document prepared for Veritas government wealth tracking integration.*
+*Document prepared for TAKE_CANADA_BACK government wealth tracking integration.*
 *Updated: June 26, 2026*

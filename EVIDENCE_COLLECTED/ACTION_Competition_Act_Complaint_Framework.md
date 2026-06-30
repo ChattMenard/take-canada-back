@@ -257,4 +257,4 @@ Request that Members of Parliament:
 
 *This framework is based on publicly available information and is intended for public accountability purposes. It does not constitute legal advice.*
 *Prepared: June 26, 2026*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

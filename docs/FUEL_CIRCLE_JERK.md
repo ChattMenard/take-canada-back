@@ -197,5 +197,5 @@ The $8.5B investment in domestic refining capacity (per `TRANSPARENCY_CAMPAIGN.m
 
 ---
 
-*Document prepared for Veritas fuel sovereignty accountability.*
+*Document prepared for TAKE_CANADA_BACK fuel sovereignty accountability.*
 *Updated: 2026-06-26*

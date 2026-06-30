@@ -419,4 +419,4 @@ The study found distinct immunological patterns including:
 
 *All primary sources listed above are publicly accessible as of June 26, 2026.*
 *No confidential, leaked, or classified sources are required to substantiate these claims.*
-*This substantiation pack is part of the Veritas Corporate Accountability Research Project.*
+*This substantiation pack is part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

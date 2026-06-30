@@ -2,11 +2,11 @@
 
 **Chain of custody** — An append-only log of every action taken on a piece of
 evidence (creation, access, verification, annotation, export), each stamped with
-a timestamp and the hash observed at that moment. In Veritas these records
+a timestamp and the hash observed at that moment. In TAKE_CANADA_BACK these records
 cannot be edited or deleted.
 
 **Content-addressed storage** — A storage scheme where a file's location is
-derived from a hash of its contents. In Veritas, files live at
+derived from a hash of its contents. In TAKE_CANADA_BACK, files live at
 `data/store/<first2>/<sha256>`. Changing the contents changes the address, which
 is what makes tampering evident.
 
@@ -32,7 +32,7 @@ board seat, ownership, lobbying, employment, other), optionally substantiated by
 evidence.
 
 **Tamper-evident vs. tamper-proof** — *Tamper-evident* means alterations can be
-**detected** (Veritas's current guarantee). *Tamper-proof* means alterations are
+**detected** (TAKE_CANADA_BACK's current guarantee). *Tamper-proof* means alterations are
 **prevented** even against privileged attackers (a roadmap goal via hash-chaining
 and external anchoring).
 

@@ -178,4 +178,4 @@ IMC coordinated a lobbying campaign to suppress drug price competition, maintain
 ---
 
 *All documents are ready to file. Prepared by [YOUR FULL NAME].*
-*Part of the Veritas Corporate Accountability Research Project.*
+*Part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

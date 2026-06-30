@@ -202,4 +202,4 @@ Layer 5: CLINICAL DATA
 ---
 
 *All sources are publicly accessible government documents, court filings, FOIA requests, and investigative reports.*
-*This document is part of the Veritas Corporate Accountability Research Project.*
+*This document is part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*

@@ -336,7 +336,7 @@ THE PLATFORM
 ---
 
 *All sources are publicly available government documents, SEC filings, FOIA releases, court documents, peer-reviewed publications, and official reports.*
-*This document is part of the Veritas Corporate Accountability Research Project.*
+*This document is part of the TAKE_CANADA_BACK Corporate Accountability Research Project.*
 
 **Evidence Quality: CRITICAL — Based on official government documents, SEC filings, FOIA releases, and court records**
 **Pattern Significance: SYSTEMIC — Documented pre-existing infrastructure activated by pandemic**
