@@ -28,6 +28,12 @@
 - [LOBBYING_MEETINGS_ANALYSIS.md](./LOBBYING_MEETINGS_ANALYSIS.md) — Pharma lobbying
 - [Pfizer_Patent_Secrecy_Redactions.md](./Pfizer_Patent_Secrecy_Redactions.md) — Contract secrecy
 - [ATIP_REQUEST_TEMPLATES.md](./ATIP_REQUEST_TEMPLATES.md) — Evidence collection
+- [ACTION_Draft_Ethics_Complaint_Duclos.md](./ACTION_Draft_Ethics_Complaint_Duclos.md) — Ethics complaint against Duclos
+- [ACTION_Competition_Act_Complaint_Framework.md](./ACTION_Competition_Act_Complaint_Framework.md) — Competition Act complaint
+- [ACTION_Private_Prosecution_Framework.md](./ACTION_Private_Prosecution_Framework.md) — Private prosecution framework
+- [ACTION_Sakamoto_Class_Action_Intervention.md](./ACTION_Sakamoto_Class_Action_Intervention.md) — Class action intervention
+- [VALIDATED_Pfizer_Secrecy_Claims.md](./VALIDATED_Pfizer_Secrecy_Claims.md) — Pfizer secrecy validation
+- [Common_Law_References_Legal_Precedents.md](./Common_Law_References_Legal_Precedents.md) — Legal precedents
 
 ---
 
@@ -79,6 +85,7 @@
 
 ---
 
+**Note:** Connected to Phase 1 (pre-pandemic platform evidence)
 ## 🎯 LEGAL STRATEGIES
 
 ### Strategy 1: Ethics Complaint
@@ -88,11 +95,14 @@
 
 ### Strategy 2: ATIP Requests
 - [ATIP_REQUEST_TEMPLATES.md](./ATIP_REQUEST_TEMPLATES.md) — 6 templates ready
+**Note:** Connected to Phase 1 (pre-pandemic platform evidence)
 
 **Evidence Required:** None (templates ready for filing)
 
 ### Strategy 3: Competition Act Complaint
-- [ACTION_Competition_Act_Complaint_Framework.md](./ACTION_Competition_Act_Complaint_Framework.md) — Ready to draft
+- Note:** Connected to Phase 1 (pre-pandemic platform evidence)
+
+**[ACTION_Competition_Act_Complaint_Framework.md](./ACTION_Competition_Act_Complaint_Framework.md) — Ready to draft
 
 **Evidence Required:** Lobbying registry, policy documents
 
