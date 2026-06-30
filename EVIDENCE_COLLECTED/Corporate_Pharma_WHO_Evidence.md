@@ -379,7 +379,7 @@ CANADA → WHO
 
 *Evidence compiled from Auditor General reports, parliamentary committee testimony, ATIP documents, lobby registry records, WHO financial reports, and investigative journalism as of June 26, 2026.*
 *All sources are publicly available and legally accessible.*
-*This document is part of the Veritas Corporate Accountability Research Project.*
+*This document is part of the TAKE_CANADA_BACK project.*
 
 **Evidence Quality: HIGH - Based on official government audits, parliamentary records, and public registries**
 **Pattern Significance: CRITICAL - Documented regulatory capture and corporate influence on health policy**

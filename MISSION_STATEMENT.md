@@ -260,6 +260,6 @@ Always faithful. Always one.
 
 ---
 
-*This mission statement is based on evidence collected through the Veritas Corporate Accountability Research Project. Every claim is sourced. Every document is preserved. The evidence speaks for itself.*
+*This mission statement is based on evidence collected through the TAKE_CANADA_BACK project. Every claim is sourced. Every document is preserved. The evidence speaks for itself.*
 
 *Created: June 29, 2026*

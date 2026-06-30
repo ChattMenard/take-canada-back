@@ -4,6 +4,25 @@
 
 ---
 
+## THE CORE DOCUMENTS
+
+These are the documents that matter. Start with the Mission Statement, then drill into the evidence. Every claim is sourced. Every rebuttal is destroyed. There is no escape.
+
+| Document | What It Is | Why Read It |
+|----------|------------|-------------|
+| [MISSION_STATEMENT.md](./MISSION_STATEMENT.md) | The Top 15 Fuckeries | Plain-language summary of the worst documented government actions |
+| [EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md](./EVIDENCE_COLLECTED/TOP_15_SUBSTANTIATION.md) | Evidence for every claim | Primary source citations, quotes, and cross-references |
+| [EVIDENCE_COLLECTED/REBUTTAL_AND_REFUTATION.md](./EVIDENCE_COLLECTED/REBUTTAL_AND_REFUTATION.md) | Counter-arguments destroyed | Every legitimate rebuttal identified and demolished |
+| [EVIDENCE_COLLECTED/NO_ESCAPE.md](./EVIDENCE_COLLECTED/NO_ESCAPE.md) | Sealing all exits | The 10 remaining retreat routes — closed |
+| [EVIDENCE_COLLECTED/MASTER_INDICTMENT.md](./EVIDENCE_COLLECTED/MASTER_INDICTMENT.md) | Complete evidence dossier | All investigation tracks compiled |
+| [EVIDENCE_COLLECTED/TEN_WORST_ACTIONS.md](./EVIDENCE_COLLECTED/TEN_WORST_ACTIONS.md) | Top 10 worst actions | Detailed harms, beneficiaries, and victims |
+| [EVIDENCE_COLLECTED/VISUAL_EVIDENCE.md](./EVIDENCE_COLLECTED/VISUAL_EVIDENCE.md) | Diagrams and timelines | 14 Mermaid/ASCII visualizations |
+| [EVIDENCE_COLLECTED/ATIP_REQUEST_TEMPLATES.md](./EVIDENCE_COLLECTED/ATIP_REQUEST_TEMPLATES.md) | 6 ready-to-submit requests | Templates to force disclosure |
+
+**Every claim is documented. Every source is primary. Every rebuttal is dead.**
+
+---
+
 # PRE-PANDEMIC CONNECTIONS: The Platform Was Built Before the Pandemic
 
 ## Evidence Compilation: The Dirty Connection
@@ -342,7 +361,7 @@ THE PLATFORM
 ---
 
 *All sources are publicly available government documents, SEC filings, FOIA releases, court documents, peer-reviewed publications, and official reports.*
-*This document is part of the Veritas Corporate Accountability Research Project.*
+*This document is part of the TAKE_CANADA_BACK project.*
 
 **Evidence Quality: CRITICAL — Based on official government documents, SEC filings, FOIA releases, and court records**
 **Pattern Significance: SYSTEMIC — Documented pre-existing infrastructure activated by pandemic**

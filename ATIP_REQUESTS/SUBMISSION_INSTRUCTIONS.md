@@ -103,7 +103,7 @@ Thank you for your assistance.
 
 Sincerely,
 [Your Name]
-Veritas Government Accountability Research Project
+TAKE_CANADA_BACK project
 
 ---
 
