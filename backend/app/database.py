@@ -53,7 +53,7 @@ def _is_sqlite() -> bool:
 def init_db() -> None:
     # Import models so SQLModel registers every table before create_all.
     from . import models  # noqa: F401
-    from .models import GovWealthBase  # noqa: F401
+    from .govt_models import GovWealthBase  # noqa: F401
 
     SQLModel.metadata.create_all(engine)
     GovWealthBase.metadata.create_all(engine)
