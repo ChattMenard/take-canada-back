@@ -8,7 +8,7 @@ from typing import Dict, List, Any
 router = APIRouter(prefix="/api/visualization", tags=["visualization"])
 
 # Path to extracted visualization data
-DATA_DIR = Path("/home/x99/Desktop/FUCK/frontend/src/data")
+DATA_DIR = Path(__file__).parent.parent / "data"
 
 @router.get("/timeline")
 async def get_timeline_events() -> Dict[str, Any]:

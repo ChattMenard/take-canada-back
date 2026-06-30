@@ -1,0 +1,212 @@
+[
+  {
+    "id": "acuitas",
+    "name": "Acuitas",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "anthony_fauci",
+    "name": "Anthony Fauci",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "arbutus",
+    "name": "Arbutus",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "bill_and_melinda_gates_foundation",
+    "name": "BILL & MELINDA GATES FOUNDATION",
+    "type": "foundation",
+    "influence_score": 70
+  },
+  {
+    "id": "barney_graham",
+    "name": "Barney Graham",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "bill_and_melinda_gates_foundation",
+    "name": "Bill & Melinda Gates Foundation",
+    "type": "foundation",
+    "influence_score": 70
+  },
+  {
+    "id": "biontech",
+    "name": "BioNTech",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "cepi",
+    "name": "CEPI",
+    "type": "foundation",
+    "influence_score": 70
+  },
+  {
+    "id": "cellscript",
+    "name": "Cellscript",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "darpa",
+    "name": "DARPA",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "drew_weissman",
+    "name": "Drew Weissman",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "gates_foundation",
+    "name": "Gates Foundation",
+    "type": "foundation",
+    "influence_score": 70
+  },
+  {
+    "id": "inex",
+    "name": "Inex",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "johns_hopkins",
+    "name": "Johns Hopkins",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "katalin_karik\u00f3",
+    "name": "Katalin Karik\u00f3",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "moderna",
+    "name": "Moderna",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "niaid",
+    "name": "NIAID",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "nih",
+    "name": "NIH",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "penn",
+    "name": "Penn",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "pfizer",
+    "name": "Pfizer",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "pieter_cullis",
+    "name": "Pieter Cullis",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "ralph_baric",
+    "name": "RALPH BARIC",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "ralph_baric",
+    "name": "Ralph Baric",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "tekmira",
+    "name": "Tekmira",
+    "type": "pharma",
+    "influence_score": 85
+  },
+  {
+    "id": "thomas_madden",
+    "name": "Thomas Madden",
+    "type": "person",
+    "influence_score": 60
+  },
+  {
+    "id": "ubc",
+    "name": "UBC",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "unc",
+    "name": "UNC",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "university_of_british_columbia",
+    "name": "UNIVERSITY OF BRITISH COLUMBIA",
+    "type": "organization",
+    "influence_score": 50
+  },
+  {
+    "id": "university_of_pennsylvania",
+    "name": "UNIVERSITY OF PENNSYLVANIA",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "university_of_british_columbia",
+    "name": "University of British Columbia",
+    "type": "organization",
+    "influence_score": 50
+  },
+  {
+    "id": "university_of_pennsylvania",
+    "name": "University of Pennsylvania",
+    "type": "government",
+    "influence_score": 75
+  },
+  {
+    "id": "wef",
+    "name": "WEF",
+    "type": "foundation",
+    "influence_score": 70
+  },
+  {
+    "id": "world_economic_forum",
+    "name": "World Economic Forum",
+    "type": "foundation",
+    "influence_score": 70
+  },
+  {
+    "id": "mrna_ribotherapeutics",
+    "name": "mRNA RiboTherapeutics",
+    "type": "organization",
+    "influence_score": 50
+  },
+  {
+    "id": "unc",
+    "name": "unc",
+    "type": "government",
+    "influence_score": 75
+  }
+]
