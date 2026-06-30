@@ -1,3 +1,9 @@
+# [>>> READ THE MISSION STATEMENT: THE TOP 15 FUCKERIES <<<](./MISSION_STATEMENT.md)
+
+**If you are new here, start there.** It explains why this repository exists, what the government did, and why it matters — in plain language with documented facts.
+
+---
+
 # PRE-PANDEMIC CONNECTIONS: The Platform Was Built Before the Pandemic
 
 ## Evidence Compilation: The Dirty Connection

@@ -133,7 +133,21 @@ EVIDENCE (detailed substantiation)
 ├── VALIDATED_Pfizer_Secrecy_Claims.md
 ├── Corporate_Pharma_WHO_Evidence.md
 ├── Government_Money_Trail_Evidence.md
-└── Common_Law_References_Legal_Precedents.md
+├── Common_Law_References_Legal_Precedents.md
+├── EVIDENCE_GAP_AUDIT.md                  → "What evidence is missing?"
+├── EVIDENCE_VETTING_REPORT.md             → "What claims are weak or false?"
+├── FAMILY_NETWORK_INVESTIGATION.md        → "Intelcom/Joly and Irving/LeBlanc"
+├── POLITICAL_DONATIONS_ANALYSIS.md        → "Elections Canada donation data"
+├── BROOKFIELD_PARLIAMENTARY_SCRUTINY.md   → "Q-735, Q-736, Q-603 analysis"
+├── MAPLE_FUND_INVESTIGATION.md            → "$50B conflict of interest"
+├── ETHICS_DISCLOSURES_INVESTIGATION.md    → "Revolving door patterns"
+├── LOBBYING_MEETINGS_ANALYSIS.md          → "Pharma lobbying registry data"
+├── ATIP_REQUEST_TEMPLATES.md              → "6 ready-to-submit requests"
+├── MASTER_INDICTMENT.md                   → "Complete evidence dossier"
+├── TEN_WORST_ACTIONS.md                   → "Top 10 government harms"
+├── VISUAL_EVIDENCE.md                     → "Diagrams, flowcharts, timelines"
+├── CANADA_2126_DYSTOPIA.md                → "100-year projection"
+└── OATH_AND_ALLEGIANCE.md                 → "Constitutional duty framework"
 │
 ▼
 ACTION (ready-to-use tools)
@@ -143,7 +157,9 @@ ACTION (ready-to-use tools)
 ├── ACTION_Competition_Act_Complaint_Framework.md
 ├── ACTION_Sakamoto_Class_Action_Intervention.md
 ├── ACTION_Private_Prosecution_Framework.md
-└── ACTION_Master_Summary.md
+├── ACTION_Master_Summary.md
+├── ACTION_Political_Donations_Cross_Reference.md
+└── CORPORATE_TAX_REFORM_ANALYSIS.md
 ```
 
 ---
