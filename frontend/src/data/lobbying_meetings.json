@@ -1,0 +1,107 @@
+[
+  {
+    "date": "2022-02-15",
+    "attendees": [
+      "Simon Kennedy",
+      "Deputy Minister"
+    ],
+    "subject": "Industry, IP",
+    "description": "Simon Kennedy (Deputy Minister, ISED) - Industry, IP",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2022-06-09",
+    "attendees": [
+      "Sebastien Bock",
+      "Sandenga Yeba",
+      "Senior Policy"
+    ],
+    "subject": "Health, Industry, S&T",
+    "description": "Jean-Sebastien Bock (Director of Policy, Minister's Office) + Sandenga Yeba (Senior Policy Advisor, Minister's Office) - Health, Industry, S&T",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2022-06-16",
+    "attendees": [
+      "Stephen Lucas",
+      "Deputy Minister",
+      "Health Canada"
+    ],
+    "subject": "Health, Industry, Trade",
+    "description": "Stephen Lucas (Deputy Minister, Health Canada) - Health, Industry, Trade",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2022-06-27",
+    "attendees": [
+      "Stephen Lucas",
+      "Deputy Minister",
+      "Health Canada",
+      "Nancy Hamzawi",
+      "Health Canada"
+    ],
+    "subject": "Health, Industry, IP, Trade, S&T",
+    "description": "Stephen Lucas (Deputy Minister, Health Canada) + Nancy Hamzawi (ADM, Health Canada) - Health, Industry, IP, Trade, S&T",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2022-06-28",
+    "attendees": [
+      "Simon Kennedy",
+      "Deputy Minister"
+    ],
+    "subject": "Health, Industry, IP, Trade, S&T",
+    "description": "Simon Kennedy (Deputy Minister, ISED) - Health, Industry, IP, Trade, S&T",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2023-01-11",
+    "attendees": [
+      "Patrick Cousineau",
+      "Greg Mc",
+      "Bradley Bekkeheim",
+      "Damien Kurek"
+    ],
+    "subject": "Health, Industry, S&T",
+    "description": "Patrick Cousineau (MP Assistant, Greg McLean) + Bradley Bekkeheim (MP Assistant, Damien Kurek) - Health, Industry, S&T",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2023-01-16",
+    "attendees": [
+      "Jamie Kippen",
+      "Sandenga Yeba",
+      "Senior Policy"
+    ],
+    "subject": "Health",
+    "description": "Jamie Kippen (Chief of Staff, Minister's Office) + Sandenga Yeba (Senior Policy Advisor, Minister's Office) - Health",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2023-01-27",
+    "attendees": [
+      "Stephen Lucas",
+      "Deputy Minister",
+      "Health Canada"
+    ],
+    "subject": "Health, Industry",
+    "description": "Stephen Lucas (Deputy Minister of Health, Health Canada) - Health, Industry",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  },
+  {
+    "date": "2023-02-09",
+    "attendees": [],
+    "subject": "Health, Industry, S&T",
+    "description": "Flordeliz (Gigi) Osler (Senator) - Health, Industry, S&T",
+    "lobbying_organization": "Innovative Medicines Canada",
+    "source_document": "LOBBYING_MEETINGS_ANALYSIS.md"
+  }
+]

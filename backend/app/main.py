@@ -8,7 +8,7 @@ from . import __version__, storage
 from .config import settings
 from .database import get_session, init_db
 from .models import Entity, Evidence, Relationship_, TimelineEvent
-from .routers import auth, entities, evidence, export, economic, relationships, seal, timeline, wealth_gap, historical_parallels, transparency, government_wealth
+from .routers import auth, entities, evidence, export, economic, relationships, seal, timeline, wealth_gap, historical_parallels, transparency, government_wealth, visualization
 from .schemas import Stats
 
 
@@ -45,6 +45,7 @@ app.include_router(historical_parallels.router)
 app.include_router(transparency.router)
 app.include_router(government_wealth.router)
 app.include_router(auth.router)
+app.include_router(visualization.router)
 
 
 @app.get("/api/health", tags=["meta"])
